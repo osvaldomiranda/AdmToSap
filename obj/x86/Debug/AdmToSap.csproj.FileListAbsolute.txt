@@ -1,0 +1,8 @@
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\bin\Debug\AdmToSap.exe
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\bin\Debug\AdmToSap.pdb
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.csprojResolveAssemblyReference.cache
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.FormMain.resources
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.Properties.Resources.resources
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.csproj.GenerateResource.Cache
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.exe
+C:\Users\Mauricio\documents\visual studio 2010\Projects\AdmToSap\AdmToSap\obj\x86\Debug\AdmToSap.pdb
