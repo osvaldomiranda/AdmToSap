@@ -32,5 +32,23 @@ namespace AdmToSap
             System.Console.WriteLine("LA RESPUESTA ES :" + responce);
 
         }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void baseDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBaseDato frmbd = new frmBaseDato();
+            frmbd.Show();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            ConnectDb condb = new ConnectDb();
+            condb.getConnect();
+        }
     }
 }
