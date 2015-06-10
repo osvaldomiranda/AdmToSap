@@ -74,5 +74,23 @@ namespace AdmToSap
             ConnectDb condb = new ConnectDb();
             condb.getConnect();
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            BancoDb bd = new BancoDb();
+            bd.getBancos();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PartnerDb pdb = new PartnerDb();
+            pdb.getPartner();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            PaymentDb pydb = new PaymentDb();
+            pydb.getPayment();
+        }
     }
 }

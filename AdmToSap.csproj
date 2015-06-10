@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDb.cs" />
     <Compile Include="Connect.cs" />
     <Compile Include="ConnectDb.cs" />
     <Compile Include="FormMain.cs">
@@ -63,6 +64,8 @@
     <Compile Include="frmBaseDato.Designer.cs">
       <DependentUpon>frmBaseDato.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerDb.cs" />
+    <Compile Include="PaymentDb.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
