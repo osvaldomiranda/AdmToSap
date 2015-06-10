@@ -43,9 +43,13 @@ namespace AdmToSap
             }
             catch (OdbcException ex)
             {
-                MessageBox.Show("Problemas al conectar a la base datos", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Problemas al conectar a la base datos \n - verifique los datos ingresados", "Error de Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(ex.Message + "\n\n" + "*********************StackTrace: \n\n" + ex.StackTrace);
-                Environment.Exit(0);
+                //Environment.Exit(0);
+               
+                frmBaseDato frmbd = new frmBaseDato();
+                frmbd.ShowDialog();
+
                 return null;
 
             }
