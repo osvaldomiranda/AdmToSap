@@ -28,11 +28,11 @@ namespace AdmToSap
                     +"        \"BoObjectType\":\"13\",  "
                     +"        \"Document\": { "
                     +"        \"DocumentSubType\":\"--\", "
-                    +"        \"CardCode\": \"CB-00000000\", "
-                    +"        \"DocDate\": \"20150519\", "
-                    +"        \"DocDueDate\": \"20150519\", "
-                    +"        \"TaxDate\": \"20150519\", "
-                    +"        \"FolioNumber\": \"17\", "
+                    + "        \"CardCode\": \"C9999999-9-001\", "
+                    +"        \"DocDate\": \"20150611\", "
+                    +"        \"DocDueDate\": \"20150611\", "
+                    +"        \"TaxDate\": \"20150611\", "
+                    +"        \"FolioNumber\": \"18\", "
                     +"        \"FolioPrefixString\": \"33\", "
                     +"        \"DiscountPercent\": \"0.000000\", "
                     +"        \"Indicator\": \"33\", "
@@ -77,14 +77,55 @@ namespace AdmToSap
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            BancoDb bd = new BancoDb();
-            bd.getBancos();
+            PartnerDb partnerdb = new PartnerDb();
+            List<Partner> partners = new List<Partner>();
+            List<String> responces = new List<String>();
+
+
+            partners = partnerdb.getPartners();
+           
+            foreach(Partner p in partners)
+            {
+                string url = "http://192.168.100.43:8080" +
+         "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
+         "wsaction=" +
+         "AddBPartner";
+
+                string json = "{"
+                       + " \"BusinessPartner\": { "
+                       + " \"CardCode\": \"C9999999-9-001\", "
+                       + " \"CardName\": \"MAURICIO JIMENEZ\", "
+                       + " \"LicTradNum\": \" 12891016-6\","
+                       + " \"Notes\": \"BAZAR\","
+                       + " \"GroupNum\": \"14\","
+                       + " \"SlpCode\": \"-1\","
+                       + " \"Street\": \"Calle de Prueba\","
+                       + " \"Block\": \"101\","
+                       + " \"City\": \"SANTIAGO\","
+                       + " \"County\": \"SANTIAGO\","
+                       + " \"Country\": \"CHILE\","
+                       + " \"udf\": { \"U_SEI_*\": \"0\" }"
+                       + "}"
+                       + "}";
+
+                Connect conn = new Connect();
+                String responce = conn.HttpPOST(url, json);
+                
+                responces.Add(responce);
+                // instanciar clase de envio adm que recibe una lista de respuestas
+                // un metodo de esta clase recorrera la lista de respuestas y las enviara a adm
+                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+            }
+
+
+            
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             PartnerDb pdb = new PartnerDb();
-            pdb.getPartner();
+            pdb.getPartners();
         }
 
         private void button4_Click(object sender, EventArgs e)

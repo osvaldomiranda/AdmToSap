@@ -9,9 +9,11 @@ namespace AdmToSap
     class PartnerDb
     {
         ConnectDb con = new ConnectDb();
-        public void getPartner()
+        public  List<Partner> getPartners()
         {
             OdbcConnection conexion = con.getConnect();
+            Partner partner = new Partner();
+            List<Partner> partners = new List<Partner>();
 
             OdbcCommand select = new OdbcCommand();
             select.Connection = conexion;
@@ -29,16 +31,36 @@ namespace AdmToSap
             OdbcDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
+
+                partner.CardCode = "";
+                partner.CardName = reader.GetString(reader.GetOrdinal("R_SOCIAL"));
+                partner.LicTradNum = reader.GetString(reader.GetOrdinal("RUT"));
+                partner.Notes = reader.GetString(reader.GetOrdinal("GIRO"));
+                partner.GroupNum = "";
+                partner.SlpCode = "";
+                partner.Street = "";
+                partner.Block = "";
+                partner.City = reader.GetString(reader.GetOrdinal("city"));
+                partner.County = reader.GetString(reader.GetOrdinal("county"));
+                partner.Country = reader.GetString(reader.GetOrdinal("country"));
+                partner.udf = "";
+
+                partners.Add(partner);
+
                 Console.WriteLine("{0} {1} {2}",
                                              reader.GetString(reader.GetOrdinal("R_SOCIAL")) + " | ",
                                              reader.GetString(reader.GetOrdinal("RUT")) + " | ",
+                                             reader.GetString(reader.GetOrdinal("GIRO")) + " | ",
                                              reader.GetString(reader.GetOrdinal("country")) + " | ",
                                              reader.GetString(reader.GetOrdinal("city")) + " | ",
                                              reader.GetString(reader.GetOrdinal("county"))
 
                                              );
             }
+           
             conexion.Close();
+            return partners;
+          
         }
     }
 }

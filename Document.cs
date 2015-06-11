@@ -33,7 +33,7 @@ namespace AdmToSap
         [DataMember]
         public List<Item> items = new List<Item>();
         [DataMember]
-        public List<Udf> udfs = new List<Udf>();
+        public List<UdfDocument> udfs = new List<UdfDocument>();
     }
 
     class Item
@@ -47,7 +47,7 @@ namespace AdmToSap
     
 }
 
-    class Udf
+    class UdfDocument
     {
         public String U_SEI_FEBOSID { get; set; }
         public String U_SEI_INREF { get; set; }
