@@ -37,7 +37,7 @@ namespace AdmToSap
                 partner.LicTradNum = reader.GetString(reader.GetOrdinal("RUT"));
                 partner.Notes = reader.GetString(reader.GetOrdinal("GIRO"));
                 partner.GroupNum = "";
-                partner.SlpCode = "";
+                partner.SlpCode = "-1";
                 partner.Street = "";
                 partner.Block = "";
                 partner.City = reader.GetString(reader.GetOrdinal("city"));

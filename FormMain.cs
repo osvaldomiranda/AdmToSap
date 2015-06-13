@@ -90,21 +90,23 @@ namespace AdmToSap
          "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
          "wsaction=" +
          "AddBPartner";
-
+                // agrega separador
+                String rut = p.LicTradNum;
+                String separador = rut.Insert(8,"-");
                 string json = "{"
                        + " \"BusinessPartner\": { "
-                       + " \"CardCode\": \"C9999999-9-001\", "
-                       + " \"CardName\": \"MAURICIO JIMENEZ\", "
-                       + " \"LicTradNum\": \" 12891016-6\","
-                       + " \"Notes\": \"BAZAR\","
-                       + " \"GroupNum\": \"14\","
-                       + " \"SlpCode\": \"-1\","
-                       + " \"Street\": \"Calle de Prueba\","
-                       + " \"Block\": \"101\","
-                       + " \"City\": \"SANTIAGO\","
-                       + " \"County\": \"SANTIAGO\","
-                       + " \"Country\": \"CHILE\","
-                       + " \"udf\": { \"U_SEI_*\": \"0\" }"
+                       + " \"CardCode\": \""+p.CardCode+"\", "
+                       + " \"CardName\": \""+p.CardName+"\", "
+                       + " \"LicTradNum\": \""+separador+"\","
+                       + " \"Notes\": \""+p.Notes+"\","
+                       + " \"GroupNum\": \""+p.GroupNum+"\","
+                       + " \"SlpCode\": \""+p.SlpCode+"\","
+                       + " \"Street\": \""+p.Street+"\","
+                       + " \"Block\": \""+p.Block+"\","
+                       + " \"City\": \""+p.City+"\","
+                       + " \"County\": \""+p.County+"\","
+                       + " \"Country\": \""+p.Country+"\","
+                    //   + " \"udf\": { \"U_SEI_*\": \"0\" }" campo opcional
                        + "}"
                        + "}";
 
