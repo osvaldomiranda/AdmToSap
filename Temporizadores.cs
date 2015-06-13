@@ -25,7 +25,11 @@ namespace AdmToSap
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
-                Thread.Sleep(intervalo()); 
+                Thread.Sleep(intervalo());
+
+                Procesos proc = new Procesos();
+
+                proc.addClientes();
 
             }
         }
