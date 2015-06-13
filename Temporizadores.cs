@@ -20,6 +20,8 @@ namespace AdmToSap
 
         public void doProcessClientes()
         {
+
+
             while (!_shouldStop)
             {
                 Console.WriteLine("ProcessIat thread: working...");
