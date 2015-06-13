@@ -38,7 +38,7 @@ namespace AdmToSap
                 partner.Notes = reader.GetString(reader.GetOrdinal("GIRO"));
                 partner.GroupNum = "";
                 partner.SlpCode = "-1";
-                partner.Street = "";
+                partner.Street = reader.GetString(reader.GetOrdinal("DIRECCION"));
                 partner.Block = "";
                 partner.City = reader.GetString(reader.GetOrdinal("city"));
                 partner.County = reader.GetString(reader.GetOrdinal("county"));
@@ -51,6 +51,7 @@ namespace AdmToSap
                                              reader.GetString(reader.GetOrdinal("R_SOCIAL")) + " | ",
                                              reader.GetString(reader.GetOrdinal("RUT")) + " | ",
                                              reader.GetString(reader.GetOrdinal("GIRO")) + " | ",
+                                             reader.GetString(reader.GetOrdinal("DIRECCION")) + " | ",
                                              reader.GetString(reader.GetOrdinal("country")) + " | ",
                                              reader.GetString(reader.GetOrdinal("city")) + " | ",
                                              reader.GetString(reader.GetOrdinal("county"))
