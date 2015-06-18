@@ -28,12 +28,18 @@ namespace AdmToSap
 
 
         [DataMember]
-        public List<UdfPayment> udfs = new List<UdfPayment>(); // lista de Udfs
+        public UdfPayment udf = new UdfPayment(); // lista de Udfs
 
         [DataMember]
-        public List<Documentsap> items = new List<Documentsap>();
+        public List<Documentsap> documentsap = new List<Documentsap>(); // lista de documentos
 
-    }
+        [DataMember]
+        public List<Checks> checks = new List<Checks>(); // lista de cheques
+
+        [DataMember]
+        public List<CreditCards> creditcard = new List<CreditCards>(); // lista de cheques
+
+     }
 
     [DataContract]
     class UdfPayment

@@ -9,25 +9,58 @@ namespace AdmToSap
     class PaymentDb
     {
         ConnectDb con = new ConnectDb();
-        public void getPayment()
+
+        public List<Payment> getCabezalDoc()
         {
             OdbcConnection conexion = con.getConnect();
+            List<Payment> payments = new List<Payment>();
 
             OdbcCommand select = new OdbcCommand();
             select.Connection = conexion;
-            select.CommandText = "select RUT_CLTE as cardcode, FECHA_CAN as docduedate from cabezalventas " +
-                                 "where cod_empresa=1 and cod_sucursal_abono=2 and tipo_abono = 21 and tipo_cargo>0 and nro_cargo>0 and ISNULL(fecha_cierre) " +
-                                 "and tipodefactura > 0 and anulada='N' " +
-                                 "order by cod_sucursal_abono, tipo_abono, nro_abono; ";
+            select.CommandText = "select * from cabezalventas " 
+                                + "where cod_empresa=1 and cod_sucursal_abono=1 and tipo_abono = 21 and tipo_cargo>0 and nro_cargo>0 and ISNULL(fecha_cierre) " 
+                                +"and tipodefactura > 0 and anulada='N' " 
+                                +"order by cod_sucursal_abono, tipo_abono, nro_abono; ";
             OdbcDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine("{0} {1}", reader.GetString(reader.GetOrdinal("cardcode")) + " - ", 
-                                             reader.GetString(reader.GetOrdinal("docduedate"))
+                Payment payment = new Payment();
+
+                payment.CardCode = reader.GetString(reader.GetOrdinal("RUT_CLTE"));
+                payment.DocDate = "";
+                payment.CashSum = "";
+                payment.CashAccount = "";
+                payment.TransferAccount = "";
+                payment.TransferSum = "";
+                payment.TransferDate = "";
+                payment.TransferReference = "";
+
+                payment.udf.U_SEI_CAJA = "";
+                payment.udf.U_SEI_CAJERO = "";
+                
+                foreach (var doc in payment.documentsap)
+                {
+                    doc.InvoiceType = "";
+                    doc.DocEntry = "";
+                    doc.SumApplied = "";
+                }
+
+
+
+
+
+                payments.Add(payment);
+
+                Console.WriteLine("{0} {1}", reader.GetString(reader.GetOrdinal("nro_comprobante")) + " - ", 
+                                             reader.GetString(reader.GetOrdinal("MONTO"))
                                              
                                              );
             }
+
+            
             conexion.Close();
+
+            return payments;
         }
 
         

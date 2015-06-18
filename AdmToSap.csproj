@@ -53,7 +53,9 @@
     <Compile Include="BancoDb.cs" />
     <Compile Include="Connect.cs" />
     <Compile Include="ConnectDb.cs" />
+    <Compile Include="ConvertAdmSap.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DocumentDb.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +68,26 @@
     <Compile Include="frmBaseDato.Designer.cs">
       <DependentUpon>frmBaseDato.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBodegas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBodegas.Designer.cs">
+      <DependentUpon>frmBodegas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumento.Designer.cs">
+      <DependentUpon>frmDocumento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLog.Designer.cs">
+      <DependentUpon>frmLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocalDataBase.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Partner.cs" />
     <Compile Include="PartnerDb.cs" />
     <Compile Include="Payment.cs" />
@@ -74,11 +96,25 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temporizadores.cs" />
+    <Compile Include="_C__admtosap_DataB_sqliteDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_C__admtosap_DataB_sqliteDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBaseDato.resx">
       <DependentUpon>frmBaseDato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBodegas.resx">
+      <DependentUpon>frmBodegas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocumento.resx">
+      <DependentUpon>frmDocumento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLog.resx">
+      <DependentUpon>frmLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,6 +125,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +135,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="_C__admtosap_DataB_sqliteDataSet.xsc">
+      <DependentUpon>_C__admtosap_DataB_sqliteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="_C__admtosap_DataB_sqliteDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_C__admtosap_DataB_sqliteDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_C__admtosap_DataB_sqliteDataSet.xss">
+      <DependentUpon>_C__admtosap_DataB_sqliteDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

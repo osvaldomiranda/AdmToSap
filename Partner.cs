@@ -34,6 +34,9 @@ namespace AdmToSap
         public String Country { get; set; }
         [DataMember]
         public String udf { get; set; }
+        [DataMember]
+        public String codEmpresa { get; set; }
+
 
     }
 }

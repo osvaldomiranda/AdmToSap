@@ -18,42 +18,9 @@ namespace AdmToSap
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Procesos pro = new Procesos();
+            pro.addDocuments();
 
-            string url = "http://192.168.100.43:8080" +
-                "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"+
-                "wsaction="+
-                "AddDocument";
-
-            string json = "{"
-                    +"        \"BoObjectType\":\"13\",  "
-                    +"        \"Document\": { "
-                    +"        \"DocumentSubType\":\"--\", "
-                    +"        \"CardCode\": \"C9999999-9-001\", "
-                    +"        \"DocDate\": \"20150611\", "
-                    +"        \"DocDueDate\": \"20150611\", "
-                    +"        \"TaxDate\": \"20150611\", "
-                    +"        \"FolioNumber\": \"18\", "
-                    +"        \"FolioPrefixString\": \"33\", "
-                    +"        \"DiscountPercent\": \"0.000000\", "
-                    +"        \"Indicator\": \"33\", "
-                    +"        \"Items\": "
-                    +"         [ "
-                    +"            { "
-                    +"                \"ItemCode\": \"15140\", "
-                    +"                \"Quantity\": \"1\", "
-                    +"                \"UnitPrice\": \"5.0\", "
-                    +"                \"WarehouseCode\": \"B06\",  "
-                    +"                \"TaxCode\": \"IVA\", "
-                    +"                \"DiscountPercent\": \"0.000000\" "
-                    +"            }"
-                    +"        ]"
-                    +"    }"
-                    +"}";
-
-            Connect conn = new Connect();
-            String responce = conn.HttpPOST(url, json);
-
-            System.Console.WriteLine("LA RESPUESTA ES :" + responce);
 
         }
 
@@ -72,7 +39,12 @@ namespace AdmToSap
         private void FormMain_Load(object sender, EventArgs e)
         {
             ConnectDb condb = new ConnectDb();
+            LocalDataBase ldb = new LocalDataBase();
+            Temporizadores temp = new Temporizadores();
+
+            ldb.creaDB();
             condb.getConnect();
+            temp.startProcessClientes();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -88,10 +60,35 @@ namespace AdmToSap
             pdb.getPartners();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+
+        private void verLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PaymentDb pydb = new PaymentDb();
-            pydb.getPayment();
+            frmLog frmlog = new frmLog();
+            frmlog.Show();
+        }
+
+        private void documentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDocumento formdoc = new frmDocumento();
+            formdoc.Show();
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            Procesos poc = new Procesos();
+            poc.AddPayments();
+        }
+
+        private void bodegasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBodegas frmbodegas = new frmBodegas();
+            frmbodegas.Show();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

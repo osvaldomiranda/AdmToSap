@@ -16,3 +16,7 @@ C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\A
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.csproj.GenerateResource.Cache
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\System.Data.SQLite.dll
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmBaseDato.resources
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\AdmToSap.exe.config
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmDocumento.resources
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmLog.resources
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmBodegas.resources

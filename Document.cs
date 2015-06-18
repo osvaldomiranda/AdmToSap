@@ -16,11 +16,11 @@ namespace AdmToSap
         [DataMember]
         public String CardCode { get; set; }
         [DataMember]
-        public String DocDate { get; set; }
+        public DateTime DocDate { get; set; }
         [DataMember]
-        public String DocDueDate { get; set; }
+        public DateTime DocDueDate { get; set; }
         [DataMember]
-        public String TaxDate { get; set; }
+        public DateTime TaxDate { get; set; }
         [DataMember]
         public String FolioNumber { get; set; }
         [DataMember]
@@ -30,10 +30,26 @@ namespace AdmToSap
         [DataMember]
         public String Indicator { get; set; }
 
+        // campos para crear el sql
+        [DataMember]
+        public Byte Cod_Empresa { get; set; }
+        [DataMember]
+        public int Cod_Sucursal { get; set; }
+        [DataMember]
+        public Byte Tipo_Cargo { get; set; }
+        [DataMember]
+        public decimal Nro_Cargo { get; set; }
+        [DataMember]
+        public decimal Nro_Fiscal { get; set; }
+        [DataMember]
+        public Byte Caja { get; set; }
+
+        [DataMember]
+        public UdfDocument udf = new UdfDocument();
+
         [DataMember]
         public List<Item> items = new List<Item>();
-        [DataMember]
-        public List<UdfDocument> udfs = new List<UdfDocument>();
+
     }
 
     class Item
