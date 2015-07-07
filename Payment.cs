@@ -12,19 +12,33 @@ namespace AdmToSap
         [DataMember]
         public String CardCode { get; set; } // Codigo cliente SAP
         [DataMember]
-        public String DocDate { get; set; } // fecha del pago
+        public DateTime DocDate { get; set; } // fecha del pago
         [DataMember]
         public String CashSum { get; set; } // Total de Pago
         [DataMember]
         public String CashAccount { get; set; } // Cuenta banco SAP
         [DataMember]
-        public String TransferAccount { get; set; } // Cuenta de TRansferencia
+        public String TransferAccount { get; set; } // Cuenta de Transferencia
         [DataMember]
         public String TransferSum { get; set; } // Total de la Transferencia
         [DataMember]
         public String TransferDate { get; set; } // Fecha de la transferencia
         [DataMember]
         public String TransferReference { get; set; } // Datos adicional de la transferencia
+        [DataMember]
+        public int tipoCargoAdm { get; set; }
+        [DataMember]
+        public Decimal folioDte { get; set; }
+        [DataMember]
+        public Byte codEmpresa { get; set; }
+        [DataMember]
+        public Int32 codSucursalAbono { get; set; }
+        [DataMember]
+        public Byte caja { get; set; }
+        [DataMember]
+        public Int32 tipoAbono { get; set; }
+        [DataMember]
+        public Int32 nroAbono { get; set; } 
 
 
         [DataMember]
@@ -66,9 +80,9 @@ namespace AdmToSap
     class Checks
     {
         [DataMember]
-        public String DueDate { get; set; }
+        public DateTime DueDate { get; set; }
         [DataMember]
-        public String CheckNumber { get; set; }
+        public Decimal CheckNumber { get; set; }
         [DataMember]
         public String BankCode { get; set; } // Codigo del banco SAP
         [DataMember]
@@ -82,15 +96,15 @@ namespace AdmToSap
     class CreditCards
     {
         [DataMember]
-        public String CreditCard { get; set; } // codigo SAP tipo de tarjeta
+        public Decimal CreditCard { get; set; } // codigo SAP tipo de tarjeta
         [DataMember]
         public String CreditCardNumber { get; set; } // numero de tarjeta
         [DataMember]
-        public String CardValidUntil { get; set; } // Fecha de vencimiento
+        public DateTime CardValidUntil { get; set; } // Fecha de vencimiento
         [DataMember]
         public String CreditSum { get; set; } // Monto total de pago
         [DataMember]
-        public String VoucherNum { get; set; } // datos del voucher POS
+        public Decimal VoucherNum { get; set; } // datos del voucher POS
 
 
     }

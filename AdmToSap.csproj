@@ -50,71 +50,135 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BancoDb.cs" />
+    <Compile Include="ClasesDb\Precio.cs" />
+    <Compile Include="Inventario.cs" />
+    <Compile Include="ClasesDb\BancoDb.cs" />
+    <Compile Include="ClasesDb\InventariosDb.cs" />
     <Compile Include="Connect.cs" />
-    <Compile Include="ConnectDb.cs" />
+    <Compile Include="ClasesDb\ConnectDb.cs" />
     <Compile Include="ConvertAdmSap.cs" />
+    <Compile Include="cotillonDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cotillonDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Document.cs" />
-    <Compile Include="DocumentDb.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="ClasesDb\DocumentDb.cs" />
+    <Compile Include="Empresa.cs" />
+    <Compile Include="ClasesDb\EmpresaDb.cs" />
+    <Compile Include="Formularios\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="Formularios\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBaseDato.cs">
+    <Compile Include="Formularios\frmBaseDato.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBaseDato.Designer.cs">
+    <Compile Include="Formularios\frmBaseDato.Designer.cs">
       <DependentUpon>frmBaseDato.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBodegas.cs">
+    <Compile Include="Formularios\frmBodegas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBodegas.Designer.cs">
+    <Compile Include="Formularios\frmBodegas.Designer.cs">
       <DependentUpon>frmBodegas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDocumento.cs">
+    <Compile Include="Formularios\frmDocumento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDocumento.Designer.cs">
+    <Compile Include="Formularios\frmDocumento.Designer.cs">
       <DependentUpon>frmDocumento.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLog.cs">
+    <Compile Include="Formularios\frmEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLog.Designer.cs">
+    <Compile Include="Formularios\frmEmpresa.Designer.cs">
+      <DependentUpon>frmEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmLog.Designer.cs">
       <DependentUpon>frmLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalDataBase.cs" />
+    <Compile Include="Formularios\frmRespuestas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmRespuestas.Designer.cs">
+      <DependentUpon>frmRespuestas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmSucursal.Designer.cs">
+      <DependentUpon>frmSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmBancos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmBancos.Designer.cs">
+      <DependentUpon>frmBancos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmTemporizador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmTemporizador.Designer.cs">
+      <DependentUpon>frmTemporizador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesDb\LocalDataBase.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Partner.cs" />
-    <Compile Include="PartnerDb.cs" />
+    <Compile Include="ClasesDb\PartnerDb.cs" />
     <Compile Include="Payment.cs" />
-    <Compile Include="PaymentDb.cs" />
+    <Compile Include="ClasesDb\PaymentDb.cs" />
+    <Compile Include="PreciosDb.cs" />
     <Compile Include="Procesos.cs" />
+    <Compile Include="Producto.cs" />
+    <Compile Include="ClasesDb\ProductosDb.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Respuesta.cs" />
+    <Compile Include="ClasesDb\RespuestasDb.cs" />
     <Compile Include="Temporizadores.cs" />
+    <Compile Include="_C__admtosap_DataB_sqliteDataSet.cs">
+      <DependentUpon>_C__admtosap_DataB_sqliteDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="_C__admtosap_DataB_sqliteDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_C__admtosap_DataB_sqliteDataSet.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="Formularios\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBaseDato.resx">
+    <EmbeddedResource Include="Formularios\frmBaseDato.resx">
       <DependentUpon>frmBaseDato.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBodegas.resx">
+    <EmbeddedResource Include="Formularios\frmBodegas.resx">
       <DependentUpon>frmBodegas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDocumento.resx">
+    <EmbeddedResource Include="Formularios\frmDocumento.resx">
       <DependentUpon>frmDocumento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLog.resx">
+    <EmbeddedResource Include="Formularios\frmEmpresa.resx">
+      <DependentUpon>frmEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmLog.resx">
       <DependentUpon>frmLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmRespuestas.resx">
+      <DependentUpon>frmRespuestas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmSucursal.resx">
+      <DependentUpon>frmSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmBancos.resx">
+      <DependentUpon>frmBancos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmTemporizador.resx">
+      <DependentUpon>frmTemporizador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -126,6 +190,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="cotillonDataSet.xsc">
+      <DependentUpon>cotillonDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="cotillonDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>cotillonDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cotillonDataSet.xss">
+      <DependentUpon>cotillonDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -34,5 +34,16 @@ namespace AdmToSap.Properties {
                 return ((string)(this["C__admtosap_DataB_sqliteConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=cotillon;database=cotillon;description=base dato cotillon;option=0;port=0;ser" +
+            "ver=localhost;uid=adm")]
+        public string cotillonConnectionString {
+            get {
+                return ((string)(this["cotillonConnectionString"]));
+            }
+        }
     }
 }

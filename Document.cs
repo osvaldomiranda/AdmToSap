@@ -29,6 +29,12 @@ namespace AdmToSap
         public String DiscountPercent { get; set; }
         [DataMember]
         public String Indicator { get; set; }
+        [DataMember]
+        public Decimal COGSCostingCode { get; set; } // centro de costos
+        [DataMember]
+        public Decimal CostingCode { get; set; } // centro de costos opcional
+
+
 
         // campos para crear el sql
         [DataMember]
@@ -43,6 +49,13 @@ namespace AdmToSap
         public decimal Nro_Fiscal { get; set; }
         [DataMember]
         public Byte Caja { get; set; }
+        [DataMember]
+        public Int32 codSucursalAbono { get; set; }
+        [DataMember]
+        public Int32 tipoAbono { get; set; }
+        [DataMember]
+        public Int32 numAbono { get; set; }
+
 
         [DataMember]
         public UdfDocument udf = new UdfDocument();

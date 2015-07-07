@@ -1,6 +1,6 @@
 ﻿namespace AdmToSap
 {
-    partial class frmDocumento
+    partial class frmBancos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBancos));
             this._C__admtosap_DataB_sqliteDataSet = new AdmToSap._C__admtosap_DataB_sqliteDataSet();
-            this.documentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentoTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.documentoTableAdapter();
+            this.bancosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bancosTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.bancosTableAdapter();
             this.tableAdapterManager = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager();
-            this.documentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bancosBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -46,16 +46,18 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.documentoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.documentoDataGridView = new System.Windows.Forms.DataGridView();
+            this.bancosBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.bancosDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingNavigator)).BeginInit();
-            this.documentoBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingNavigator)).BeginInit();
+            this.bancosBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // _C__admtosap_DataB_sqliteDataSet
@@ -63,31 +65,35 @@
             this._C__admtosap_DataB_sqliteDataSet.DataSetName = "_C__admtosap_DataB_sqliteDataSet";
             this._C__admtosap_DataB_sqliteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // documentoBindingSource
+            // bancosBindingSource
             // 
-            this.documentoBindingSource.DataMember = "documento";
-            this.documentoBindingSource.DataSource = this._C__admtosap_DataB_sqliteDataSet;
+            this.bancosBindingSource.DataMember = "bancos";
+            this.bancosBindingSource.DataSource = this._C__admtosap_DataB_sqliteDataSet;
             // 
-            // documentoTableAdapter
+            // bancosTableAdapter
             // 
-            this.documentoTableAdapter.ClearBeforeFill = true;
+            this.bancosTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.bancosTableAdapter = this.bancosTableAdapter;
+            this.tableAdapterManager.bodegasTableAdapter = null;
             this.tableAdapterManager.connectdbTableAdapter = null;
-            this.tableAdapterManager.documentoTableAdapter = this.documentoTableAdapter;
+            this.tableAdapterManager.documentoTableAdapter = null;
+            this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
+            this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // documentoBindingNavigator
+            // bancosBindingNavigator
             // 
-            this.documentoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.documentoBindingNavigator.BindingSource = this.documentoBindingSource;
-            this.documentoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.documentoBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.documentoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bancosBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bancosBindingNavigator.BindingSource = this.bancosBindingSource;
+            this.bancosBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.bancosBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bancosBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -99,17 +105,17 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.documentoBindingNavigatorSaveItem});
-            this.documentoBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.documentoBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.documentoBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.documentoBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.documentoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.documentoBindingNavigator.Name = "documentoBindingNavigator";
-            this.documentoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.documentoBindingNavigator.Size = new System.Drawing.Size(619, 25);
-            this.documentoBindingNavigator.TabIndex = 0;
-            this.documentoBindingNavigator.Text = "bindingNavigator1";
+            this.bancosBindingNavigatorSaveItem});
+            this.bancosBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.bancosBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bancosBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bancosBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bancosBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bancosBindingNavigator.Name = "bancosBindingNavigator";
+            this.bancosBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.bancosBindingNavigator.Size = new System.Drawing.Size(769, 25);
+            this.bancosBindingNavigator.TabIndex = 0;
+            this.bancosBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -146,14 +152,14 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(38, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(38, 13);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 6);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -161,7 +167,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 20);
             this.bindingNavigatorMoveNextItem.Text = "Mover siguiente";
             // 
             // bindingNavigatorMoveLastItem
@@ -170,13 +176,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 20);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 6);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -186,7 +192,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -194,68 +199,80 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
-            // documentoBindingNavigatorSaveItem
+            // bancosBindingNavigatorSaveItem
             // 
-            this.documentoBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.documentoBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("documentoBindingNavigatorSaveItem.Image")));
-            this.documentoBindingNavigatorSaveItem.Name = "documentoBindingNavigatorSaveItem";
-            this.documentoBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.documentoBindingNavigatorSaveItem.Text = "Guardar datos";
-            this.documentoBindingNavigatorSaveItem.Click += new System.EventHandler(this.documentoBindingNavigatorSaveItem_Click);
+            this.bancosBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bancosBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bancosBindingNavigatorSaveItem.Image")));
+            this.bancosBindingNavigatorSaveItem.Name = "bancosBindingNavigatorSaveItem";
+            this.bancosBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
+            this.bancosBindingNavigatorSaveItem.Text = "Guardar datos";
+            this.bancosBindingNavigatorSaveItem.Click += new System.EventHandler(this.bancosBindingNavigatorSaveItem_Click);
             // 
-            // documentoDataGridView
+            // bancosDataGridView
             // 
-            this.documentoDataGridView.AutoGenerateColumns = false;
-            this.documentoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.documentoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bancosDataGridView.AutoGenerateColumns = false;
+            this.bancosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bancosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.documentoDataGridView.DataSource = this.documentoBindingSource;
-            this.documentoDataGridView.Location = new System.Drawing.Point(12, 46);
-            this.documentoDataGridView.Name = "documentoDataGridView";
-            this.documentoDataGridView.Size = new System.Drawing.Size(554, 220);
-            this.documentoDataGridView.TabIndex = 1;
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.bancosDataGridView.DataSource = this.bancosBindingSource;
+            this.bancosDataGridView.Location = new System.Drawing.Point(12, 39);
+            this.bancosDataGridView.Name = "bancosDataGridView";
+            this.bancosDataGridView.Size = new System.Drawing.Size(733, 260);
+            this.bancosDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "tipodteadm";
-            this.dataGridViewTextBoxColumn1.HeaderText = "tipodteadm";
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "codadm";
+            this.dataGridViewTextBoxColumn1.HeaderText = "codadm";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "tipodtesap";
-            this.dataGridViewTextBoxColumn2.HeaderText = "tipodtesap";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "codsap";
+            this.dataGridViewTextBoxColumn2.HeaderText = "codsap";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "nombretipo";
-            this.dataGridViewTextBoxColumn3.HeaderText = "nombretipo";
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "nombre";
+            this.dataGridViewTextBoxColumn3.HeaderText = "nombre";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 300;
             // 
-            // frmDocumento
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "cuentaadm";
+            this.dataGridViewTextBoxColumn4.HeaderText = "cuentaadm";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "cuantasap";
+            this.dataGridViewTextBoxColumn5.HeaderText = "cuantasap";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // frmBancos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 304);
-            this.Controls.Add(this.documentoDataGridView);
-            this.Controls.Add(this.documentoBindingNavigator);
-            this.Name = "frmDocumento";
-            this.Text = "frmDocumento";
-            this.Load += new System.EventHandler(this.frmDocumento_Load);
+            this.ClientSize = new System.Drawing.Size(769, 311);
+            this.Controls.Add(this.bancosDataGridView);
+            this.Controls.Add(this.bancosBindingNavigator);
+            this.Name = "frmBancos";
+            this.Text = "frmBancos";
+            this.Load += new System.EventHandler(this.frmBancos_Load);
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingNavigator)).EndInit();
-            this.documentoBindingNavigator.ResumeLayout(false);
-            this.documentoBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosBindingNavigator)).EndInit();
+            this.bancosBindingNavigator.ResumeLayout(false);
+            this.bancosBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bancosDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,10 +281,10 @@
         #endregion
 
         private _C__admtosap_DataB_sqliteDataSet _C__admtosap_DataB_sqliteDataSet;
-        private System.Windows.Forms.BindingSource documentoBindingSource;
-        private _C__admtosap_DataB_sqliteDataSetTableAdapters.documentoTableAdapter documentoTableAdapter;
+        private System.Windows.Forms.BindingSource bancosBindingSource;
+        private _C__admtosap_DataB_sqliteDataSetTableAdapters.bancosTableAdapter bancosTableAdapter;
         private _C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator documentoBindingNavigator;
+        private System.Windows.Forms.BindingNavigator bancosBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -279,10 +296,12 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton documentoBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView documentoDataGridView;
+        private System.Windows.Forms.ToolStripButton bancosBindingNavigatorSaveItem;
+        private System.Windows.Forms.DataGridView bancosDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

@@ -12,7 +12,7 @@ namespace AdmToSap
 
         public int typeDocument(int type)
         {
-            int dbtype = 0;
+            string dbtype = "";
             SQLiteConnection myConn = new SQLiteConnection(strConn);
             myConn.Open();
             String sql1 = "SELECT * FROM documento where tipodteadm = " + type;
@@ -20,11 +20,11 @@ namespace AdmToSap
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                dbtype = reader.GetOrdinal("tiposap");
+                dbtype = reader.GetString(reader.GetOrdinal("tipodtesap"));
             }
 
             myConn.Close();
-            return dbtype;
+            return Convert.ToInt32(dbtype);
         }
 
         public string codBodega(string codbod)
@@ -32,15 +32,84 @@ namespace AdmToSap
             string dbcod = "";
             SQLiteConnection myConn = new SQLiteConnection(strConn);
             myConn.Open();
-            String sql1 = "SELECT * FROM bodegas where codbodegaadm = " + codbod;
+            String sql1 = "SELECT * FROM bodegas where codigoadm = " + codbod;
             SQLiteCommand command = new SQLiteCommand(sql1, myConn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                dbcod = reader.GetString(reader.GetOrdinal("codbodegasap"));
+                dbcod = reader.GetString(reader.GetOrdinal("codigosap"));
             }
             myConn.Close();
             return dbcod;
         }
+
+        public string tipoInvoiceSap(int tipoDte)
+        {
+            string tipoObjeto = "";
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM documento where tipodteadm = " + tipoDte;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+               tipoObjeto = reader.GetString(reader.GetOrdinal("tipodeobjeto"));
+            }
+            myConn.Close();
+            return tipoObjeto;
+        }
+
+        public string DocumentSubType(int tipoDte)
+        {
+            string tipoObjeto = "";
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM documento where tipodteadm = " + tipoDte;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                tipoObjeto = reader.GetString(reader.GetOrdinal("subtipoobjeto"));
+            }
+            myConn.Close();
+            return tipoObjeto;
+        }
+
+        public String codBanco(int codBanco)
+        {
+            String codigo = "";
+
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM bancos where codadm  = " + codBanco;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                codigo = reader.GetString(reader.GetOrdinal("codsap"));
+            }
+            myConn.Close();
+            
+            return codigo;
+        }
+
+        public String cuentaBanco(int codBanco)
+        {
+            String cuenta = "";
+
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM bancos where codadm  = " + codBanco ;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                cuenta = reader.GetString(reader.GetOrdinal("cuentasap"));
+            }
+            myConn.Close();
+
+            return cuenta;
+        }
+    
     }
 }

@@ -28,6 +28,9 @@ namespace AdmToSap
                     creaTablaLog();
                     creaTablaDocumento();
                     creaTablaBodegas();
+                    creaTablaEmpresas();
+                    creaTablaRespuestas();
+                    creaTablaBancos();
                 }
                 else
                 {
@@ -104,23 +107,8 @@ namespace AdmToSap
                          + "tipodteadm VARCHAR(2), "
                          + "tipodtesap,VARCHAR(2)"
                          + "nombretipo,VARCHAR(255)"
-                         +")";
-
-            SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
-            cmd1.ExecuteNonQuery();
-            myConn.Close();
-
-        }
-        public void creaTablaBodegas()
-        {
-
-            SQLiteConnection myConn = new SQLiteConnection(strConn);
-            myConn.Open();
-
-            String sql1 = "CREATE TABLE bodegas ("
-                         + "codbodegaadm VARCHAR(2), "
-                         + "codbodegasap,VARCHAR(255)"
-                         + "nombrebodega,VARCHAR(255)"
+                         + "tipodeobjeto,VARCHAR(255)" 
+                         + "subtipoobjeto,VARCHAR(255)" 
                          + ")";
 
             SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
@@ -128,6 +116,83 @@ namespace AdmToSap
             myConn.Close();
 
         }
+
+        public void creaTablaBodegas()
+        {
+
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+
+            String sql1 = "CREATE TABLE bodegas ("
+                         + "nom_bodega VARCHAR(255), "
+                         + "codigoadm,VARCHAR(255)"
+                         + "codigosap,VARCHAR(255)"
+                         + ")";
+
+            SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
+            cmd1.ExecuteNonQuery();
+            myConn.Close();
+
+        }
+
+        public void creaTablaEmpresas()
+        {
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+
+            String sql1 = "CREATE TABLE empresas ("
+                         + "cod_empresa,INTEGER "
+                         + "nom_empresa, TEXT"
+                         + "cod_sucursal,INTEGER"
+                         + "nom_sucursal,TEXT"
+                         + ")";
+
+            SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
+            cmd1.ExecuteNonQuery();
+            myConn.Close();
+
+        }
+
+        public void creaTablaRespuestas()
+        {
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+
+            String sql1 = "CREATE TABLE respuestas ("
+                         + "fecha,TEXT "
+                         + "tipodte, TEXT"
+                         + "folio,INTEGER"
+                         + "mensaje,TEXT"
+                         + "tiporesp,TEXT"
+                         + "xml,TEXT"
+                         + "json,TEXT" 
+                         + ")";
+
+            SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
+            cmd1.ExecuteNonQuery();
+            myConn.Close();
+
+        }
+
+        public void creaTablaBancos()
+        {
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+
+            String sql1 = "CREATE TABLE bancos ("
+                         + "codadm,TEXT "
+                         + "codsap, TEXT"
+                         + "nombre,TEXT"
+                         + "cuentaadm,TEXT"
+                         + "cuantasap,TEXT"
+                         + ")";
+
+            SQLiteCommand cmd1 = new SQLiteCommand(sql1, myConn);
+            cmd1.ExecuteNonQuery();
+            myConn.Close();
+
+        }
+
 
 
     }// fin clase
