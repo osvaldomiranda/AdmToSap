@@ -41,7 +41,7 @@ namespace AdmToSap
             OdbcDataReader reader2 = select2.ExecuteReader();
             while (reader2.Read())
             {
-                Document doc = cabezalDoc(reader);
+                Document doc = cabezalDoc(reader2);
                 docs.Add(doc);
             }
             conexion.Close();
@@ -52,7 +52,24 @@ namespace AdmToSap
         {
             ConvertAdmSap convertAdmSap = new ConvertAdmSap();
             Document doc = new Document();
-            doc.BoObjectType = convertAdmSap.tipoInvoiceSap(reader.GetByte(reader.GetOrdinal("TIPO_CARGO"))).ToString(); ;
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                doc.BoObjectType = convertAdmSap.tipoInvoiceSap(reader.GetInt32(reader.GetOrdinal("TIPO_ABONO"))).ToString(); ;
+            }
+            else
+            {
+                doc.BoObjectType = convertAdmSap.tipoInvoiceSap(reader.GetByte(reader.GetOrdinal("TIPO_CARGO"))).ToString(); ;
+            }
+
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                doc.DocumentSubType = convertAdmSap.DocumentSubType(reader.GetInt32(reader.GetOrdinal("TIPO_ABONO"))).ToString(); ;
+            }
+            else
+            {
+                doc.DocumentSubType = convertAdmSap.DocumentSubType(reader.GetByte(reader.GetOrdinal("TIPO_CARGO"))).ToString(); ;
+            }
+
             doc.CardCode = reader.GetString(reader.GetOrdinal("RUT_CLTE"));
             doc.Cod_Empresa = reader.GetByte(reader.GetOrdinal("COD_EMPRESA"));
             doc.Cod_Sucursal = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL"));
@@ -60,18 +77,38 @@ namespace AdmToSap
             doc.Nro_Cargo = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
             doc.Nro_Fiscal = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL"));
             doc.Caja = reader.GetByte(reader.GetOrdinal("CAJA"));
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                doc.COGSCostingCode = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO"));
+            }
+            else
+            {
+                doc.COGSCostingCode = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL"));
+            }
+
             doc.codSucursalAbono = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO"));
             doc.tipoAbono = reader.GetInt32(reader.GetOrdinal("TIPO_ABONO"));
             doc.numAbono = reader.GetInt32(reader.GetOrdinal("NRO_ABONO"));
-            if (doc.Tipo_Cargo == 61)
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
             {
-                doc.BoObjectType = reader.GetInt32(reader.GetOrdinal("NRO_ABONO")).ToString();
+                doc.FolioNumber = reader.GetInt32(reader.GetOrdinal("NRO_ABONO")).ToString();
+            }
+            else
+            {
+                doc.FolioNumber = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL")).ToString();
             }
             doc.DocDate = reader.GetDateTime(reader.GetOrdinal("FECHAINGRESO"));
             doc.DocDueDate = reader.GetDateTime(reader.GetOrdinal("FECHA_VEN"));
             doc.TaxDate = reader.GetDateTime(reader.GetOrdinal("FECHA_EM"));
-            doc.FolioNumber = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL")).ToString();
-            doc.FolioPrefixString = convertAdmSap.typeDocument(doc.Tipo_Cargo).ToString();
+            
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                doc.FolioPrefixString = convertAdmSap.typeDocument(doc.tipoAbono).ToString();
+            }
+            else
+            {
+                doc.FolioPrefixString = convertAdmSap.typeDocument(doc.Tipo_Cargo).ToString();
+            }
             doc.DiscountPercent = reader.GetString(reader.GetOrdinal("DESCUENTOS"));
             doc.Indicator = doc.FolioPrefixString;
             doc.udf.U_SEI_FEBOSID = reader.IsDBNull(reader.GetOrdinal("id_febos")) ? String.Empty : reader.GetString(reader.GetOrdinal("id_febos")); // TODO codigo que retorna febos
@@ -79,12 +116,22 @@ namespace AdmToSap
             doc.udf.U_SEI_FOREF = ""; // 
             doc.udf.U_SEI_FEREF = "";
             doc.udf.U_SEI_CREF = "";
-            doc.items = getItems(doc.Cod_Empresa, doc.Cod_Sucursal, doc.Caja, doc.Tipo_Cargo, doc.Nro_Cargo);
+
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                doc.items = getItems(doc.Cod_Empresa, doc.codSucursalAbono, doc.Caja, doc.tipoAbono, doc.numAbono);
+            }
+            else
+            {
+                doc.items = getItems(doc.Cod_Empresa, doc.Cod_Sucursal, doc.Caja, doc.Tipo_Cargo, doc.Nro_Cargo);
+            }
+
+
+
             Console.WriteLine("{0} {1}", reader.GetString(reader.GetOrdinal("RUT_CLTE")) + " | ",
                              reader.GetOrdinal("FECHAINGRESO") + " | ");
             return doc;
         }
-
 
         public List<Item> getItems(Byte codEmpresa, int codSucursal, int caja, int tipo, decimal numero )
         {
@@ -119,7 +166,7 @@ namespace AdmToSap
 
         }
 
-        public void updateInAdm(String empresa, String sucursal, String tipoCargo, String numCargo, String caja)
+        public void updateInAdm(CabezalVentaAdm cvadm)
         {
             OdbcConnection conexion = con.getConnect();
             OdbcCommand update = new OdbcCommand();
@@ -128,11 +175,11 @@ namespace AdmToSap
             update2.Connection = conexion;
 
             update.CommandText = "update cabezalventas "
-                                +"set fecha_cierre = now() "
-                                +" where cod_empresa="+empresa
-                                +" and cod_sucursal="+sucursal
-                                +" and tipo_cargo="+tipoCargo
-                                +" and nro_cargo="+numCargo
+                                +"set fecha_cierre = now(), ID_SAP = '" + cvadm.ID_SAP+"'"
+                                +" where cod_empresa="+ cvadm.COD_EMPRESA
+                                +" and cod_sucursal="+ cvadm.COD_SUCURSAL
+                                +" and tipo_cargo="+ cvadm.TIPO_CARGO
+                                +" and nro_cargo="+ cvadm.NRO_CARGO
                                 +" and nro_abono=0;";
 
 
@@ -140,11 +187,11 @@ namespace AdmToSap
 
             update2.CommandText = "update detalleventas "
                                  +" set fecha_cierre = now()"
-                                 +" where cod_empresa="+empresa
-                                 +" and cod_sucursal="+sucursal
-                                 +" and caja="+caja
-                                 +" and TIPO="+tipoCargo
-                                 +" and NUMERO="+numCargo+";";
+                                 +" where cod_empresa="+ cvadm.COD_EMPRESA
+                                 +" and cod_sucursal="+ cvadm.COD_SUCURSAL
+                                 +" and caja="+ cvadm.CAJA
+                                 +" and TIPO="+ cvadm.TIPO_CARGO
+                                 +" and NUMERO="+ cvadm.NRO_CARGO+";";
             
             OdbcDataReader up2 = update2.ExecuteReader();
             
@@ -193,8 +240,19 @@ namespace AdmToSap
 
         }
 
-
     
         
+    }
+
+    // clase para cargar los campos de la tabla cabezalventas ADM
+    class CabezalVentaAdm
+    {
+        public string COD_EMPRESA { get; set; }
+        public string COD_SUCURSAL { get; set; }
+        public string TIPO_CARGO { get; set; }
+        public string NRO_CARGO { get; set; }
+        public string CAJA { get; set; }
+        public string ID_SAP { get; set; } 
+
     }
 }

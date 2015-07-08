@@ -30,9 +30,11 @@ namespace AdmToSap
         [DataMember]
         public String Indicator { get; set; }
         [DataMember]
-        public Decimal COGSCostingCode { get; set; } // centro de costos
+        public int COGSCostingCode { get; set; } // centro de costos (Sucursal)
         [DataMember]
         public Decimal CostingCode { get; set; } // centro de costos opcional
+        [DataMember]
+        public Decimal SalesPersonCode { get; set; } // Vendedor
 
 
 
@@ -83,6 +85,9 @@ namespace AdmToSap
         public String U_SEI_FOREF { get; set; }
         public String U_SEI_FEREF { get; set; }
         public String U_SEI_CREF { get; set; }
+        public String U_SEI_CAJA { get; set; } // numero caja
+        public String U_SEI_CAJERO { get; set; } // numero cajero
+
 
     }
 }

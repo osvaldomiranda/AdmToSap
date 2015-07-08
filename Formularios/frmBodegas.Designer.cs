@@ -75,12 +75,15 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.bancosTableAdapter = null;
             this.tableAdapterManager.bodegasTableAdapter = this.bodegasTableAdapter;
             this.tableAdapterManager.connectdbTableAdapter = null;
             this.tableAdapterManager.documentoTableAdapter = null;
             this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
+            this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.sucursalesTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // bodegasBindingNavigator
@@ -209,6 +212,7 @@
             // 
             // bodegasDataGridView
             // 
+            this.bodegasDataGridView.AllowUserToAddRows = false;
             this.bodegasDataGridView.AutoGenerateColumns = false;
             this.bodegasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.bodegasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -218,16 +222,15 @@
             this.bodegasDataGridView.DataSource = this.bodegasBindingSource;
             this.bodegasDataGridView.Location = new System.Drawing.Point(12, 40);
             this.bodegasDataGridView.Name = "bodegasDataGridView";
-            this.bodegasDataGridView.Size = new System.Drawing.Size(582, 154);
+            this.bodegasDataGridView.Size = new System.Drawing.Size(659, 314);
             this.bodegasDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "nom_bodega";
             this.dataGridViewTextBoxColumn3.HeaderText = "nom_bodega";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 94;
+            this.dataGridViewTextBoxColumn3.Width = 200;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -245,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 310);
+            this.ClientSize = new System.Drawing.Size(683, 366);
             this.Controls.Add(this.bodegasDataGridView);
             this.Controls.Add(this.bodegasBindingNavigator);
             this.Name = "frmBodegas";

@@ -82,7 +82,7 @@ namespace AdmToSap
                 string cabecerajson = "{"
                         + "        \"BoObjectType\":\""+p.BoObjectType+"\",  "
                         + "        \"Document\": { "
-                        + "        \"DocumentSubType\":\"" + convadmsap.DocumentSubType(p.Tipo_Cargo) + "\", "  // si es factura = --
+                        + "        \"DocumentSubType\":\"" + p.DocumentSubType + "\", "  // si es factura = --
                         + "        \"CardCode\": \"CF-" + (p.CardCode).Substring(1, 7) + "\", "
                         + "        \"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\", "
                         + "        \"DocDueDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDueDate) + "\", "
@@ -91,6 +91,7 @@ namespace AdmToSap
                         + "        \"FolioPrefixString\": \"" + p.FolioPrefixString + "\", "
                         + "        \"DiscountPercent\": \"" + p.DiscountPercent + "\", "
                         + "        \"Indicator\": \"" + p.Indicator + "\", "
+                        + "        \"COGSCostingCode\": \"" + p.COGSCostingCode + "\", "
                         + "        \"udf\": {\"U_SEI_FEBOSID\": \""+p.udf.U_SEI_FEBOSID+"\"}, "
                         + "        \"Items\": "
                         + "         [ ";
@@ -100,6 +101,9 @@ namespace AdmToSap
                 {
                     count += 1;
                     string detallejson = "{"
+                       //    + "                \"BaseEntry\" : \"0\"," // TODO 
+                       //    + "                \"BaseType\" : \"0\"," // TODO 
+	                   //   + "                \"BaseLine\": \"0\","  // TODO
                            + "                \"ItemCode\": \"" + det.ItemCode + "\", "
                            + "                \"Quantity\": \"" + det.Quantity + "\", "
                            + "                \"UnitPrice\": \"" + det.UnitPrice + "\", "
@@ -125,15 +129,24 @@ namespace AdmToSap
 
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
-
                 
+                
+                // cargo los datos para el updateadm
+                CabezalVentaAdm cvadm = new CabezalVentaAdm();
+                cvadm.COD_EMPRESA = p.Cod_Empresa.ToString();
+                cvadm.COD_SUCURSAL = p.Cod_Sucursal.ToString();
+                cvadm.TIPO_CARGO = p.Tipo_Cargo.ToString();
+                cvadm.NRO_CARGO = p.Nro_Cargo.ToString();
+                cvadm.CAJA = p.Caja.ToString();
+                cvadm.ID_SAP = respdb.extraeMensaje(responce.Replace("'",""));
                 // Actualizo Adm
-                docdb.updateInAdm(p.Cod_Empresa.ToString(), p.Cod_Sucursal.ToString(), p.Tipo_Cargo.ToString(), p.Nro_Cargo.ToString(), p.Caja.ToString());
+                docdb.updateInAdm(cvadm);
 
                 // si el ducumento es una nota de credito
                 if (p.tipoAbono.ToString() == "61" || p.tipoAbono.ToString() == "60")
-                docdb.updateCabezNCAdm(p.Cod_Empresa.ToString(), p.codSucursalAbono.ToString(),p.tipoAbono.ToString(), p.numAbono.ToString());
-
+                {
+                    docdb.updateCabezNCAdm(p.Cod_Empresa.ToString(), p.codSucursalAbono.ToString(), p.tipoAbono.ToString(), p.numAbono.ToString());
+                }
                 // cargo la respuesta
                 respuesta.tipodete = p.Indicator.ToString();
                 respuesta.folio = p.Nro_Cargo.ToString();
@@ -299,11 +312,16 @@ namespace AdmToSap
                         +"/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
                         +"wsaction=" 
                         +"GetItemList";
-            string json = "{ \"UpdateDate\": \"20150701\"} ";
+            string json = "{ \"UpdateDate\": \"20150101\","
+                        + "\"first\": \"20\","
+                        + "\"last\": \"40\""
+                          +"} ";
 
-            Connect conn = new Connect();
+            Connect conn = new Connect();  
             String responce = conn.HttpPOST(url, json);
             System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+            ProductosDb productosdb = new ProductosDb();
+            productosdb.upProdAdm(respdb.extraeJsonProducto(responce));
         }
 
         public void getInventarios()
@@ -312,7 +330,10 @@ namespace AdmToSap
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetWhsInventory";
-            string json = "{\"WhsCode\": \"B06\"}";
+            string json = "{\"WhsCode\": \"B06\","
+                          + "\"first\": \"20\","
+                          + "\"last\": \"40\""
+                          +"}";
 
             Connect conn = new Connect();
             String responce = conn.HttpPOST(url, json);

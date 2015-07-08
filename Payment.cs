@@ -38,7 +38,12 @@ namespace AdmToSap
         [DataMember]
         public Int32 tipoAbono { get; set; }
         [DataMember]
-        public Int32 nroAbono { get; set; } 
+        public Int32 nroAbono { get; set; }
+        [DataMember]
+        public string cajero { get; set; }
+        [DataMember]
+        public string vendedor { get; set; } 
+
 
 
         [DataMember]

@@ -1,6 +1,6 @@
 ﻿namespace AdmToSap
 {
-    partial class frmDocumento
+    partial class frmSucursales
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSucursales));
             this._C__admtosap_DataB_sqliteDataSet = new AdmToSap._C__admtosap_DataB_sqliteDataSet();
-            this.documentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.documentoTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.documentoTableAdapter();
+            this.sucursalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sucursalesTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.sucursalesTableAdapter();
             this.tableAdapterManager = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager();
-            this.documentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.sucursalesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -46,18 +46,17 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.documentoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.documentoDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sucursalesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.sucursalesDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipodeobjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtipoobjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingNavigator)).BeginInit();
-            this.documentoBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingNavigator)).BeginInit();
+            this.sucursalesBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // _C__admtosap_DataB_sqliteDataSet
@@ -65,14 +64,14 @@
             this._C__admtosap_DataB_sqliteDataSet.DataSetName = "_C__admtosap_DataB_sqliteDataSet";
             this._C__admtosap_DataB_sqliteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // documentoBindingSource
+            // sucursalesBindingSource
             // 
-            this.documentoBindingSource.DataMember = "documento";
-            this.documentoBindingSource.DataSource = this._C__admtosap_DataB_sqliteDataSet;
+            this.sucursalesBindingSource.DataMember = "sucursales";
+            this.sucursalesBindingSource.DataSource = this._C__admtosap_DataB_sqliteDataSet;
             // 
-            // documentoTableAdapter
+            // sucursalesTableAdapter
             // 
-            this.documentoTableAdapter.ClearBeforeFill = true;
+            this.sucursalesTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
@@ -80,21 +79,21 @@
             this.tableAdapterManager.bancosTableAdapter = null;
             this.tableAdapterManager.bodegasTableAdapter = null;
             this.tableAdapterManager.connectdbTableAdapter = null;
-            this.tableAdapterManager.documentoTableAdapter = this.documentoTableAdapter;
+            this.tableAdapterManager.documentoTableAdapter = null;
             this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
             this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
-            this.tableAdapterManager.sucursalesTableAdapter = null;
+            this.tableAdapterManager.sucursalesTableAdapter = this.sucursalesTableAdapter;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // documentoBindingNavigator
+            // sucursalesBindingNavigator
             // 
-            this.documentoBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.documentoBindingNavigator.BindingSource = this.documentoBindingSource;
-            this.documentoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.documentoBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.documentoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sucursalesBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.sucursalesBindingNavigator.BindingSource = this.sucursalesBindingSource;
+            this.sucursalesBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.sucursalesBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.sucursalesBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -106,17 +105,17 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.documentoBindingNavigatorSaveItem});
-            this.documentoBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.documentoBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.documentoBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.documentoBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.documentoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.documentoBindingNavigator.Name = "documentoBindingNavigator";
-            this.documentoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.documentoBindingNavigator.Size = new System.Drawing.Size(771, 25);
-            this.documentoBindingNavigator.TabIndex = 0;
-            this.documentoBindingNavigator.Text = "bindingNavigator1";
+            this.sucursalesBindingNavigatorSaveItem});
+            this.sucursalesBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.sucursalesBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.sucursalesBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.sucursalesBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.sucursalesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.sucursalesBindingNavigator.Name = "sucursalesBindingNavigator";
+            this.sucursalesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.sucursalesBindingNavigator.Size = new System.Drawing.Size(972, 25);
+            this.sucursalesBindingNavigator.TabIndex = 0;
+            this.sucursalesBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -126,7 +125,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -143,7 +141,6 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -205,80 +202,76 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // documentoBindingNavigatorSaveItem
+            // sucursalesBindingNavigatorSaveItem
             // 
-            this.documentoBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.documentoBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("documentoBindingNavigatorSaveItem.Image")));
-            this.documentoBindingNavigatorSaveItem.Name = "documentoBindingNavigatorSaveItem";
-            this.documentoBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.documentoBindingNavigatorSaveItem.Text = "Guardar datos";
-            this.documentoBindingNavigatorSaveItem.Click += new System.EventHandler(this.documentoBindingNavigatorSaveItem_Click);
+            this.sucursalesBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.sucursalesBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("sucursalesBindingNavigatorSaveItem.Image")));
+            this.sucursalesBindingNavigatorSaveItem.Name = "sucursalesBindingNavigatorSaveItem";
+            this.sucursalesBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.sucursalesBindingNavigatorSaveItem.Text = "Guardar datos";
+            this.sucursalesBindingNavigatorSaveItem.Click += new System.EventHandler(this.sucursalesBindingNavigatorSaveItem_Click);
             // 
-            // documentoDataGridView
+            // sucursalesDataGridView
             // 
-            this.documentoDataGridView.AllowUserToAddRows = false;
-            this.documentoDataGridView.AutoGenerateColumns = false;
-            this.documentoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.documentoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
+            this.sucursalesDataGridView.AllowUserToAddRows = false;
+            this.sucursalesDataGridView.AutoGenerateColumns = false;
+            this.sucursalesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sucursalesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
-            this.tipodeobjeto,
-            this.subtipoobjeto,
-            this.dataGridViewTextBoxColumn3});
-            this.documentoDataGridView.DataSource = this.documentoBindingSource;
-            this.documentoDataGridView.Location = new System.Drawing.Point(12, 46);
-            this.documentoDataGridView.Name = "documentoDataGridView";
-            this.documentoDataGridView.Size = new System.Drawing.Size(750, 327);
-            this.documentoDataGridView.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "tipodteadm";
-            this.dataGridViewTextBoxColumn1.HeaderText = "tipodteadm";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.sucursalesDataGridView.DataSource = this.sucursalesBindingSource;
+            this.sucursalesDataGridView.Location = new System.Drawing.Point(12, 38);
+            this.sucursalesDataGridView.Name = "sucursalesDataGridView";
+            this.sucursalesDataGridView.Size = new System.Drawing.Size(947, 364);
+            this.sucursalesDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "tipodtesap";
-            this.dataGridViewTextBoxColumn2.HeaderText = "tipodtesap";
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "cod_adm";
+            this.dataGridViewTextBoxColumn2.HeaderText = "cod_adm";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // tipodeobjeto
-            // 
-            this.tipodeobjeto.DataPropertyName = "tipodeobjeto";
-            this.tipodeobjeto.HeaderText = "tipodeobjeto";
-            this.tipodeobjeto.Name = "tipodeobjeto";
-            // 
-            // subtipoobjeto
-            // 
-            this.subtipoobjeto.DataPropertyName = "subtipoobjeto";
-            this.subtipoobjeto.HeaderText = "subtipoobjeto";
-            this.subtipoobjeto.Name = "subtipoobjeto";
+            this.dataGridViewTextBoxColumn2.Width = 76;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "nombretipo";
-            this.dataGridViewTextBoxColumn3.HeaderText = "nombretipo";
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "nom_adm";
+            this.dataGridViewTextBoxColumn3.HeaderText = "nom_adm";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 300;
             // 
-            // frmDocumento
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "cod_sap";
+            this.dataGridViewTextBoxColumn4.HeaderText = "cod_sap";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 211;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "nom_sap";
+            this.dataGridViewTextBoxColumn5.HeaderText = "nom_sap";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 300;
+            // 
+            // frmSucursales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 385);
-            this.Controls.Add(this.documentoDataGridView);
-            this.Controls.Add(this.documentoBindingNavigator);
-            this.Name = "frmDocumento";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDocumento";
-            this.Load += new System.EventHandler(this.frmDocumento_Load);
+            this.ClientSize = new System.Drawing.Size(972, 414);
+            this.Controls.Add(this.sucursalesDataGridView);
+            this.Controls.Add(this.sucursalesBindingNavigator);
+            this.Name = "frmSucursales";
+            this.Text = "frmSucursales";
+            this.Load += new System.EventHandler(this.frmSucursales_Load);
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoBindingNavigator)).EndInit();
-            this.documentoBindingNavigator.ResumeLayout(false);
-            this.documentoBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.documentoDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingNavigator)).EndInit();
+            this.sucursalesBindingNavigator.ResumeLayout(false);
+            this.sucursalesBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sucursalesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,10 +280,10 @@
         #endregion
 
         private _C__admtosap_DataB_sqliteDataSet _C__admtosap_DataB_sqliteDataSet;
-        private System.Windows.Forms.BindingSource documentoBindingSource;
-        private _C__admtosap_DataB_sqliteDataSetTableAdapters.documentoTableAdapter documentoTableAdapter;
+        private System.Windows.Forms.BindingSource sucursalesBindingSource;
+        private _C__admtosap_DataB_sqliteDataSetTableAdapters.sucursalesTableAdapter sucursalesTableAdapter;
         private _C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator documentoBindingNavigator;
+        private System.Windows.Forms.BindingNavigator sucursalesBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -302,12 +295,11 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton documentoBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView documentoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.ToolStripButton sucursalesBindingNavigatorSaveItem;
+        private System.Windows.Forms.DataGridView sucursalesDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipodeobjeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtipoobjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

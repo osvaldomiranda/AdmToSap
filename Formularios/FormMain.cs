@@ -71,8 +71,7 @@ namespace AdmToSap
 
         private void documentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDocumento formdoc = new frmDocumento();
-            formdoc.Show();
+           
         }
 
         private void button2_Click_2(object sender, EventArgs e)
@@ -81,11 +80,7 @@ namespace AdmToSap
             poc.addPayments();
         }
 
-        private void bodegasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmBodegas frmbodega = new frmBodegas();
-            frmbodega.Show();
-        }
+
 
         private void button3_Click_1(object sender, EventArgs e)
         {
@@ -105,11 +100,7 @@ namespace AdmToSap
             frmresp.Show();
         }
 
-        private void bancosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmBancos frmbancos = new frmBancos();
-            frmbancos.Show();
-        }
+
 
         private void temporizadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -141,10 +132,6 @@ namespace AdmToSap
             pro.addJournalEntry();
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -155,18 +142,38 @@ namespace AdmToSap
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
 
             notifyIcon1.Visible = true;
-
             notifyIcon1.ShowBalloonTip(3000);
         }
 
-        private void notifyIcon1_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
             this.Show();
+        }
+
+        private void sucursalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSucursales frmsucursales = new frmSucursales();
+            frmsucursales.Show();
+        }
+
+        private void bodegasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmBodegas frmbodega = new frmBodegas();
+            frmbodega.Show();
+        }
+
+        private void bancosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmBancos frmbancos = new frmBancos();
+            frmbancos.Show();
+        }
+
+        private void documentosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmDocumento formdoc = new frmDocumento();
+            formdoc.Show();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace AdmToSap
         {
             // TODO: esta línea de código carga datos en la tabla '_C__admtosap_DataB_sqliteDataSet.bodegas' Puede moverla o quitarla según sea necesario.
             this.bodegasTableAdapter.Fill(this._C__admtosap_DataB_sqliteDataSet.bodegas);
+            bodegasDataGridView.Rows[0].Visible = false;
 
         }
     }

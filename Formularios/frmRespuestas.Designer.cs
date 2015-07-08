@@ -57,7 +57,7 @@
             this.mensajeTextBox = new System.Windows.Forms.TextBox();
             this.tiporespTextBox = new System.Windows.Forms.TextBox();
             this.xmlLabel1 = new System.Windows.Forms.Label();
-            this.jsonTextBox = new System.Windows.Forms.TextBox();
+            this.jsonRichTextBox = new System.Windows.Forms.RichTextBox();
             fechaLabel = new System.Windows.Forms.Label();
             tipodteLabel = new System.Windows.Forms.Label();
             folioLabel = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             // xmlLabel
             // 
             xmlLabel.AutoSize = true;
-            xmlLabel.Location = new System.Drawing.Point(34, 191);
+            xmlLabel.Location = new System.Drawing.Point(22, 191);
             xmlLabel.Name = "xmlLabel";
             xmlLabel.Size = new System.Drawing.Size(25, 13);
             xmlLabel.TabIndex = 11;
@@ -151,6 +151,7 @@
             this.tableAdapterManager.logTableAdapter = null;
             this.tableAdapterManager.respuestasTableAdapter = this.respuestasTableAdapter;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.sucursalesTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // respuestasBindingNavigator
@@ -290,36 +291,37 @@
             // xmlLabel1
             // 
             this.xmlLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.respuestasBindingSource, "xml", true));
-            this.xmlLabel1.Location = new System.Drawing.Point(65, 191);
+            this.xmlLabel1.Location = new System.Drawing.Point(74, 191);
             this.xmlLabel1.Name = "xmlLabel1";
-            this.xmlLabel1.Size = new System.Drawing.Size(679, 53);
+            this.xmlLabel1.Size = new System.Drawing.Size(681, 53);
             this.xmlLabel1.TabIndex = 12;
             this.xmlLabel1.Text = "label1";
             // 
             // jsonLabel
             // 
             jsonLabel.AutoSize = true;
-            jsonLabel.Location = new System.Drawing.Point(22, 261);
+            jsonLabel.Location = new System.Drawing.Point(22, 231);
             jsonLabel.Name = "jsonLabel";
             jsonLabel.Size = new System.Drawing.Size(29, 13);
             jsonLabel.TabIndex = 13;
             jsonLabel.Text = "json:";
             // 
-            // jsonTextBox
+            // jsonRichTextBox
             // 
-            this.jsonTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.respuestasBindingSource, "json", true));
-            this.jsonTextBox.Location = new System.Drawing.Point(77, 258);
-            this.jsonTextBox.Name = "jsonTextBox";
-            this.jsonTextBox.Size = new System.Drawing.Size(471, 20);
-            this.jsonTextBox.TabIndex = 14;
+            this.jsonRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.respuestasBindingSource, "json", true));
+            this.jsonRichTextBox.Location = new System.Drawing.Point(77, 231);
+            this.jsonRichTextBox.Name = "jsonRichTextBox";
+            this.jsonRichTextBox.Size = new System.Drawing.Size(560, 96);
+            this.jsonRichTextBox.TabIndex = 14;
+            this.jsonRichTextBox.Text = "";
             // 
             // frmRespuestas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 378);
+            this.ClientSize = new System.Drawing.Size(776, 425);
             this.Controls.Add(jsonLabel);
-            this.Controls.Add(this.jsonTextBox);
+            this.Controls.Add(this.jsonRichTextBox);
             this.Controls.Add(xmlLabel);
             this.Controls.Add(this.xmlLabel1);
             this.Controls.Add(fechaLabel);
@@ -368,7 +370,7 @@
         private System.Windows.Forms.TextBox mensajeTextBox;
         private System.Windows.Forms.TextBox tiporespTextBox;
         private System.Windows.Forms.Label xmlLabel1;
-        private System.Windows.Forms.TextBox jsonTextBox;
+        private System.Windows.Forms.RichTextBox jsonRichTextBox;
 
     }
 }

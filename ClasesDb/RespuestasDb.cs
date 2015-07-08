@@ -80,5 +80,20 @@ namespace AdmToSap
             myConn.Close();
             return mensaje;
         }
+
+        public String extraeJsonProducto(string json)
+        {
+            string mensaje = string.Empty;
+
+            Console.WriteLine(json);
+
+            int start = json.IndexOf("<JSONResponse>")+24;
+            int end = json.IndexOf("}</JSONResponse>");
+            int largo = end - start;
+
+            mensaje = json.Substring(start, largo);
+
+            return mensaje;
+        }
     }
 }
