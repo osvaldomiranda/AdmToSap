@@ -154,7 +154,7 @@ namespace AdmToSap
 
                 item.ItemCode = reader.GetInt32(reader.GetOrdinal("COD_ART")).ToString(); // TODO codigo SAP 
                 item.Quantity = reader.GetDouble(reader.GetOrdinal("CANTIDAD")).ToString();
-                item.UnitPrice = reader.GetDouble(reader.GetOrdinal("PRECIO_UNITARIO")).ToString();
+                item.UnitPrice = reader.GetDouble(reader.GetOrdinal("PRECIO_VENTA_PUBLICO")).ToString();
                 item.WarehouseCode = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA")).ToString());
                 item.TaxCode = "IVA"; // TODO recuperar desde la base
                 item.DiscountPercent = reader.GetDouble(reader.GetOrdinal("DESCUENTO")).ToString();

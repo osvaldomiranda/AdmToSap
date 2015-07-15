@@ -110,9 +110,8 @@ namespace AdmToSap
 
         private void button4_Click(object sender, EventArgs e)
         {
-            frmGetProductos frmgetpro = new frmGetProductos();
-            frmgetpro.Show();
-
+            Procesos pro = new Procesos();
+            pro.getProductos();
         }
 
         private void button5_Click(object sender, EventArgs e)

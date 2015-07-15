@@ -11,7 +11,7 @@ namespace AdmToSap
     {
 
         [DataMember]
-        public String rowCount { get; set; }
+        String rowCount { get; set; }
         [DataMember]
         public List<Items> Items = new List<Items>();
 
@@ -22,40 +22,40 @@ namespace AdmToSap
     class Items
     {
         [DataMember]
-     public String Grupo { get; set; }
+        String Grupo { get; set; }
         [DataMember]
-        public String CodInt { get; set; }
-         [DataMember]
-    public String Codigo { get; set; }
+        String CodInt { get; set; }
         [DataMember]
-         public String CodProv { get; set; }
+        String Codigo { get; set; }
         [DataMember]
-        public String CodBarra { get; set; }
+        String CodProv { get; set; }
         [DataMember]
-        public String CodCatalog { get; set; }
+        String CodBarra { get; set; }
         [DataMember]
-        public String Nombre { get; set; }
+        String CodCatalog { get; set; }
         [DataMember]
-        public String UniCompra { get; set; }
+        String Nombre { get; set; }
         [DataMember]
-        public String UniVenta { get; set; }
+        String UniCompra { get; set; }
         [DataMember]
-        public String CostoUC { get; set; }
+        String UniVenta { get; set; }
         [DataMember]
-        public String DescripcionCorta { get; set; }
+        String CostoUC { get; set; }
         [DataMember]
-        public String SUcompra { get; set; }
+        String DescripcionCorta { get; set; }
         [DataMember]
-        public String SUventa { get; set; }
+        String SUcompra { get; set; }
         [DataMember]
-        public String RutProv { get; set; }
+        String SUventa { get; set; }
         [DataMember]
-        public String PorcIVA { get; set; }
+        String RutProv { get; set; }
         [DataMember]
-        public String Precio1 { get; set; }
+        String PorcIVA { get; set; }
         [DataMember]
-        public String Precio2 { get; set; }
+        String Precio1 { get; set; }
         [DataMember]
-        public String Precio3 { get; set; }
+        String Precio2 { get; set; }
+        [DataMember]
+        String Precio3 { get; set; }
     }
 }

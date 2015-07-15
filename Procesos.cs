@@ -31,7 +31,7 @@ namespace AdmToSap
                 String rut = p.LicTradNum;
                 string json = "{"
                        + " \"BusinessPartner\": { "
-                       + " \"CardCode\": \"CF-" + (rut).Substring(0,8) + "\", " // falta el campo de adm
+                       + " \"CardCode\": \"CF-" + (rut).Substring(1,7) + "\", " // falta el campo de adm
                        + " \"CardName\": \"" + p.CardName + "\", "
                        + " \"LicTradNum\": \"" + rut.Insert(8,"-") + "\","
                        + " \"Notes\": \"" + p.Notes + "\","
@@ -41,7 +41,7 @@ namespace AdmToSap
                        + " \"Block\": \"" + p.Block + "\","
                        + " \"City\": \"" + p.City + "\","
                        + " \"County\": \"" + p.County + "\","
-                       + " \"GroupCode\": \" 102\"," // TODO pedir datos a adm
+                       + " \"Country\": \"" + p.Country + "\","
                     //   + " \"udf\": { \"U_SEI_*\": \"0\" }" campo opcional
                        + "}"
                        + "}";
@@ -83,7 +83,7 @@ namespace AdmToSap
                         + "        \"BoObjectType\":\""+p.BoObjectType+"\",  "
                         + "        \"Document\": { "
                         + "        \"DocumentSubType\":\"" + p.DocumentSubType + "\", "  // si es factura = --
-                        + "        \"CardCode\": \"CF-" + (p.CardCode).Substring(0, 8) + "\", "
+                        + "        \"CardCode\": \"CF-" + (p.CardCode).Substring(1, 7) + "\", "
                         + "        \"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\", "
                         + "        \"DocDueDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDueDate) + "\", "
                         + "        \"TaxDate\": \"" + String.Format("{0:yyyyMMdd}", p.TaxDate) + "\", "
@@ -91,11 +91,8 @@ namespace AdmToSap
                         + "        \"FolioPrefixString\": \"" + p.FolioPrefixString + "\", "
                         + "        \"DiscountPercent\": \"" + p.DiscountPercent + "\", "
                         + "        \"Indicator\": \"" + p.Indicator + "\", "
-                        + "        \"udf\": {"
-                        + "        \"U_SEI_FEBOSID\": \""+p.udf.U_SEI_FEBOSID+"\","
-                        + "        \"U_SEI_CAJA\": \"1\","
-                        + "        \"U_SEI_CAJERO\": \"CAJ001\""
-                        + "         }, "
+                        + "        \"COGSCostingCode\": \"" + p.COGSCostingCode + "\", "
+                        + "        \"udf\": {\"U_SEI_FEBOSID\": \""+p.udf.U_SEI_FEBOSID+"\"}, "
                         + "        \"Items\": "
                         + "         [ ";
                 int count = 0;
@@ -104,15 +101,13 @@ namespace AdmToSap
                 {
                     count += 1;
                     string detallejson = "{"
-                       //  + "                \"BaseEntry\" : \"0\"," // TODO 
-                       //  + "                \"BaseType\" : \"0\"," // TODO 
-	                   //  + "                \"BaseLine\": \"0\","  // TODO
+                       //    + "                \"BaseEntry\" : \"0\"," // TODO 
+                       //    + "                \"BaseType\" : \"0\"," // TODO 
+	                   //   + "                \"BaseLine\": \"0\","  // TODO
                            + "                \"ItemCode\": \"" + det.ItemCode + "\", "
                            + "                \"Quantity\": \"" + det.Quantity + "\", "
                            + "                \"UnitPrice\": \"" + det.UnitPrice + "\", "
                            + "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  "
-                           + "                \"GroupCode\": \" 102\"," // TODO pedir datos a adm
-                        // + "                 \"COGSCostingCode\": \""+ convadmsap.codSucursal(p.Cod_Sucursal).ToString()+"\", " // add transform
                            + "                \"TaxCode\": \"IVA\", "
                            + "                \"DiscountPercent\": \"" + det.DiscountPercent + "\" ";
                        if(p.items.Count > count)
@@ -187,7 +182,7 @@ namespace AdmToSap
                 string json = string.Empty;
                 string cabecera = "{"
                               + "\"Payment\": {"
-                              + "\"CardCode\": \"CF-" + (p.CardCode).Substring(0, 8) + "\","
+                              + "\"CardCode\": \"CF-" + (p.CardCode).Substring(1, 7) + "\","
                               + "\"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\","
                               + "\"CashSum\": \"" + p.CashSum +"\","
                               + "\"TransferAccount\": \""+p.TransferAccount+"\"," // TODO
@@ -265,8 +260,8 @@ namespace AdmToSap
                     count3 += 1;
 
                     String tarjetas = "{"
-                    +"\"CreditCard\": \""+tarjeta.CreditCard+"\"," // tipo de tarjeta TODO TABLAS DE PARIDAD
-                    + "\"CreditCardNumber\": \""+ tarjeta.CreditCardNumber+"\","  //numero de tarjeta DEL CLIENTE 
+                    +"\"CreditCard\": \""+tarjeta.CreditCard+"\"," // tipo de tarjeta
+                    + "\"CreditCardNumber\": \""+ tarjeta.CreditCardNumber+"\","  //numero de tarjeta
                     + "\"CardValidUntil\": \"" + String.Format("{0:yyyyMMdd}", tarjeta.CardValidUntil) + "\"," // fecha vencimiento
                     + "\"CreditSum\": \""+ tarjeta.CreditSum + "\"," // Monto total de pàgo
                     + "\"VoucherNum\": \""+ tarjeta.VoucherNum +"\""; // numero de voucher
@@ -311,23 +306,18 @@ namespace AdmToSap
         
         }
 
-        public void getProductos(string fecha, string intervalo)
+        public void getProductos()
         {
-            string fechaS = fecha;
-            string first = "1";
-            string last = intervalo;
-
             string url = "http://192.168.100.43:8080" 
                         +"/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
                         +"wsaction=" 
                         +"GetItemList";
-            string json = "{ \"UpdateDate\": \""+fechaS+"\"," 
-                        + "\"first\": \""+first+"\"," 
-                        + "\"last\": \""+last+"\""
+            string json = "{ \"UpdateDate\": \"20150101\","
+                        + "\"first\": \"20\","
+                        + "\"last\": \"40\""
                           +"} ";
 
-            Connect conn = new Connect();
-
+            Connect conn = new Connect();  
             String responce = conn.HttpPOST(url, json);
             System.Console.WriteLine("LA RESPUESTA ES :" + responce);
             ProductosDb productosdb = new ProductosDb();
@@ -340,9 +330,9 @@ namespace AdmToSap
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetWhsInventory";
-            string json = "{\"WhsCode\": \"B06\"," // TODO 
-                          + "\"first\": \"1\","
-                          + "\"last\": \"50\""
+            string json = "{\"WhsCode\": \"B06\","
+                          + "\"first\": \"20\","
+                          + "\"last\": \"40\""
                           +"}";
 
             Connect conn = new Connect();
@@ -356,16 +346,11 @@ namespace AdmToSap
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetPriceList";
-            string json = "{ \"UpdateDate\": \"20150106\","
-            + "\"first\": \"1\","
-            + "\"last\": \"20\""
-              + "} ";
+            string json = "{}";
 
             Connect conn = new Connect();
             String responce = conn.HttpPOST(url, json);
             System.Console.WriteLine("LA RESPUESTA ES :" + responce);
-            PreciosDb preciosdb = new PreciosDb();
-            preciosdb.upPrecAdm(respdb.extraeJsonPrecios(responce));
         }
 
         public void addJournalEntry()
@@ -374,10 +359,9 @@ namespace AdmToSap
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "AddJournalEntry";
-
             string json = "{\"JournalEntry\": { "
-                        + "\"TaxDate\": \"20150702\", " // TODO
-                        + "\"Amount\": \"5000\", "    //TODO
+                        + "\"TaxDate\": \"20150702\", "
+                        + "\"Amount\": \"5000\", "
                         + "\"AccountC\": \"110401002\", "   //cuentas credito de cotillón
                         + "\"AccountD\": \"110401002\", "   //cuentas credito de cotillón
                         + "\"Reference2\":\"Para probar referncia 2\", "  
