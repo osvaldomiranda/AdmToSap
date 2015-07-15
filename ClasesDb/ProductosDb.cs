@@ -10,18 +10,22 @@ namespace AdmToSap
 {
     class ProductosDb
     {
-        public void upProdAdm(String json)
+        public Producto upProdAdm(String json)
         {
             Producto producto = new Producto();
-
+            List<Producto> listaproducto = new List<Producto>();
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Producto));
-
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            frmProductosDgw frmdgv = new frmProductosDgw();
 
             try
             {
                 producto = (Producto)js.ReadObject(ms);
-                
+                foreach (var pro in producto.Items)
+                {
+                  frmdgv.dataGridView1.Rows.Add(pro.Grupo,pro.CodBarra, pro.CodInt, pro.Nombre);
+                }
+                frmdgv.Show();
             }
             catch (Exception e)
             {
@@ -29,6 +33,11 @@ namespace AdmToSap
                 MessageBox.Show("Error de lectura JSON\\" + e.Message);
             }
 
+            return producto;
+            
+
         }
+
+
     }
 }

@@ -110,6 +110,23 @@ namespace AdmToSap
 
             return cuenta;
         }
+
+        public string codSucursal(int codsuc)
+        {
+            string dbcod = "";
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + codsuc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                dbcod = reader.GetString(reader.GetOrdinal("cod_sap"));
+            }
+            myConn.Close();
+            return dbcod;
+        }
+
     
     }
 }
