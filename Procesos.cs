@@ -16,6 +16,7 @@ namespace AdmToSap
 
         public void addClientes()
         {
+
             PartnerDb partnerdb = new PartnerDb();
             List<Partner> partners = new List<Partner>();
             Log log = new Log();
@@ -53,7 +54,8 @@ namespace AdmToSap
 
                 partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
                 
-                log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK");
+                log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK","");
+
 
                 // instanciar clase de envio adm que recibe una lista de respuestas
                 // un metodo de esta clase recorrera la lista de respuestas y las enviara a adm
@@ -62,7 +64,7 @@ namespace AdmToSap
 
         }
 
-        public void addDocuments()
+        public void addDocuments(frmMain frmain)
         {
             string cardcade = string.Empty;
 
@@ -163,11 +165,14 @@ namespace AdmToSap
                 respuesta.json = json;
                 // agrego la respuesta
                 respdb.addRespuesta(respuesta);
+                
+                String evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: "+ p.Nro_Cargo+ " - ESTADO: Actualizado en ADM";
 
-                log.addLog(" Respuesta Sap: " + responce.Replace("'", "") + " Tipo: " + p.Indicator.ToString() + " Folio: " + p.Nro_Cargo.ToString(), "OK");
+                log.addLog(" Respuesta Sap: " + responce.Replace("'", "") + " Tipo: " + p.Indicator.ToString() + " Folio: " + p.Nro_Cargo.ToString(), "OK", evento);
 
+                frmain.button9.PerformClick();
 
-                System.Console.WriteLine("LA RESPUESTA  DE DOCUMENTO ES :" + responce);
+                 System.Console.WriteLine("LA RESPUESTA  DE DOCUMENTO ES :" + responce);
             }
 
         }
@@ -341,6 +346,7 @@ namespace AdmToSap
 
         public void getInventarios()
         {
+            consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+""
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
@@ -353,6 +359,8 @@ namespace AdmToSap
             Connect conn = new Connect();
             String responce = conn.HttpPOST(url, json);
             System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+            ProductosDb productosdb = new ProductosDb();
+            productosdb.upInvAdm(respdb.extraeJsonProducto(responce));
         }
 
         public void getPrecios()

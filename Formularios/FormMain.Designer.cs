@@ -1,6 +1,7 @@
-﻿namespace AdmToSap
+﻿
+namespace AdmToSap
 {
-    partial class frmMain
+     partial  class  frmMain
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -74,7 +75,7 @@
             this.tablasDeVinculoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(608, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(743, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -243,10 +244,11 @@
             // 
             // listBoxLog
             // 
+            this.listBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxLog.FormattingEnabled = true;
             this.listBoxLog.Location = new System.Drawing.Point(179, 58);
             this.listBoxLog.Name = "listBoxLog";
-            this.listBoxLog.Size = new System.Drawing.Size(417, 160);
+            this.listBoxLog.Size = new System.Drawing.Size(552, 160);
             this.listBoxLog.TabIndex = 10;
             // 
             // button9
@@ -257,6 +259,7 @@
             this.button9.TabIndex = 11;
             this.button9.Text = "Ver Eventos del Mes";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Visible = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label1
@@ -273,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 276);
+            this.ClientSize = new System.Drawing.Size(743, 276);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.listBoxLog);
@@ -321,9 +324,9 @@
         private System.Windows.Forms.ToolStripMenuItem bancosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem documentosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sucursalesToolStripMenuItem;
-        public  System.Windows.Forms.ListBox listBoxLog;
-        private System.Windows.Forms.Button button9;
+        public System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button button9;
     }
 }
 

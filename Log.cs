@@ -11,7 +11,7 @@ namespace AdmToSap
         String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
 
 
-        public void addLog( String suceso, String estado)
+        public void addLog( String suceso, String estado, String evento)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace AdmToSap
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
                 myConn.Open();
 
-                string sql = "insert into log (fch, suceso, estado) values ('" + fecha + "' , '" + suceso + "', '" + estado + "')";
+                string sql = "insert into log (fch, suceso, estado,evento) values ('" + fecha + "' , '" + suceso + "', '" + estado + "', '" + evento + "')";
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();
 
@@ -62,6 +62,37 @@ namespace AdmToSap
             }
 
             return logRes;
+        }
+
+
+        public String verEvento()
+        {
+            String logRes = String.Empty;
+
+            try
+            {
+
+                SQLiteConnection myConn = new SQLiteConnection(strConn);
+                myConn.Open();
+
+                string sql = "select * from log order by fch desc limit 1";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                   
+                    // Console.WriteLine(reader["evento"]);
+                     logRes =  reader["evento"].ToString();
+
+                myConn.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: {0}", e.ToString());
+                return logRes;
+            }
+
+            return logRes;
+
         }
 
       
