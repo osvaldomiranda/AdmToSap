@@ -67,8 +67,8 @@ namespace AdmToSap
                 payment.folioDte = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
 
 
-                payment.CashAccount = ""; // cuenta corriente cotillon
-                payment.TransferAccount = ""; // cuenta corriente cotillon
+                payment.CashAccount = ""; // cuenta corriente cotilloncentral
+                payment.TransferAccount = ""; // cuenta corriente cotilloncentral
                 payment.TransferSum = "";
                 payment.TransferDate = "";
                 payment.TransferReference = "";

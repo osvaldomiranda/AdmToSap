@@ -33,6 +33,8 @@ namespace AdmToSap
                 txtDatabase.Text = reader["database"].ToString();
                 txtUsuario.Text = reader["user"].ToString();
                 txtContrasena.Text = reader["pass"].ToString();
+                txtIpSap.Text = reader["ip_sap"].ToString();
+
             }
 
             myConn.Close();
@@ -47,11 +49,12 @@ namespace AdmToSap
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
                 myConn.Open();
 
-                string sql = "UPDATE connectdb set " +
-                               "server = '" + txtServer.Text + "', " +
-                               "database = '" + txtDatabase.Text + "', " +
-                               "user = '" + txtUsuario.Text + "', " +
-                               "pass = '" + txtContrasena.Text + "';";
+                string sql = "UPDATE connectdb set "
+                           + "server = '" + txtServer.Text + "', " 
+                           + "database = '" + txtDatabase.Text + "', " 
+                           + "user = '" + txtUsuario.Text + "', "
+                           + "pass = '" + txtContrasena.Text + "', " 
+                           + "ip_sap = '" + txtIpSap.Text + "';";
 
                 SQLiteCommand command = new SQLiteCommand(sql, myConn);
                 command.ExecuteNonQuery();

@@ -10,20 +10,22 @@ namespace AdmToSap
         Log log = new Log();
         Respuesta respuesta = new Respuesta();
         RespuestasDb respdb = new RespuestasDb();
-        
+        Connect consqlite = new Connect();
+        ConnectDb condbsqlite = new ConnectDb();
+
 
         public void addClientes()
         {
             PartnerDb partnerdb = new PartnerDb();
             List<Partner> partners = new List<Partner>();
             Log log = new Log();
-
-
+            consqlite = condbsqlite.getConectSqlite();
             partners = partnerdb.getPartners();
 
             foreach (Partner p in partners)
             {
-                string url = "http://192.168.100.43:8080" +
+
+                string url = "http://"+consqlite.ip_sap +""+
          "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
          "wsaction=" +
          "AddBPartner";
@@ -41,7 +43,7 @@ namespace AdmToSap
                        + " \"Block\": \"" + p.Block + "\","
                        + " \"City\": \"" + p.City + "\","
                        + " \"County\": \"" + p.County + "\","
-                       + " \"GroupCode\": \" 102\"," // TODO pedir datos a adm
+                       + " \"GroupCode\": \"102\"," // TODO pedir datos a adm
                     //   + " \"udf\": { \"U_SEI_*\": \"0\" }" campo opcional
                        + "}"
                        + "}";
@@ -50,7 +52,7 @@ namespace AdmToSap
                 String responce = conn.HttpPOST(url, json);
 
                 partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
-
+                
                 log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK");
 
                 // instanciar clase de envio adm que recibe una lista de respuestas
@@ -62,17 +64,18 @@ namespace AdmToSap
 
         public void addDocuments()
         {
-            
+            string cardcade = string.Empty;
+
             DocumentDb docdb = new DocumentDb();
             List<Document> documents = new List<Document>();
             Log log = new Log();
             ConvertAdmSap convadmsap = new ConvertAdmSap();
-
+            consqlite = condbsqlite.getConectSqlite();
             documents = docdb.getDocuments();
 
             foreach (Document p in documents)
             {
-                string url = "http://192.168.100.43:8080" +
+                string url = "http://"+consqlite.ip_sap+"" +
                     "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
                     "wsaction=" +
                     "AddDocument";
@@ -111,7 +114,7 @@ namespace AdmToSap
                            + "                \"Quantity\": \"" + det.Quantity + "\", "
                            + "                \"UnitPrice\": \"" + det.UnitPrice + "\", "
                            + "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  "
-                           + "                \"GroupCode\": \" 102\"," // TODO pedir datos a adm
+                       //    + "                \"GroupCode\": \" 102\"," // TODO pedir datos a adm
                         // + "                 \"COGSCostingCode\": \""+ convadmsap.codSucursal(p.Cod_Sucursal).ToString()+"\", " // add transform
                            + "                \"TaxCode\": \"IVA\", "
                            + "                \"DiscountPercent\": \"" + det.DiscountPercent + "\" ";
@@ -174,13 +177,13 @@ namespace AdmToSap
             PaymentDb paymentdb = new PaymentDb();
             List<Payment> payments = new List<Payment>();
             Log log = new Log();
-
+            consqlite = condbsqlite.getConectSqlite();
             payments = paymentdb.getComprobantePago();
 
             foreach (Payment p in payments)
             {
                  
-                string url = "http://192.168.100.43:8080" +
+                string url = "http://"+consqlite.ip_sap+"" +
                     "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
                     "wsaction=" +
                     "AddInPayment";
@@ -313,11 +316,13 @@ namespace AdmToSap
 
         public void getProductos(string fecha, string intervalo)
         {
+
             string fechaS = fecha;
             string first = "1";
             string last = intervalo;
+            consqlite = condbsqlite.getConectSqlite();
 
-            string url = "http://192.168.100.43:8080" 
+            string url = "http://"+consqlite.ip_sap+"" 
                         +"/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
                         +"wsaction=" 
                         +"GetItemList";
@@ -336,7 +341,7 @@ namespace AdmToSap
 
         public void getInventarios()
         {
-            string url = "http://192.168.100.43:8080"
+            string url = "http://"+consqlite.ip_sap+""
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetWhsInventory";
@@ -352,13 +357,14 @@ namespace AdmToSap
 
         public void getPrecios()
         {
-            string url = "http://192.168.100.43:8080"
+            consqlite = condbsqlite.getConectSqlite();
+            string url = "http://"+consqlite.ip_sap+""
                         + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetPriceList";
             string json = "{ \"UpdateDate\": \"20150106\","
-            + "\"first\": \"1\","
-            + "\"last\": \"20\""
+            + "\"first\": \"3\","
+            + "\"last\": \"4\""
               + "} ";
 
             Connect conn = new Connect();
@@ -370,26 +376,36 @@ namespace AdmToSap
 
         public void addJournalEntry()
         {
-            string url = "http://192.168.100.43:8080"
-                        + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
-                        + "wsaction="
-                        + "AddJournalEntry";
+            List<JournalEntry> jentries = new List<JournalEntry>();
+            JournalEntryDb jentriesdb = new JournalEntryDb();
+            jentries = jentriesdb.getjournalEntry();
+            consqlite = condbsqlite.getConectSqlite();
 
-            string json = "{\"JournalEntry\": { "
-                        + "\"TaxDate\": \"20150702\", " // TODO
-                        + "\"Amount\": \"5000\", "    //TODO
-                        + "\"AccountC\": \"110401002\", "   //cuentas credito de cotillón
-                        + "\"AccountD\": \"110401002\", "   //cuentas credito de cotillón
-                        + "\"Reference2\":\"Para probar referncia 2\", "  
-                        + "\"Memo\": \"Para probar Memo \", "
-                       // + "\"udf\": { \"U_SEI_*\": \"0\" } "
-                        + "}"
-                        + "}";
+            foreach (JournalEntry jentry in jentries)
+            {
+                string url = "http://" + consqlite.ip_sap + ""
+                            + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
+                            + "wsaction="
+                            + "AddJournalEntry";
 
-            Connect conn = new Connect();
-            String responce = conn.HttpPOST(url, json);
-            System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+                string json = "{\"JournalEntry\": { "
+                            + "\"TaxDate\": \"" + String.Format("{0:yyyyMMdd}", jentry.TaxDate) + "\", " 
+                            + "\"Amount\": \""+jentry.Amount+"\", "  
+                            + "\"AccountC\": \""+jentry.AccountC+"\", "   
+                            + "\"AccountD\": \""+jentry.AccountD+"\", "  
+                            + "\"Reference2\":\""+jentry.Reference2+"\", "
+                            + "\"Memo\": \""+jentry.Memo+"\", "
+                           // + "\"udf\": { \"U_SEI_*\": \"0\" } "
+                            + "}"
+                            + "}";
+
+
+                Connect conn = new Connect();
+                String responce = conn.HttpPOST(url, json);
+                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+            }
         }
+
 
 
     }// FIN CLASE

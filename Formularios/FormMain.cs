@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace AdmToSap
 {
-    public partial class FormMain : Form
+    public partial class frmMain : Form
     {
-        public FormMain()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -176,5 +176,12 @@ namespace AdmToSap
             frmDocumento formdoc = new frmDocumento();
             formdoc.Show();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            listBoxLog.Items.Add("test");
+        }
+
+
     }
 }

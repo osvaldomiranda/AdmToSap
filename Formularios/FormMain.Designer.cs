@@ -1,6 +1,6 @@
 ﻿namespace AdmToSap
 {
-    partial class FormMain
+    partial class frmMain
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,12 +51,15 @@
             this.button7 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.button8 = new System.Windows.Forms.Button();
+            this.listBoxLog = new System.Windows.Forms.ListBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(32, 41);
+            this.button1.Location = new System.Drawing.Point(20, 41);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 23);
             this.button1.TabIndex = 0;
@@ -163,7 +166,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(32, 78);
+            this.button2.Location = new System.Drawing.Point(20, 78);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 23);
             this.button2.TabIndex = 3;
@@ -173,7 +176,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(504, 224);
+            this.button3.Location = new System.Drawing.Point(504, 238);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
@@ -183,7 +186,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(32, 117);
+            this.button4.Location = new System.Drawing.Point(20, 117);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(137, 23);
             this.button4.TabIndex = 5;
@@ -193,7 +196,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(32, 152);
+            this.button5.Location = new System.Drawing.Point(20, 152);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(137, 23);
             this.button5.TabIndex = 6;
@@ -203,7 +206,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(33, 188);
+            this.button6.Location = new System.Drawing.Point(21, 188);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(137, 23);
             this.button6.TabIndex = 7;
@@ -213,7 +216,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(33, 222);
+            this.button7.Location = new System.Drawing.Point(21, 222);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(137, 23);
             this.button7.TabIndex = 8;
@@ -230,7 +233,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(285, 222);
+            this.button8.Location = new System.Drawing.Point(336, 238);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(119, 23);
             this.button8.TabIndex = 9;
@@ -238,11 +241,42 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // FormMain
+            // listBoxLog
+            // 
+            this.listBoxLog.FormattingEnabled = true;
+            this.listBoxLog.Location = new System.Drawing.Point(179, 58);
+            this.listBoxLog.Name = "listBoxLog";
+            this.listBoxLog.Size = new System.Drawing.Size(417, 160);
+            this.listBoxLog.TabIndex = 10;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(179, 238);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(123, 23);
+            this.button9.TabIndex = 11;
+            this.button9.Text = "Ver Eventos del Mes";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(180, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Registro de Eventos";
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 276);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.listBoxLog);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -253,7 +287,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FormMain";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adm To Sap";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -287,6 +321,9 @@
         private System.Windows.Forms.ToolStripMenuItem bancosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem documentosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sucursalesToolStripMenuItem;
+        public  System.Windows.Forms.ListBox listBoxLog;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label1;
     }
 }
 

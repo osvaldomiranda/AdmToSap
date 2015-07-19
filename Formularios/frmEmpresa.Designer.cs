@@ -29,17 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label cOD_EMPRESALabel;
-            System.Windows.Forms.Label r_SOCIALLabel;
             System.Windows.Forms.Label cOD_EMPRESALabel1;
             System.Windows.Forms.Label cOD_SUCURSALLabel;
             System.Windows.Forms.Label dIRECCIONLabel;
             System.Windows.Forms.Label nOMBRELabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmpresa));
-            this.cotillonDataSet = new AdmToSap.cotillonDataSet();
-            this.empresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.empresasTableAdapter = new AdmToSap.cotillonDataSetTableAdapters.empresasTableAdapter();
-            this.tableAdapterManager = new AdmToSap.cotillonDataSetTableAdapters.TableAdapterManager();
+            System.Windows.Forms.Label cOD_EMPRESALabel;
+            System.Windows.Forms.Label r_SOCIALLabel;
             this.empresasBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -50,10 +46,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.cOD_EMPRESATextBox = new System.Windows.Forms.TextBox();
             this.sucursalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sucursalesTableAdapter = new AdmToSap.cotillonDataSetTableAdapters.sucursalesTableAdapter();
-            this.r_SOCIALTextBox = new System.Windows.Forms.TextBox();
             this.cOD_EMPRESATextBox1 = new System.Windows.Forms.TextBox();
             this.cOD_SUCURSALTextBox = new System.Windows.Forms.TextBox();
             this.dIRECCIONTextBox = new System.Windows.Forms.TextBox();
@@ -71,39 +64,28 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            cOD_EMPRESALabel = new System.Windows.Forms.Label();
-            r_SOCIALLabel = new System.Windows.Forms.Label();
+            this.empresasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cotillonDataSet = new AdmToSap.cotillonDataSet();
+            this.empresasTableAdapter = new AdmToSap.cotillonDataSetTableAdapters.empresasTableAdapter();
+            this.tableAdapterManager = new AdmToSap.cotillonDataSetTableAdapters.TableAdapterManager();
+            this.sucursalesTableAdapter = new AdmToSap.cotillonDataSetTableAdapters.sucursalesTableAdapter();
+            this.cOD_EMPRESATextBox = new System.Windows.Forms.TextBox();
+            this.r_SOCIALTextBox = new System.Windows.Forms.TextBox();
             cOD_EMPRESALabel1 = new System.Windows.Forms.Label();
             cOD_SUCURSALLabel = new System.Windows.Forms.Label();
             dIRECCIONLabel = new System.Windows.Forms.Label();
             nOMBRELabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.cotillonDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresasBindingSource)).BeginInit();
+            cOD_EMPRESALabel = new System.Windows.Forms.Label();
+            r_SOCIALLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.empresasBindingNavigator)).BeginInit();
             this.empresasBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SucursalbindingNavigator1)).BeginInit();
             this.SucursalbindingNavigator1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empresasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cotillonDataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cOD_EMPRESALabel
-            // 
-            cOD_EMPRESALabel.AutoSize = true;
-            cOD_EMPRESALabel.Location = new System.Drawing.Point(12, 44);
-            cOD_EMPRESALabel.Name = "cOD_EMPRESALabel";
-            cOD_EMPRESALabel.Size = new System.Drawing.Size(88, 13);
-            cOD_EMPRESALabel.TabIndex = 1;
-            cOD_EMPRESALabel.Text = "COD EMPRESA:";
-            // 
-            // r_SOCIALLabel
-            // 
-            r_SOCIALLabel.AutoSize = true;
-            r_SOCIALLabel.Location = new System.Drawing.Point(188, 44);
-            r_SOCIALLabel.Name = "r_SOCIALLabel";
-            r_SOCIALLabel.Size = new System.Drawing.Size(59, 13);
-            r_SOCIALLabel.TabIndex = 3;
-            r_SOCIALLabel.Text = "R SOCIAL:";
             // 
             // cOD_EMPRESALabel1
             // 
@@ -140,27 +122,6 @@
             nOMBRELabel.Size = new System.Drawing.Size(57, 13);
             nOMBRELabel.TabIndex = 19;
             nOMBRELabel.Text = "NOMBRE:";
-            // 
-            // cotillonDataSet
-            // 
-            this.cotillonDataSet.DataSetName = "cotillonDataSet";
-            this.cotillonDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // empresasBindingSource
-            // 
-            this.empresasBindingSource.DataMember = "empresas";
-            this.empresasBindingSource.DataSource = this.cotillonDataSet;
-            // 
-            // empresasTableAdapter
-            // 
-            this.empresasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.empresasTableAdapter = this.empresasTableAdapter;
-            this.tableAdapterManager.sucursalesTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = AdmToSap.cotillonDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // empresasBindingNavigator
             // 
@@ -256,31 +217,10 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // cOD_EMPRESATextBox
-            // 
-            this.cOD_EMPRESATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.empresasBindingSource, "COD_EMPRESA", true));
-            this.cOD_EMPRESATextBox.Location = new System.Drawing.Point(106, 41);
-            this.cOD_EMPRESATextBox.Name = "cOD_EMPRESATextBox";
-            this.cOD_EMPRESATextBox.Size = new System.Drawing.Size(50, 20);
-            this.cOD_EMPRESATextBox.TabIndex = 2;
-            this.cOD_EMPRESATextBox.TextChanged += new System.EventHandler(this.cOD_EMPRESATextBox_TextChanged);
-            // 
             // sucursalesBindingSource
             // 
             this.sucursalesBindingSource.DataMember = "empresas_sucursales";
             this.sucursalesBindingSource.DataSource = this.empresasBindingSource;
-            // 
-            // sucursalesTableAdapter
-            // 
-            this.sucursalesTableAdapter.ClearBeforeFill = true;
-            // 
-            // r_SOCIALTextBox
-            // 
-            this.r_SOCIALTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.empresasBindingSource, "R_SOCIAL", true));
-            this.r_SOCIALTextBox.Location = new System.Drawing.Point(253, 41);
-            this.r_SOCIALTextBox.Name = "r_SOCIALTextBox";
-            this.r_SOCIALTextBox.Size = new System.Drawing.Size(330, 20);
-            this.r_SOCIALTextBox.TabIndex = 4;
             // 
             // cOD_EMPRESATextBox1
             // 
@@ -446,24 +386,81 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // empresasBindingSource
+            // 
+            this.empresasBindingSource.DataMember = "empresas";
+            this.empresasBindingSource.DataSource = this.cotillonDataSet;
+            // 
+            // cotillonDataSet
+            // 
+            this.cotillonDataSet.DataSetName = "cotillonDataSet";
+            this.cotillonDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // empresasTableAdapter
+            // 
+            this.empresasTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.empresasTableAdapter = this.empresasTableAdapter;
+            this.tableAdapterManager.sucursalesTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = AdmToSap.cotillonDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // sucursalesTableAdapter
+            // 
+            this.sucursalesTableAdapter.ClearBeforeFill = true;
+            // 
+            // cOD_EMPRESALabel
+            // 
+            cOD_EMPRESALabel.AutoSize = true;
+            cOD_EMPRESALabel.Location = new System.Drawing.Point(9, 43);
+            cOD_EMPRESALabel.Name = "cOD_EMPRESALabel";
+            cOD_EMPRESALabel.Size = new System.Drawing.Size(88, 13);
+            cOD_EMPRESALabel.TabIndex = 24;
+            cOD_EMPRESALabel.Text = "COD EMPRESA:";
+            // 
+            // cOD_EMPRESATextBox
+            // 
+            this.cOD_EMPRESATextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.empresasBindingSource, "COD_EMPRESA", true));
+            this.cOD_EMPRESATextBox.Location = new System.Drawing.Point(103, 41);
+            this.cOD_EMPRESATextBox.Name = "cOD_EMPRESATextBox";
+            this.cOD_EMPRESATextBox.Size = new System.Drawing.Size(57, 20);
+            this.cOD_EMPRESATextBox.TabIndex = 25;
+            // 
+            // r_SOCIALLabel
+            // 
+            r_SOCIALLabel.AutoSize = true;
+            r_SOCIALLabel.Location = new System.Drawing.Point(203, 45);
+            r_SOCIALLabel.Name = "r_SOCIALLabel";
+            r_SOCIALLabel.Size = new System.Drawing.Size(59, 13);
+            r_SOCIALLabel.TabIndex = 25;
+            r_SOCIALLabel.Text = "R SOCIAL:";
+            // 
+            // r_SOCIALTextBox
+            // 
+            this.r_SOCIALTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.empresasBindingSource, "R_SOCIAL", true));
+            this.r_SOCIALTextBox.Location = new System.Drawing.Point(272, 42);
+            this.r_SOCIALTextBox.Name = "r_SOCIALTextBox";
+            this.r_SOCIALTextBox.Size = new System.Drawing.Size(327, 20);
+            this.r_SOCIALTextBox.TabIndex = 26;
+            // 
             // frmEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 397);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(643, 405);
             this.Controls.Add(r_SOCIALLabel);
             this.Controls.Add(this.r_SOCIALTextBox);
             this.Controls.Add(cOD_EMPRESALabel);
             this.Controls.Add(this.cOD_EMPRESATextBox);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.empresasBindingNavigator);
             this.Name = "frmEmpresa";
             this.Text = "frmEmpresa";
             this.Load += new System.EventHandler(this.frmEmpresa_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cotillonDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.empresasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.empresasBindingNavigator)).EndInit();
             this.empresasBindingNavigator.ResumeLayout(false);
             this.empresasBindingNavigator.PerformLayout();
@@ -473,6 +470,8 @@
             this.SucursalbindingNavigator1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.empresasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cotillonDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,10 +493,8 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.TextBox cOD_EMPRESATextBox;
         private System.Windows.Forms.BindingSource sucursalesBindingSource;
         private cotillonDataSetTableAdapters.sucursalesTableAdapter sucursalesTableAdapter;
-        private System.Windows.Forms.TextBox r_SOCIALTextBox;
         private System.Windows.Forms.TextBox cOD_EMPRESATextBox1;
         private System.Windows.Forms.TextBox cOD_SUCURSALTextBox;
         private System.Windows.Forms.TextBox dIRECCIONTextBox;
@@ -515,5 +512,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox cOD_EMPRESATextBox;
+        private System.Windows.Forms.TextBox r_SOCIALTextBox;
     }
 }

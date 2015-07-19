@@ -51,6 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClasesDb\Precio.cs" />
+    <Compile Include="cotillonDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cotillonDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmSucursales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,11 +80,6 @@
     <Compile Include="Connect.cs" />
     <Compile Include="ClasesDb\ConnectDb.cs" />
     <Compile Include="ConvertAdmSap.cs" />
-    <Compile Include="cotillonDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cotillonDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Document.cs" />
     <Compile Include="ClasesDb\DocumentDb.cs" />
     <Compile Include="Empresa.cs" />
@@ -145,13 +145,15 @@
       <DependentUpon>frmTemporizador.cs</DependentUpon>
     </Compile>
     <Compile Include="ClasesDb\LocalDataBase.cs" />
+    <Compile Include="JournalEntry.cs" />
+    <Compile Include="ClasesDb\JournalEntryDb.cs" />
     <Compile Include="ListaPrecio.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Partner.cs" />
     <Compile Include="ClasesDb\PartnerDb.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="ClasesDb\PaymentDb.cs" />
-    <Compile Include="PreciosDb.cs" />
+    <Compile Include="ClasesDb\PreciosDb.cs" />
     <Compile Include="Procesos.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ClasesDb\ProductosDb.cs" />
@@ -217,7 +219,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="cotillonDataSet.xsc">
       <DependentUpon>cotillonDataSet.xsd</DependentUpon>

@@ -58,9 +58,36 @@ namespace AdmToSap
 
         public void SqliteConnect()
         {
+
             String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3"; 
             SQLiteConnection myConn = new SQLiteConnection(strConn);
             myConn.Open();
         }
+
+
+        public Connect getConectSqlite()
+        {
+            Connect con = new Connect();
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            string sql = "SELECT * FROM connectdb";
+            SQLiteCommand command = new SQLiteCommand(sql, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                con.server = reader["server"].ToString();
+                con.database = reader["database"].ToString();
+                con.user = reader["user"].ToString();
+                con.pass = reader["pass"].ToString();
+                con.ip_sap = reader["ip_sap"].ToString();
+
+            }
+
+            return con;
+
+        }
+
+
     }
 }

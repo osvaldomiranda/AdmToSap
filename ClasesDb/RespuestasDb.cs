@@ -102,8 +102,8 @@ namespace AdmToSap
 
             Console.WriteLine(json);
 
-            int start = json.IndexOf("<JSONResponse>")+14;
-            int end = json.IndexOf("</JSONResponse>");
+            int start = json.IndexOf("<JSONResponse>[")+15;
+            int end = json.IndexOf("]</JSONResponse>");
             int largo = end - start;
 
             mensaje = json.Substring(start, largo);

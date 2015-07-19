@@ -2286,7 +2286,7 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::AdmToSap.Properties.Settings.Default.cotillonConnectionString;
+            this._connection.ConnectionString = global::AdmToSap.Properties.Settings.Default.cotillonConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3145,7 +3145,7 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.Odbc.OdbcConnection();
-            this._connection.ConnectionString = global::AdmToSap.Properties.Settings.Default.cotillonConnectionString;
+            this._connection.ConnectionString = global::AdmToSap.Properties.Settings.Default.cotillonConnectionString1;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

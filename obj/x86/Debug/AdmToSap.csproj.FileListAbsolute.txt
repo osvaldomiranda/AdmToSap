@@ -10,8 +10,6 @@ C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\A
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.pdb
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\AdmToSap.exe
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\AdmToSap.pdb
-C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.csprojResolveAssemblyReference.cache
-C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.FormMain.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.Properties.Resources.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.csproj.GenerateResource.Cache
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmBaseDato.resources
@@ -27,3 +25,6 @@ C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\A
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmSucursales.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmProductosDgw.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmGetProductos.resources
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\System.Data.SQLite.dll
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.csprojResolveAssemblyReference.cache
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmMain.resources

@@ -38,11 +38,22 @@ namespace AdmToSap.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=cotillon;database=cotillon;description=base dato cotillon;option=0;port=0;ser" +
-            "ver=localhost;uid=adm")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=cotilloncentral;database=cotilloncentral;description=base dato cotilloncentra" +
+            "l;option=0;port=0;server=localhost;uid=adm")]
         public string cotillonConnectionString {
             get {
                 return ((string)(this["cotillonConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dsn=cotillon;database=cotillon;description=base dato cotillon;option=0;port=0;ser" +
+            "ver=localhost;uid=adm")]
+        public string cotillonConnectionString1 {
+            get {
+                return ((string)(this["cotillonConnectionString1"]));
             }
         }
     }

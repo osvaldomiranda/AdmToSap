@@ -10,6 +10,13 @@ namespace AdmToSap
     class Connect
     {
 
+        public string server { get; set; }
+        public string database { get; set; }
+        public string user { get; set; }
+        public string pass { get; set; }
+        public string ip_sap { get; set; }
+
+
 
         public  string HttpPOST(string url, string querystring) { 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
