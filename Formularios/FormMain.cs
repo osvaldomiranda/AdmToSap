@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace AdmToSap
 {
-    public partial class frmMain : Form
+    public  partial class frmMain : Form
     {
         public frmMain()
         {
@@ -19,7 +19,7 @@ namespace AdmToSap
         private void button1_Click(object sender, EventArgs e)
         {
             Procesos pro = new Procesos();
-            pro.addDocuments();
+            pro.addDocuments(this);
 
 
         }
@@ -177,11 +177,27 @@ namespace AdmToSap
             formdoc.Show();
         }
 
+
         private void button9_Click(object sender, EventArgs e)
         {
-            listBoxLog.Items.Add("test");
+            Log log = new Log();
+            String evento =  log.verEvento();
+
+            listBoxLog.Items.Insert(0, evento);
+
         }
 
+        public void addItemListBox()
+        {
+            Log log = new Log();
+            String evento = log.verEvento();
 
+            listBoxLog.Items.Insert(0, evento);
+        }
+
+        public frmMain getFrmMain()
+        {
+            return this;
+        }
     }
 }

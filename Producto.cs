@@ -57,5 +57,8 @@ namespace AdmToSap
         public String Precio2 { get; set; }
         [DataMember]
         public String Precio3 { get; set; }
+        [DataMember]
+        public String OnHand { get; set; }
+
     }
 }
