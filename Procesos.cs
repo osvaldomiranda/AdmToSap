@@ -30,10 +30,12 @@ namespace AdmToSap
             foreach (Partner p in partners)
             {
 
-                string url = "http://"+consqlite.ip_sap +""+
-         "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
+                string url = "http://" + consqlite.ip_sap + "" +
+         "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
          "wsaction=" +
          "AddBPartner";
+
+
                 // agrega separador
                 String rut = p.LicTradNum;
                 string json = "{"
@@ -55,6 +57,8 @@ namespace AdmToSap
 
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
+
+                Console.WriteLine(url + json);
 
                 partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
 
@@ -92,7 +96,7 @@ namespace AdmToSap
             foreach (Document p in documents)
             {
                 string url = "http://"+consqlite.ip_sap+"" +
-                    "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
+                    "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
                     "wsaction=" +
                     "AddDocument";
 
@@ -214,7 +218,7 @@ namespace AdmToSap
             {
                  
                 string url = "http://"+consqlite.ip_sap+"" +
-                    "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
+                    "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
                     "wsaction=" +
                     "AddInPayment";
                 string json = string.Empty;
@@ -360,7 +364,7 @@ namespace AdmToSap
             consqlite = condbsqlite.getConectSqlite();
 
             string url = "http://"+consqlite.ip_sap+"" 
-                        +"/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
+                        +"/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
                         +"wsaction=" 
                         +"GetItemList";
             string json = "{ \"UpdateDate\": \""+fechaS+"\"," 
@@ -380,7 +384,7 @@ namespace AdmToSap
         {
             consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+""
-                        + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
+                        + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetWhsInventory";
             string json = "{\"WhsCode\": \"B06\"," // TODO 
@@ -399,7 +403,7 @@ namespace AdmToSap
         {
             consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+""
-                        + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
+                        + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetPriceList";
             string json = "{ \"UpdateDate\": \"20150106\","
@@ -428,7 +432,7 @@ namespace AdmToSap
             foreach (JournalEntry jentry in jentries)
             {
                 string url = "http://" + consqlite.ip_sap + ""
-                            + "/B1iXcellerator/exec/ipo/vP.0010000105.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
+                            + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                             + "wsaction="
                             + "AddJournalEntry";
 
