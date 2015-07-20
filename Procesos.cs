@@ -380,7 +380,7 @@ namespace AdmToSap
                 System.Console.WriteLine("LA RESPUESTA ES :" + responce);
                 ProductosDb productosdb = new ProductosDb();
                 jsonResponce = respdb.extraeJsonProducto(responce);
-                productosdb.upProdAdm(jsonResponcem, frmain);
+                productosdb.upProdAdm(jsonResponce, frmain);
             }
         }
 
