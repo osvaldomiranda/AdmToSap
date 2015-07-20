@@ -13,6 +13,10 @@ namespace AdmToSap
       public string  AccountD {get; set;}
       public string  Reference2 {get; set;}
       public string Memo { get; set; }
+      public int cod_empresa { get; set; }
+      public int cod_sucursal { get; set; }
+      public byte tipo_pago { get; set; }
+
       public List<UdfJournalEntry> udf = new List<UdfJournalEntry>();                  
        
     }

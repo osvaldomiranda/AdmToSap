@@ -33,6 +33,7 @@
             System.Windows.Forms.Label sucesoLabel;
             System.Windows.Forms.Label estadoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLog));
+            System.Windows.Forms.Label eventoLabel;
             this._C__admtosap_DataB_sqliteDataSet = new AdmToSap._C__admtosap_DataB_sqliteDataSet();
             this.logBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.logTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.logTableAdapter();
@@ -50,9 +51,11 @@
             this.fchLabel1 = new System.Windows.Forms.Label();
             this.sucesoLabel1 = new System.Windows.Forms.Label();
             this.estadoLabel1 = new System.Windows.Forms.Label();
+            this.eventoLabel1 = new System.Windows.Forms.Label();
             fchLabel = new System.Windows.Forms.Label();
             sucesoLabel = new System.Windows.Forms.Label();
             estadoLabel = new System.Windows.Forms.Label();
+            eventoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logBindingNavigator)).BeginInit();
@@ -106,11 +109,15 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.bancosTableAdapter = null;
             this.tableAdapterManager.bodegasTableAdapter = null;
             this.tableAdapterManager.connectdbTableAdapter = null;
             this.tableAdapterManager.documentoTableAdapter = null;
+            this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = this.logTableAdapter;
+            this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
+            this.tableAdapterManager.sucursalesTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // logBindingNavigator
@@ -234,11 +241,34 @@
             this.estadoLabel1.TabIndex = 6;
             this.estadoLabel1.Text = "label1";
             // 
+            // eventoLabel
+            // 
+            eventoLabel.AutoSize = true;
+            eventoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            eventoLabel.Location = new System.Drawing.Point(12, 240);
+            eventoLabel.Name = "eventoLabel";
+            eventoLabel.Size = new System.Drawing.Size(51, 13);
+            eventoLabel.TabIndex = 7;
+            eventoLabel.Text = "Evento:";
+            eventoLabel.Click += new System.EventHandler(this.eventoLabel_Click);
+            // 
+            // eventoLabel1
+            // 
+            this.eventoLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.logBindingSource, "evento", true));
+            this.eventoLabel1.Location = new System.Drawing.Point(67, 240);
+            this.eventoLabel1.Name = "eventoLabel1";
+            this.eventoLabel1.Size = new System.Drawing.Size(664, 23);
+            this.eventoLabel1.TabIndex = 8;
+            this.eventoLabel1.Text = "label1";
+            this.eventoLabel1.Click += new System.EventHandler(this.eventoLabel1_Click);
+            // 
             // frmLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 229);
+            this.ClientSize = new System.Drawing.Size(779, 295);
+            this.Controls.Add(eventoLabel);
+            this.Controls.Add(this.eventoLabel1);
             this.Controls.Add(estadoLabel);
             this.Controls.Add(this.estadoLabel1);
             this.Controls.Add(sucesoLabel);
@@ -278,5 +308,6 @@
         private System.Windows.Forms.Label fchLabel1;
         private System.Windows.Forms.Label sucesoLabel1;
         private System.Windows.Forms.Label estadoLabel1;
+        private System.Windows.Forms.Label eventoLabel1;
     }
 }

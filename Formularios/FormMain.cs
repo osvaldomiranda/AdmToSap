@@ -40,18 +40,18 @@ namespace AdmToSap
         {
             ConnectDb condb = new ConnectDb();
             LocalDataBase ldb = new LocalDataBase();
-            Temporizadores temp = new Temporizadores();
+            //Temporizadores temp = new Temporizadores();
 
             ldb.creaDB();
             condb.getConnect();
-            temp.startProcessClientes();
+            //temp.startProcessClientes(this);
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             Procesos pro = new Procesos();
-            pro.addClientes();
+            pro.addClientes(this);
  
         }
 
@@ -77,7 +77,7 @@ namespace AdmToSap
         private void button2_Click_2(object sender, EventArgs e)
         {
             Procesos poc = new Procesos();
-            poc.addPayments();
+            poc.addPayments(this);
         }
 
 
@@ -130,7 +130,7 @@ namespace AdmToSap
         private void button7_Click(object sender, EventArgs e)
         {
             Procesos pro = new Procesos();
-            pro.addJournalEntry();
+            pro.addJournalEntry(this);
         }
 
 
@@ -198,6 +198,12 @@ namespace AdmToSap
         public frmMain getFrmMain()
         {
             return this;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Procesos pro = new Procesos();
+            pro.addClientes(this);
         }
     }
 }

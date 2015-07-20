@@ -24,6 +24,7 @@ namespace AdmToSap
             request.ContentType = "application/json";
             request.Headers.Add("encoding: utf-8");
             // or whatever - application/json, etc, etc 
+            
             Stream newStream = request.GetRequestStream();
 
             StreamWriter requestWriter = new StreamWriter(newStream);

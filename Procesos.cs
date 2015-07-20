@@ -14,7 +14,7 @@ namespace AdmToSap
         ConnectDb condbsqlite = new ConnectDb();
 
 
-        public void addClientes()
+        public void addClientes(frmMain frmain)
         {
 
             PartnerDb partnerdb = new PartnerDb();
@@ -22,6 +22,10 @@ namespace AdmToSap
             Log log = new Log();
             consqlite = condbsqlite.getConectSqlite();
             partners = partnerdb.getPartners();
+            if (partners.Count == 0)
+            {
+                frmain.listBoxLog.Items.Insert(0,"No se encuentran clientes nuevos");
+            }
 
             foreach (Partner p in partners)
             {
@@ -53,8 +57,14 @@ namespace AdmToSap
                 String responce = conn.HttpPOST(url, json);
 
                 partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
+
+                respdb.extraeMensajeCliente(responce);
+
+                String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + p.CardName + " - ESTADO: " + respdb.extraeMensajeCliente(responce) +"";
                 
-                log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK","");
+                log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK",evento);
+
+                frmain.listBoxLog.Items.Insert(0, evento);
 
 
                 // instanciar clase de envio adm que recibe una lista de respuestas
@@ -74,6 +84,10 @@ namespace AdmToSap
             ConvertAdmSap convadmsap = new ConvertAdmSap();
             consqlite = condbsqlite.getConectSqlite();
             documents = docdb.getDocuments();
+            if (documents.Count == 0)
+            {
+                frmain.listBoxLog.Items.Insert(0, "No se encuentran Documentos");
+            }
 
             foreach (Document p in documents)
             {
@@ -153,7 +167,7 @@ namespace AdmToSap
                 docdb.updateInAdm(cvadm);
 
                 // si el ducumento es una nota de credito
-                if (p.tipoAbono.ToString() == "61" || p.tipoAbono.ToString() == "60")
+                if (p.tipoAbono.ToString() == "61" || p.tipoAbono.ToString() == "60" || p.tipoAbono.ToString() == "22")
                 {
                     docdb.updateCabezNCAdm(p.Cod_Empresa.ToString(), p.codSucursalAbono.ToString(), p.tipoAbono.ToString(), p.numAbono.ToString());
                 }
@@ -165,26 +179,37 @@ namespace AdmToSap
                 respuesta.json = json;
                 // agrego la respuesta
                 respdb.addRespuesta(respuesta);
-                
-                String evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: "+ p.Nro_Cargo+ " - ESTADO: Actualizado en ADM";
+                String numcargoabono = "";
+                if (p.tipoAbono.ToString() == "61" || p.tipoAbono.ToString() == "60" || p.tipoAbono.ToString() == "22")
+                {
+                    numcargoabono = p.numAbono.ToString();
+                }
+                else
+                {
+                    numcargoabono = p.Nro_Cargo.ToString(); ;
+                }
+                String evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: " + numcargoabono + " - ESTADO: Actualizado en ADM";
 
                 log.addLog(" Respuesta Sap: " + responce.Replace("'", "") + " Tipo: " + p.Indicator.ToString() + " Folio: " + p.Nro_Cargo.ToString(), "OK", evento);
 
-                frmain.button9.PerformClick();
+                frmain.listBoxLog.Items.Insert(0, evento);
 
                  System.Console.WriteLine("LA RESPUESTA  DE DOCUMENTO ES :" + responce);
             }
 
         }
 
-        public void addPayments()
+        public void addPayments(frmMain frmain)
         {
             PaymentDb paymentdb = new PaymentDb();
             List<Payment> payments = new List<Payment>();
             Log log = new Log();
             consqlite = condbsqlite.getConectSqlite();
             payments = paymentdb.getComprobantePago();
-
+            if(payments.Count == 0)
+            {
+                frmain.listBoxLog.Items.Insert(0, "No se encuentran mas Pagos");
+            }
             foreach (Payment p in payments)
             {
                  
@@ -312,6 +337,13 @@ namespace AdmToSap
                 // agrego la respuesta
                 respdb.addRespuesta(respuesta);
 
+                // Agrego log
+                String evento = "ENVIO: Pagos - TIPO DOC: " + respuesta.tipodete + " - FOLIO PAGO: " + respuesta.folio + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + "";
+                log.addLog("Respuesta Sap: " + responce.Replace("'", ""), "OK", evento);
+
+                //Agrego list box
+                frmain.listBoxLog.Items.Insert(0, evento);
+
 
                 System.Console.WriteLine("LA RESPUESTA ES :" + responce);
             }
@@ -382,12 +414,16 @@ namespace AdmToSap
             preciosdb.upPrecAdm(respdb.extraeJsonPrecios(responce));
         }
 
-        public void addJournalEntry()
+        public void addJournalEntry(frmMain frmain)
         {
             List<JournalEntry> jentries = new List<JournalEntry>();
             JournalEntryDb jentriesdb = new JournalEntryDb();
             jentries = jentriesdb.getjournalEntry();
             consqlite = condbsqlite.getConectSqlite();
+            if (jentries.Count == 0)
+            {
+                frmain.listBoxLog.Items.Insert(0, "No se encuentran mas Ingresos o Egresos");
+            }
 
             foreach (JournalEntry jentry in jentries)
             {
@@ -411,6 +447,17 @@ namespace AdmToSap
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
                 System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+
+                //Udate ADM
+                jentriesdb.updateJEntry(jentry.cod_empresa, jentry.cod_sucursal);
+                
+                // Agrego log
+                String evento = "ENVIO: Ing/Egr - REFERENCIA: " + jentry.Reference2 + " - TIPO PAGO: " + jentry.tipo_pago.ToString() + " - ESTADO: " + respdb.extraeMensajeCliente(responce) +"";
+                log.addLog("Respuesta Sap: " + responce.Replace("'",""), "OK",evento);
+
+                //Agrego list box
+                frmain.listBoxLog.Items.Insert(0, evento);
+
             }
         }
 

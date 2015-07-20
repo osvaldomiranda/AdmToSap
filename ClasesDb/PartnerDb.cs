@@ -25,7 +25,7 @@ namespace AdmToSap
             + "inner join comunas on clientes.cod_pais=comunas.cod_pais "
             + "and clientes.cod_ciudad=comunas.cod_ciudad "
             + "and clientes.cod_comuna=comunas.cod_comuna "
-            + "where isnull(clientes.estado) or clientes.estado in (0,1) "
+            + "where isnull(clientes.estado) or clientes.estado in (0) "
             + "order by clientes.cod_empresa, clientes.rut";
 
             OdbcDataReader reader = select.ExecuteReader();

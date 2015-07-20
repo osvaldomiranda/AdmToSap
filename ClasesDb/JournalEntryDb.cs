@@ -35,6 +35,9 @@ namespace AdmToSap
                 jentry.AccountD = "110401002"; // TODO
                 jentry.Reference2 = reader.GetString(reader.GetOrdinal("glosa")) ;
                 jentry.Memo = reader.GetString(reader.GetOrdinal("glosa"));
+                jentry.cod_empresa = empresa.cod_empresa;
+                jentry.cod_sucursal = empresa.cod_sucursal;
+                jentry.tipo_pago = reader.GetByte(reader.GetOrdinal("TIPO_PAGO"));
 
                 listjentry.Add(jentry);
             }
@@ -42,6 +45,24 @@ namespace AdmToSap
 
             return listjentry;
             
+        }
+
+        public void updateJEntry(int empresa, int cod_sucursal)
+        {
+            OdbcConnection conexion = con.getConnect();
+            OdbcCommand update = new OdbcCommand();
+            update.Connection = conexion;
+
+            update.CommandText = "update doc_clientes "
+                                 + " set fecha_cierre = now()"
+                                 + " where cod_empresa=" + empresa
+                                 + " and cod_sucursal=" + cod_sucursal
+                                 + " and tipo_pago in (15,16)"
+                                 + " and fecha_cierre IS NULL;";
+
+
+            OdbcDataReader up = update.ExecuteReader();
+
         }
     }
 }

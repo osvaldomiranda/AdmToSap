@@ -100,8 +100,8 @@ namespace AdmToSap
             doc.DocDate = reader.GetDateTime(reader.GetOrdinal("FECHAINGRESO"));
             doc.DocDueDate = reader.GetDateTime(reader.GetOrdinal("FECHA_VEN"));
             doc.TaxDate = reader.GetDateTime(reader.GetOrdinal("FECHA_EM"));
-            
-            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61 || reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 22)
             {
                 doc.FolioPrefixString = convertAdmSap.typeDocument(doc.tipoAbono).ToString();
             }
@@ -128,8 +128,9 @@ namespace AdmToSap
 
 
 
-            Console.WriteLine("{0} {1}", reader.GetString(reader.GetOrdinal("RUT_CLTE")) + " | ",
-                             reader.GetOrdinal("FECHAINGRESO") + " | ");
+            Console.WriteLine("RUT:  {0} NUMERO CARGO: {1}  NUMERO ABONO: {2}", reader.GetString(reader.GetOrdinal("RUT_CLTE")) + " | ",
+                            reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")).ToString() + " | ",
+                            reader.GetInt32(reader.GetOrdinal("NRO_ABONO")).ToString() + " | ");
             return doc;
         }
 
