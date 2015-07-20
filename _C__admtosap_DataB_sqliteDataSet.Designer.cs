@@ -2184,6 +2184,8 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columnestado;
             
+            private global::System.Data.DataColumn columnevento;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public logDataTable() {
@@ -2243,6 +2245,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn eventoColumn {
+                get {
+                    return this.columnevento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2278,12 +2288,13 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public logRow AddlogRow(string fch, string suceso, string estado) {
+            public logRow AddlogRow(string fch, string suceso, string estado, string evento) {
                 logRow rowlogRow = ((logRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fch,
                         suceso,
-                        estado};
+                        estado,
+                        evento};
                 rowlogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowlogRow);
                 return rowlogRow;
@@ -2309,6 +2320,7 @@ namespace AdmToSap {
                 this.columnfch = base.Columns["fch"];
                 this.columnsuceso = base.Columns["suceso"];
                 this.columnestado = base.Columns["estado"];
+                this.columnevento = base.Columns["evento"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2320,9 +2332,12 @@ namespace AdmToSap {
                 base.Columns.Add(this.columnsuceso);
                 this.columnestado = new global::System.Data.DataColumn("estado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnestado);
+                this.columnevento = new global::System.Data.DataColumn("evento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnevento);
                 this.columnfch.MaxLength = 20;
                 this.columnsuceso.MaxLength = 65536;
                 this.columnestado.MaxLength = 20;
+                this.columnevento.MaxLength = 65536;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4152,6 +4167,22 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string evento {
+                get {
+                    try {
+                        return ((string)(this[this.tablelog.eventoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'evento\' de la tabla \'log\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelog.eventoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsfchNull() {
                 return this.IsNull(this.tablelog.fchColumn);
             }
@@ -4184,6 +4215,18 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetestadoNull() {
                 this[this.tablelog.estadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IseventoNull() {
+                return this.IsNull(this.tablelog.eventoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SeteventoNull() {
+                this[this.tablelog.eventoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7203,14 +7246,16 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("fch", "fch");
             tableMapping.ColumnMappings.Add("suceso", "suceso");
             tableMapping.ColumnMappings.Add("estado", "estado");
+            tableMapping.ColumnMappings.Add("evento", "evento");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"log\" (\"fch\", \"suceso\", \"estado\") VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"log\" (\"fch\", \"suceso\", \"estado\", \"evento\") VALUES (?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fch", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fch", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("suceso", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "suceso", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("estado", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "estado", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("evento", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "evento", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7226,7 +7271,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"fch\", \"suceso\", \"estado\" FROM \"log\"";
+            this._commandCollection[0].CommandText = "SELECT \"fch\", \"suceso\", \"estado\", \"evento\" FROM \"log\"";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7287,7 +7332,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string fch, string suceso, string estado) {
+        public virtual int Insert(string fch, string suceso, string estado, string evento) {
             if ((fch == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7305,6 +7350,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(estado));
+            }
+            if ((evento == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(evento));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 

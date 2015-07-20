@@ -30,5 +30,15 @@ namespace AdmToSap
             this.logTableAdapter.Fill(this._C__admtosap_DataB_sqliteDataSet.log);
 
         }
+
+        private void eventoLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eventoLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
