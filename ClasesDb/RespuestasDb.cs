@@ -113,17 +113,19 @@ namespace AdmToSap
 
         public String extraeMensajeCliente(String xml)
         {
-            string mensaje = string.Empty;
+            
+                string mensaje = string.Empty;
 
-            Console.WriteLine(xml);
+                Console.WriteLine(xml);
 
-            int start = xml.IndexOf("msg") + 6;
-            int end = xml.IndexOf("\"}}</JSONResponse>");
-            int largo = end - start;
+                int start = xml.IndexOf("msg") + 6;
+                int end = xml.IndexOf("\"}}</JSONResponse>");
+                int largo = end - start;
 
-            mensaje = xml.Substring(start, largo);
+                mensaje = xml.Substring(start, largo);
 
-            return mensaje;
+                return mensaje;
+  
         }
     }
 }
