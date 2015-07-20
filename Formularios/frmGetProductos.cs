@@ -11,17 +11,25 @@ namespace AdmToSap
 {
     public partial class frmGetProductos : Form
     {
+        frmMain fMain;
+
         public frmGetProductos()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Procesos pro = new Procesos();
             DateTime datetime = dateTimePicker1.Value;
-            pro.getProductos(String.Format("{0:yyyyMMdd}",datetime),textBox1.Text);
+            pro.getProductos(String.Format("{0:yyyyMMdd}",datetime),textBox1.Text, fMain);
 
+        }
+
+        public void frmGetProductosShow(frmMain frm)
+        {
+            fMain = frm;
         }
 
         private void frmGetProductos_Load(object sender, EventArgs e)

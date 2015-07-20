@@ -355,29 +355,33 @@ namespace AdmToSap
         
         }
 
-        public void getProductos(string fecha, string intervalo)
+        public void getProductos(string fecha, string intervalo, frmMain frmain)
         {
 
             string fechaS = fecha;
             string first = "1";
-            string last = intervalo;
+            int last = 0;
             consqlite = condbsqlite.getConectSqlite();
-
             string url = "http://"+consqlite.ip_sap+"" 
                         +"/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
                         +"wsaction=" 
                         +"GetItemList";
-            string json = "{ \"UpdateDate\": \""+fechaS+"\"," 
-                        + "\"first\": \""+first+"\"," 
-                        + "\"last\": \""+last+"\""
-                          +"} ";
+            String jsonResponce = String.Empty;
+            while (jsonResponce != "{\"rowCount\":\"0\",\"Items\":[]}")
+            {
+                last = last + Convert.ToInt32(intervalo);
+                string json = "{ \"UpdateDate\": \"" + fechaS + "\","
+                        + "\"first\": \"" + first + "\","
+                        + "\"last\": \"" + last + "\""
+                          + "} ";
+                Connect conn = new Connect();
 
-            Connect conn = new Connect();
-
-            String responce = conn.HttpPOST(url, json);
-            System.Console.WriteLine("LA RESPUESTA ES :" + responce);
-            ProductosDb productosdb = new ProductosDb();
-            productosdb.upProdAdm(respdb.extraeJsonProducto(responce));
+                String responce = conn.HttpPOST(url, json);
+                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+                ProductosDb productosdb = new ProductosDb();
+                jsonResponce = respdb.extraeJsonProducto(responce);
+                productosdb.upProdAdm(jsonResponcem, frmain);
+            }
         }
 
         public void getInventarios()
