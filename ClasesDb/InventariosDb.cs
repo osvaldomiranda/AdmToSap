@@ -7,5 +7,11 @@ namespace AdmToSap.ClasesDb
 {
     class InventariosDb
     {
+        public String getBodegaSap(int cod_bodega)
+        {
+            String BodegaSap = ""; ;
+
+            return BodegaSap;
+        }
     }
 }

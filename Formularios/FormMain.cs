@@ -117,14 +117,15 @@ namespace AdmToSap
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Procesos pro = new Procesos();
-            pro.getInventarios();
+            frmGetProductos frmgetpro = new frmGetProductos();
+            frmgetpro.frmGetInventarioShow(this);
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             Procesos pro = new Procesos();
-            pro.getPrecios();
+           // pro.getPrecios(this);
         }
 
         private void button7_Click(object sender, EventArgs e)

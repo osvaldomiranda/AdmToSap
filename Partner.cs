@@ -36,6 +36,8 @@ namespace AdmToSap
         public String udf { get; set; }
         [DataMember]
         public String codEmpresa { get; set; }
+        [DataMember]
+        public String SalesPersonCode { get; set; } // CODIGO DE SUCURSAL
 
 
     }

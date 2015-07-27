@@ -27,3 +27,4 @@ C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\A
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmGetProductos.resources
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\bin\Debug\System.Data.SQLite.dll
 C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.frmMain.resources
+C:\Users\Mauricio\Documents\Visual Studio 2010\Projects\AdmToSap\obj\x86\Debug\AdmToSap.csprojResolveAssemblyReference.cache

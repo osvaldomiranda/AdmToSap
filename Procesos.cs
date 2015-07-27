@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace AdmToSap
 {
@@ -12,7 +13,8 @@ namespace AdmToSap
         RespuestasDb respdb = new RespuestasDb();
         Connect consqlite = new Connect();
         ConnectDb condbsqlite = new ConnectDb();
-
+   
+         
 
         public void addClientes(frmMain frmain)
         {
@@ -50,10 +52,12 @@ namespace AdmToSap
                        + " \"Block\": \"" + p.Block + "\","
                        + " \"City\": \"" + p.City + "\","
                        + " \"County\": \"" + p.County + "\","
+                       + " \"SalesPersonCode\": \"" + p.SalesPersonCode + "\","
                        + " \"GroupCode\": \"102\"," // TODO pedir datos a adm
                     //   + " \"udf\": { \"U_SEI_*\": \"0\" }" campo opcional
                        + "}"
                        + "}";
+               
 
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
@@ -126,7 +130,7 @@ namespace AdmToSap
                 foreach(var det in p.items)
                 {
                     count += 1;
-                    string detallejson = "{"
+                       string detallejson = "{"
                        //  + "                \"BaseEntry\" : \"0\"," // TODO 
                        //  + "                \"BaseType\" : \"0\"," // TODO 
 	                   //  + "                \"BaseLine\": \"0\","  // TODO
@@ -358,8 +362,9 @@ namespace AdmToSap
         public void getProductos(string fecha, string intervalo, frmMain frmain)
         {
 
+            //TODO checkbox es nulo fecha es igual a ""
             string fechaS = fecha;
-            string first = "1";
+            int first = 0;
             int last = 0;
             consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+"" 
@@ -367,51 +372,81 @@ namespace AdmToSap
                         +"wsaction=" 
                         +"GetItemList";
             String jsonResponce = String.Empty;
-            while (jsonResponce != "{\"rowCount\":\"0\",\"Items\":[]}")
+            String j = "{\"rowCount\":\"\",\"Items\":[]}";
+
+            while (jsonResponce !=  j)
             {
                 last = last + Convert.ToInt32(intervalo);
                 string json = "{ \"UpdateDate\": \"" + fechaS + "\","
-                        + "\"first\": \"" + first + "\","
+                         + "\"first\": \"" + first + "\","
                         + "\"last\": \"" + last + "\""
-                          + "} ";
+                        + "} ";
                 Connect conn = new Connect();
 
+               // MessageBox.Show(first+" " +last);
                 String responce = conn.HttpPOST(url, json);
-                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+               // MessageBox.Show(responce);
                 ProductosDb productosdb = new ProductosDb();
                 jsonResponce = respdb.extraeJsonProducto(responce);
-                productosdb.upProdAdm(jsonResponce, frmain);
+                productosdb.insertProdAdm(jsonResponce, frmain);
+                if (jsonResponce == "{\"rowCount\":\"\",\"Items\":[]}")
+                {
+                    frmain.listBoxLog.Items.Insert(0, "No se encuentran productos nuevos o modificados");
+                }
+                first = last;
             }
         }
 
-        public void getInventarios()
+        public void getInventarios(string intervalo, frmMain frmain)
         {
+            String bodega = "BC15";
+            int first = 0;
+            int last = 0;
+
             consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+""
                         + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetWhsInventory";
-            string json = "{\"WhsCode\": \"B06\"," // TODO 
-                          + "\"first\": \"1\","
-                          + "\"last\": \"50\""
-                          +"}";
 
-            Connect conn = new Connect();
-            String responce = conn.HttpPOST(url, json);
-            System.Console.WriteLine("LA RESPUESTA ES :" + responce);
-            ProductosDb productosdb = new ProductosDb();
-            productosdb.upInvAdm(respdb.extraeJsonProducto(responce));
+            String resposeJson = String.Empty;
+            String j = "{\"rowCount\":\"0\",\"Items\":[]}";
+
+            while (resposeJson != j)
+            {
+                last = last + Convert.ToInt32(intervalo);
+                string json = "{\"WhsCode\": \"" + bodega + "\"," // TODO 
+                          + "\"first\": \"" + first + "\","
+                          + "\"last\": \"" + last + "\""
+                          + "}";
+
+                Connect conn = new Connect();
+                String responce = conn.HttpPOST(url, json);
+                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+                ProductosDb productosdb = new ProductosDb();
+                resposeJson = respdb.extraeJsonProducto(responce);
+                if (resposeJson == "{\"rowCount\":\"0\",\"Items\":[]}")
+                {
+                    frmain.listBoxLog.Items.Insert(0, "No se encuentran productos");
+                }
+                productosdb.upInvAdm(resposeJson, frmain);
+
+                first = last;
+            }
+            
         }
 
-        public void getPrecios()
+        public void getPrecios(string fecha,string intervalo, frmMain frmain)
         {
+            int first = 1;
+            int last = 0;
             consqlite = condbsqlite.getConectSqlite();
             string url = "http://"+consqlite.ip_sap+""
                         + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
                         + "wsaction="
                         + "GetPriceList";
-            string json = "{ \"UpdateDate\": \"20150106\","
-            + "\"first\": \"3\","
+            string json = "{ \"UpdateDate\": \""+fecha+"\","
+            + "\"first\": \""+first+"\","
             + "\"last\": \"4\""
               + "} ";
 
@@ -467,6 +502,20 @@ namespace AdmToSap
                 frmain.listBoxLog.Items.Insert(0, evento);
 
             }
+        }
+
+        public void EnvioDiario(frmMain frmain)
+        {
+            this.addClientes(frmain);
+            this.addDocuments(frmain);
+            this.addPayments(frmain);
+            this.addJournalEntry(frmain);
+
+        }
+
+        public void reciboDiario(frmMain frmain)
+        {
+
         }
 
 

@@ -9,6 +9,7 @@ namespace AdmToSap
 {
     class PartnerDb
     {
+        String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
         ConnectDb con = new ConnectDb();
         public List<Partner> getPartners()
         {
@@ -33,13 +34,25 @@ namespace AdmToSap
             {
                 Partner partner = new Partner();
                 String codempresa = reader.GetString(reader.GetOrdinal("COD_EMPRESA"));
+               
+                                    SQLiteConnection myConn = new SQLiteConnection(strConn);
+                                    myConn.Open();
+                                    string sql = "SELECT * FROM empresas";
+                                    SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                                    SQLiteDataReader reader2 = command.ExecuteReader();
+                                    while (reader2.Read())
+                                    {
+                                        partner.SalesPersonCode = reader2.GetInt32(reader2.GetOrdinal("cod_sucursal")).ToString();
+                                        partner.SlpCode = reader2.GetInt32(reader2.GetOrdinal("cod_sucursal")).ToString();
+                                    }
+
+                                    myConn.Close();
 
                 partner.CardCode = "";
                 partner.CardName = reader.GetString(reader.GetOrdinal("R_SOCIAL"));
                 partner.LicTradNum = reader.GetString(reader.GetOrdinal("RUT"));
                 partner.Notes = reader.GetString(reader.GetOrdinal("GIRO"));
                 partner.GroupNum = "";
-                partner.SlpCode = "-1";
                 partner.Street = reader.GetString(reader.GetOrdinal("DIRECCION"));
                 partner.Block = "";
                 partner.City = reader.GetString(reader.GetOrdinal("city"));
@@ -63,6 +76,7 @@ namespace AdmToSap
             }
 
             conexion.Close();
+
             return partners;
 
 

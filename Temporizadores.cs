@@ -9,16 +9,17 @@ namespace AdmToSap
     class Temporizadores
     {
         private volatile bool _shouldStop;
-
-        public void startProcessClientes()
+        public frmMain frm;
+        public void startProcess(frmMain f)
         {
-            Thread processIatThread = new Thread(doProcessClientes);
+            frm = f;
+            Thread processIatThread = new Thread(doProcess);
             processIatThread.Start();
             Console.WriteLine("main thread: Starting ProcessIat thread...");
             while (!processIatThread.IsAlive) ;
         }
 
-        public void doProcessClientes()
+        public void doProcess()
         {
 
 
@@ -27,16 +28,33 @@ namespace AdmToSap
                 Console.WriteLine("ProcessIat thread: working...");
                 Thread.Sleep(intervalo());
 
-                Procesos proc = new Procesos();
+                // Instanciar la clase que contiene el proceso
+                Procesos pro = new Procesos();
 
-              // proc.addClientes();
+                // Obtener la hora en que debe realizar el proceso
+                // Envío
 
+                var horaEnvio = new DateTime(1, 1, 1, 22, 0, 0);
+                var horaRecibo = new DateTime(1, 1, 1, 22, 0, 0);
+                // comparar la hora de envío con la hora actual
+                var date = DateTime.Now;
+                int h = date.Hour;
+
+                if (horaEnvio.Hour == h)                   
+                {
+                    pro.EnvioDiario(frm);
+                }
+
+                if (horaRecibo.Hour == h)
+                {
+                    pro.reciboDiario(frm);
+                }
             }
         }
 
         private int intervalo()
         {
-            return 5000; //sacar este valor de la base de datos
+            return 3600000; //sacar este valor de la base de datos
         }
 
         public void stopProcessIat()

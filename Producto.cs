@@ -22,11 +22,11 @@ namespace AdmToSap
     class Items
     {
         [DataMember]
-     public String Grupo { get; set; }
+        public String Grupo { get; set; }
         [DataMember]
         public String CodInt { get; set; }
          [DataMember]
-    public String Codigo { get; set; }
+        public String Codigo { get; set; }
         [DataMember]
          public String CodProv { get; set; }
         [DataMember]
@@ -59,6 +59,12 @@ namespace AdmToSap
         public String Precio3 { get; set; }
         [DataMember]
         public String OnHand { get; set; }
+        [DataMember]
+        public String estadoResponce { get; set; }
+        [DataMember]
+        public DateTime fecha_update { get; set; }
+
+
 
     }
 }

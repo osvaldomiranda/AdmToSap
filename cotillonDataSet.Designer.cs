@@ -323,8 +323,6 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columnACTIVAR_SEGURIDAD;
             
-            private global::System.Data.DataColumn columncod_actividad;
-            
             private global::System.Data.DataColumn columnCOD_CIUDAD;
             
             private global::System.Data.DataColumn columnCOD_COMUNA;
@@ -336,8 +334,6 @@ namespace AdmToSap {
             private global::System.Data.DataColumn columnCOD_POS;
             
             private global::System.Data.DataColumn columnDIRECCION;
-            
-            private global::System.Data.DataColumn columnemail;
             
             private global::System.Data.DataColumn columnENCARGADO;
             
@@ -404,14 +400,6 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn cod_actividadColumn {
-                get {
-                    return this.columncod_actividad;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn COD_CIUDADColumn {
                 get {
                     return this.columnCOD_CIUDAD;
@@ -455,14 +443,6 @@ namespace AdmToSap {
             public global::System.Data.DataColumn DIRECCIONColumn {
                 get {
                     return this.columnDIRECCION;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn emailColumn {
-                get {
-                    return this.columnemail;
                 }
             }
             
@@ -593,14 +573,12 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public empresasRow AddempresasRow(
                         string ACTIVAR_SEGURIDAD, 
-                        long cod_actividad, 
                         short COD_CIUDAD, 
                         int COD_COMUNA, 
                         byte COD_EMPRESA, 
                         short COD_PAIS, 
                         string COD_POS, 
                         string DIRECCION, 
-                        string email, 
                         string ENCARGADO, 
                         string FAX, 
                         string GIRO, 
@@ -615,14 +593,12 @@ namespace AdmToSap {
                 empresasRow rowempresasRow = ((empresasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ACTIVAR_SEGURIDAD,
-                        cod_actividad,
                         COD_CIUDAD,
                         COD_COMUNA,
                         COD_EMPRESA,
                         COD_PAIS,
                         COD_POS,
                         DIRECCION,
-                        email,
                         ENCARGADO,
                         FAX,
                         GIRO,
@@ -664,14 +640,12 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnACTIVAR_SEGURIDAD = base.Columns["ACTIVAR_SEGURIDAD"];
-                this.columncod_actividad = base.Columns["cod_actividad"];
                 this.columnCOD_CIUDAD = base.Columns["COD_CIUDAD"];
                 this.columnCOD_COMUNA = base.Columns["COD_COMUNA"];
                 this.columnCOD_EMPRESA = base.Columns["COD_EMPRESA"];
                 this.columnCOD_PAIS = base.Columns["COD_PAIS"];
                 this.columnCOD_POS = base.Columns["COD_POS"];
                 this.columnDIRECCION = base.Columns["DIRECCION"];
-                this.columnemail = base.Columns["email"];
                 this.columnENCARGADO = base.Columns["ENCARGADO"];
                 this.columnFAX = base.Columns["FAX"];
                 this.columnGIRO = base.Columns["GIRO"];
@@ -690,8 +664,6 @@ namespace AdmToSap {
             private void InitClass() {
                 this.columnACTIVAR_SEGURIDAD = new global::System.Data.DataColumn("ACTIVAR_SEGURIDAD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnACTIVAR_SEGURIDAD);
-                this.columncod_actividad = new global::System.Data.DataColumn("cod_actividad", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncod_actividad);
                 this.columnCOD_CIUDAD = new global::System.Data.DataColumn("COD_CIUDAD", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCOD_CIUDAD);
                 this.columnCOD_COMUNA = new global::System.Data.DataColumn("COD_COMUNA", typeof(int), null, global::System.Data.MappingType.Element);
@@ -704,8 +676,6 @@ namespace AdmToSap {
                 base.Columns.Add(this.columnCOD_POS);
                 this.columnDIRECCION = new global::System.Data.DataColumn("DIRECCION", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDIRECCION);
-                this.columnemail = new global::System.Data.DataColumn("email", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnemail);
                 this.columnENCARGADO = new global::System.Data.DataColumn("ENCARGADO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnENCARGADO);
                 this.columnFAX = new global::System.Data.DataColumn("FAX", typeof(string), null, global::System.Data.MappingType.Element);
@@ -731,13 +701,11 @@ namespace AdmToSap {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCOD_EMPRESA}, true));
                 this.columnACTIVAR_SEGURIDAD.MaxLength = 1;
-                this.columncod_actividad.AllowDBNull = false;
                 this.columnCOD_COMUNA.AllowDBNull = false;
                 this.columnCOD_EMPRESA.AllowDBNull = false;
                 this.columnCOD_EMPRESA.Unique = true;
                 this.columnCOD_POS.MaxLength = 6;
                 this.columnDIRECCION.MaxLength = 40;
-                this.columnemail.MaxLength = 60;
                 this.columnENCARGADO.MaxLength = 30;
                 this.columnFAX.MaxLength = 20;
                 this.columnGIRO.MaxLength = 80;
@@ -883,17 +851,9 @@ namespace AdmToSap {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class sucursalesDataTable : global::System.Data.TypedTableBase<sucursalesRow> {
             
-            private global::System.Data.DataColumn columnCOD_CIUDAD;
-            
-            private global::System.Data.DataColumn columnCOD_COMUNA;
-            
             private global::System.Data.DataColumn columnCOD_EMPRESA;
             
-            private global::System.Data.DataColumn columnCOD_PAIS;
-            
             private global::System.Data.DataColumn columnCOD_SUCURSAL;
-            
-            private global::System.Data.DataColumn columnCOD_SUCURSAL_SII;
             
             private global::System.Data.DataColumn columnDIRECCION;
             
@@ -934,22 +894,6 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn COD_CIUDADColumn {
-                get {
-                    return this.columnCOD_CIUDAD;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn COD_COMUNAColumn {
-                get {
-                    return this.columnCOD_COMUNA;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn COD_EMPRESAColumn {
                 get {
                     return this.columnCOD_EMPRESA;
@@ -958,25 +902,9 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn COD_PAISColumn {
-                get {
-                    return this.columnCOD_PAIS;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn COD_SUCURSALColumn {
                 get {
                     return this.columnCOD_SUCURSAL;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn COD_SUCURSAL_SIIColumn {
-                get {
-                    return this.columnCOD_SUCURSAL_SII;
                 }
             }
             
@@ -1033,19 +961,15 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sucursalesRow AddsucursalesRow(int COD_CIUDAD, int COD_COMUNA, empresasRow parentempresasRowByempresas_sucursales, int COD_PAIS, int COD_SUCURSAL, string COD_SUCURSAL_SII, string DIRECCION, string NOMBRE) {
+            public sucursalesRow AddsucursalesRow(empresasRow parentempresasRowByempresas_sucursales, int COD_SUCURSAL, string DIRECCION, string NOMBRE) {
                 sucursalesRow rowsucursalesRow = ((sucursalesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        COD_CIUDAD,
-                        COD_COMUNA,
                         null,
-                        COD_PAIS,
                         COD_SUCURSAL,
-                        COD_SUCURSAL_SII,
                         DIRECCION,
                         NOMBRE};
                 if ((parentempresasRowByempresas_sucursales != null)) {
-                    columnValuesArray[2] = parentempresasRowByempresas_sucursales[4];
+                    columnValuesArray[0] = parentempresasRowByempresas_sucursales[3];
                 }
                 rowsucursalesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsucursalesRow);
@@ -1077,12 +1001,8 @@ namespace AdmToSap {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCOD_CIUDAD = base.Columns["COD_CIUDAD"];
-                this.columnCOD_COMUNA = base.Columns["COD_COMUNA"];
                 this.columnCOD_EMPRESA = base.Columns["COD_EMPRESA"];
-                this.columnCOD_PAIS = base.Columns["COD_PAIS"];
                 this.columnCOD_SUCURSAL = base.Columns["COD_SUCURSAL"];
-                this.columnCOD_SUCURSAL_SII = base.Columns["COD_SUCURSAL_SII"];
                 this.columnDIRECCION = base.Columns["DIRECCION"];
                 this.columnNOMBRE = base.Columns["NOMBRE"];
             }
@@ -1090,18 +1010,10 @@ namespace AdmToSap {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCOD_CIUDAD = new global::System.Data.DataColumn("COD_CIUDAD", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCOD_CIUDAD);
-                this.columnCOD_COMUNA = new global::System.Data.DataColumn("COD_COMUNA", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCOD_COMUNA);
                 this.columnCOD_EMPRESA = new global::System.Data.DataColumn("COD_EMPRESA", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCOD_EMPRESA);
-                this.columnCOD_PAIS = new global::System.Data.DataColumn("COD_PAIS", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCOD_PAIS);
                 this.columnCOD_SUCURSAL = new global::System.Data.DataColumn("COD_SUCURSAL", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCOD_SUCURSAL);
-                this.columnCOD_SUCURSAL_SII = new global::System.Data.DataColumn("COD_SUCURSAL_SII", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCOD_SUCURSAL_SII);
                 this.columnDIRECCION = new global::System.Data.DataColumn("DIRECCION", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDIRECCION);
                 this.columnNOMBRE = new global::System.Data.DataColumn("NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1109,11 +1021,8 @@ namespace AdmToSap {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCOD_EMPRESA,
                                 this.columnCOD_SUCURSAL}, true));
-                this.columnCOD_CIUDAD.AllowDBNull = false;
                 this.columnCOD_EMPRESA.AllowDBNull = false;
-                this.columnCOD_PAIS.AllowDBNull = false;
                 this.columnCOD_SUCURSAL.AllowDBNull = false;
-                this.columnCOD_SUCURSAL_SII.MaxLength = 15;
                 this.columnDIRECCION.MaxLength = 80;
                 this.columnNOMBRE.MaxLength = 40;
             }
@@ -1274,17 +1183,6 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long cod_actividad {
-                get {
-                    return ((long)(this[this.tableempresas.cod_actividadColumn]));
-                }
-                set {
-                    this[this.tableempresas.cod_actividadColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short COD_CIUDAD {
                 get {
                     try {
@@ -1366,22 +1264,6 @@ namespace AdmToSap {
                 }
                 set {
                     this[this.tableempresas.DIRECCIONColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string email {
-                get {
-                    try {
-                        return ((string)(this[this.tableempresas.emailColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'email\' de la tabla \'empresas\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableempresas.emailColumn] = value;
                 }
             }
             
@@ -1618,18 +1500,6 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsemailNull() {
-                return this.IsNull(this.tableempresas.emailColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetemailNull() {
-                this[this.tableempresas.emailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsENCARGADONull() {
                 return this.IsNull(this.tableempresas.ENCARGADOColumn);
             }
@@ -1776,33 +1646,6 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int COD_CIUDAD {
-                get {
-                    return ((int)(this[this.tablesucursales.COD_CIUDADColumn]));
-                }
-                set {
-                    this[this.tablesucursales.COD_CIUDADColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int COD_COMUNA {
-                get {
-                    try {
-                        return ((int)(this[this.tablesucursales.COD_COMUNAColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COD_COMUNA\' de la tabla \'sucursales\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesucursales.COD_COMUNAColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte COD_EMPRESA {
                 get {
                     return ((byte)(this[this.tablesucursales.COD_EMPRESAColumn]));
@@ -1814,39 +1657,12 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int COD_PAIS {
-                get {
-                    return ((int)(this[this.tablesucursales.COD_PAISColumn]));
-                }
-                set {
-                    this[this.tablesucursales.COD_PAISColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int COD_SUCURSAL {
                 get {
                     return ((int)(this[this.tablesucursales.COD_SUCURSALColumn]));
                 }
                 set {
                     this[this.tablesucursales.COD_SUCURSALColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string COD_SUCURSAL_SII {
-                get {
-                    try {
-                        return ((string)(this[this.tablesucursales.COD_SUCURSAL_SIIColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'COD_SUCURSAL_SII\' de la tabla \'sucursales\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablesucursales.COD_SUCURSAL_SIIColumn] = value;
                 }
             }
             
@@ -1891,30 +1707,6 @@ namespace AdmToSap {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["empresas_sucursales"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCOD_COMUNANull() {
-                return this.IsNull(this.tablesucursales.COD_COMUNAColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCOD_COMUNANull() {
-                this[this.tablesucursales.COD_COMUNAColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCOD_SUCURSAL_SIINull() {
-                return this.IsNull(this.tablesucursales.COD_SUCURSAL_SIIColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCOD_SUCURSAL_SIINull() {
-                this[this.tablesucursales.COD_SUCURSAL_SIIColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2136,14 +1928,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "empresas";
             tableMapping.ColumnMappings.Add("ACTIVAR_SEGURIDAD", "ACTIVAR_SEGURIDAD");
-            tableMapping.ColumnMappings.Add("cod_actividad", "cod_actividad");
             tableMapping.ColumnMappings.Add("COD_CIUDAD", "COD_CIUDAD");
             tableMapping.ColumnMappings.Add("COD_COMUNA", "COD_COMUNA");
             tableMapping.ColumnMappings.Add("COD_EMPRESA", "COD_EMPRESA");
             tableMapping.ColumnMappings.Add("COD_PAIS", "COD_PAIS");
             tableMapping.ColumnMappings.Add("COD_POS", "COD_POS");
             tableMapping.ColumnMappings.Add("DIRECCION", "DIRECCION");
-            tableMapping.ColumnMappings.Add("email", "email");
             tableMapping.ColumnMappings.Add("ENCARGADO", "ENCARGADO");
             tableMapping.ColumnMappings.Add("FAX", "FAX");
             tableMapping.ColumnMappings.Add("GIRO", "GIRO");
@@ -2158,11 +1948,10 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `empresas` WHERE (((? = 1 AND `ACTIVAR_SEGURIDAD` IS NULL) OR (`ACTIVAR_SEGURIDAD` = ?)) AND (`cod_actividad` = ?) AND ((? = 1 AND `COD_CIUDAD` IS NULL) OR (`COD_CIUDAD` = ?)) AND (`COD_COMUNA` = ?) AND (`COD_EMPRESA` = ?) AND ((? = 1 AND `COD_PAIS` IS NULL) OR (`COD_PAIS` = ?)) AND ((? = 1 AND `COD_POS` IS NULL) OR (`COD_POS` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `email` IS NULL) OR (`email` = ?)) AND ((? = 1 AND `ENCARGADO` IS NULL) OR (`ENCARGADO` = ?)) AND ((? = 1 AND `FAX` IS NULL) OR (`FAX` = ?)) AND ((? = 1 AND `GIRO` IS NULL) OR (`GIRO` = ?)) AND ((? = 1 AND `N_FANTASIA` IS NULL) OR (`N_FANTASIA` = ?)) AND ((? = 1 AND `R_SOCIAL` IS NULL) OR (`R_SOCIAL` = ?)) AND ((? = 1 AND `RETENEDOR_CARNE` IS NULL) OR (`RETENEDOR_CARNE` = ?)) AND ((? = 1 AND `RETENEDOR_HARINA` IS NULL) OR (`RETENEDOR_HARINA` = ?)) AND ((? = 1 AND `RETENEDOR_ILA` IS NULL) OR (`RETENEDOR_ILA` = ?)) AND (`RUT` = ?) AND ((? = 1 AND `TELEFONO1` IS NULL) OR (`TELEFONO1` = ?)) AND ((? = 1 AND `TELEFONO2` IS NULL) OR (`TELEFONO2` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `empresas` WHERE (((? = 1 AND `ACTIVAR_SEGURIDAD` IS NULL) OR (`ACTIVAR_SEGURIDAD` = ?)) AND ((? = 1 AND `COD_CIUDAD` IS NULL) OR (`COD_CIUDAD` = ?)) AND (`COD_COMUNA` = ?) AND (`COD_EMPRESA` = ?) AND ((? = 1 AND `COD_PAIS` IS NULL) OR (`COD_PAIS` = ?)) AND ((? = 1 AND `COD_POS` IS NULL) OR (`COD_POS` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `ENCARGADO` IS NULL) OR (`ENCARGADO` = ?)) AND ((? = 1 AND `FAX` IS NULL) OR (`FAX` = ?)) AND ((? = 1 AND `GIRO` IS NULL) OR (`GIRO` = ?)) AND ((? = 1 AND `N_FANTASIA` IS NULL) OR (`N_FANTASIA` = ?)) AND ((? = 1 AND `R_SOCIAL` IS NULL) OR (`R_SOCIAL` = ?)) AND ((? = 1 AND `RETENEDOR_CARNE` IS NULL) OR (`RETENEDOR_CARNE` = ?)) AND ((? = 1 AND `RETENEDOR_HARINA` IS NULL) OR (`RETENEDOR_HARINA` = ?)) AND ((? = 1 AND `RETENEDOR_ILA` IS NULL) OR (`RETENEDOR_ILA` = ?)) AND (`RUT` = ?) AND ((? = 1 AND `TELEFONO1` IS NULL) OR (`TELEFONO1` = ?)) AND ((? = 1 AND `TELEFONO2` IS NULL) OR (`TELEFONO2` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cod_actividad", global::System.Data.Odbc.OdbcType.BigInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_actividad", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_CIUDAD", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, false, null));
@@ -2173,8 +1962,6 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_POS", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_POS", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_DIRECCION", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_DIRECCION", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_email", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_email", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ENCARGADO", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ENCARGADO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_FAX", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FAX", global::System.Data.DataRowVersion.Original, true, null));
@@ -2198,17 +1985,15 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_TELEFONO2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TELEFONO2", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `empresas` (`ACTIVAR_SEGURIDAD`, `cod_actividad`, `COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, `COD_POS`, `DIRECCION`, `email`, `ENCARGADO`, `FAX`, `GIRO`, `N_FANTASIA`, `R_SOCIAL`, `RETENEDOR_CARNE`, `RETENEDOR_HARINA`, `RETENEDOR_ILA`, `RUT`, `TELEFONO1`, `TELEFONO2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `empresas` (`ACTIVAR_SEGURIDAD`, `COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, `COD_POS`, `DIRECCION`, `ENCARGADO`, `FAX`, `GIRO`, `N_FANTASIA`, `R_SOCIAL`, `RETENEDOR_CARNE`, `RETENEDOR_HARINA`, `RETENEDOR_ILA`, `RUT`, `TELEFONO1`, `TELEFONO2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_actividad", global::System.Data.Odbc.OdbcType.BigInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_actividad", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_CIUDAD", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_PAIS", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_POS", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_POS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("DIRECCION", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("email", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ENCARGADO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("FAX", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FAX", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("GIRO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GIRO", global::System.Data.DataRowVersion.Current, false, null));
@@ -2222,17 +2007,15 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("TELEFONO2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TELEFONO2", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `empresas` SET `ACTIVAR_SEGURIDAD` = ?, `cod_actividad` = ?, `COD_CIUDAD` = ?, `COD_COMUNA` = ?, `COD_EMPRESA` = ?, `COD_PAIS` = ?, `COD_POS` = ?, `DIRECCION` = ?, `email` = ?, `ENCARGADO` = ?, `FAX` = ?, `GIRO` = ?, `N_FANTASIA` = ?, `R_SOCIAL` = ?, `RETENEDOR_CARNE` = ?, `RETENEDOR_HARINA` = ?, `RETENEDOR_ILA` = ?, `RUT` = ?, `TELEFONO1` = ?, `TELEFONO2` = ? WHERE (((? = 1 AND `ACTIVAR_SEGURIDAD` IS NULL) OR (`ACTIVAR_SEGURIDAD` = ?)) AND (`cod_actividad` = ?) AND ((? = 1 AND `COD_CIUDAD` IS NULL) OR (`COD_CIUDAD` = ?)) AND (`COD_COMUNA` = ?) AND (`COD_EMPRESA` = ?) AND ((? = 1 AND `COD_PAIS` IS NULL) OR (`COD_PAIS` = ?)) AND ((? = 1 AND `COD_POS` IS NULL) OR (`COD_POS` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `email` IS NULL) OR (`email` = ?)) AND ((? = 1 AND `ENCARGADO` IS NULL) OR (`ENCARGADO` = ?)) AND ((? = 1 AND `FAX` IS NULL) OR (`FAX` = ?)) AND ((? = 1 AND `GIRO` IS NULL) OR (`GIRO` = ?)) AND ((? = 1 AND `N_FANTASIA` IS NULL) OR (`N_FANTASIA` = ?)) AND ((? = 1 AND `R_SOCIAL` IS NULL) OR (`R_SOCIAL` = ?)) AND ((? = 1 AND `RETENEDOR_CARNE` IS NULL) OR (`RETENEDOR_CARNE` = ?)) AND ((? = 1 AND `RETENEDOR_HARINA` IS NULL) OR (`RETENEDOR_HARINA` = ?)) AND ((? = 1 AND `RETENEDOR_ILA` IS NULL) OR (`RETENEDOR_ILA` = ?)) AND (`RUT` = ?) AND ((? = 1 AND `TELEFONO1` IS NULL) OR (`TELEFONO1` = ?)) AND ((? = 1 AND `TELEFONO2` IS NULL) OR (`TELEFONO2` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `empresas` SET `ACTIVAR_SEGURIDAD` = ?, `COD_CIUDAD` = ?, `COD_COMUNA` = ?, `COD_EMPRESA` = ?, `COD_PAIS` = ?, `COD_POS` = ?, `DIRECCION` = ?, `ENCARGADO` = ?, `FAX` = ?, `GIRO` = ?, `N_FANTASIA` = ?, `R_SOCIAL` = ?, `RETENEDOR_CARNE` = ?, `RETENEDOR_HARINA` = ?, `RETENEDOR_ILA` = ?, `RUT` = ?, `TELEFONO1` = ?, `TELEFONO2` = ? WHERE (((? = 1 AND `ACTIVAR_SEGURIDAD` IS NULL) OR (`ACTIVAR_SEGURIDAD` = ?)) AND ((? = 1 AND `COD_CIUDAD` IS NULL) OR (`COD_CIUDAD` = ?)) AND (`COD_COMUNA` = ?) AND (`COD_EMPRESA` = ?) AND ((? = 1 AND `COD_PAIS` IS NULL) OR (`COD_PAIS` = ?)) AND ((? = 1 AND `COD_POS` IS NULL) OR (`COD_POS` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `ENCARGADO` IS NULL) OR (`ENCARGADO` = ?)) AND ((? = 1 AND `FAX` IS NULL) OR (`FAX` = ?)) AND ((? = 1 AND `GIRO` IS NULL) OR (`GIRO` = ?)) AND ((? = 1 AND `N_FANTASIA` IS NULL) OR (`N_FANTASIA` = ?)) AND ((? = 1 AND `R_SOCIAL` IS NULL) OR (`R_SOCIAL` = ?)) AND ((? = 1 AND `RETENEDOR_CARNE` IS NULL) OR (`RETENEDOR_CARNE` = ?)) AND ((? = 1 AND `RETENEDOR_HARINA` IS NULL) OR (`RETENEDOR_HARINA` = ?)) AND ((? = 1 AND `RETENEDOR_ILA` IS NULL) OR (`RETENEDOR_ILA` = ?)) AND (`RUT` = ?) AND ((? = 1 AND `TELEFONO1` IS NULL) OR (`TELEFONO1` = ?)) AND ((? = 1 AND `TELEFONO2` IS NULL) OR (`TELEFONO2` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_actividad", global::System.Data.Odbc.OdbcType.BigInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_actividad", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_CIUDAD", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_PAIS", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_POS", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_POS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("DIRECCION", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("email", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ENCARGADO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("FAX", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FAX", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("GIRO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GIRO", global::System.Data.DataRowVersion.Current, false, null));
@@ -2246,7 +2029,6 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("TELEFONO2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TELEFONO2", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ACTIVAR_SEGURIDAD", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACTIVAR_SEGURIDAD", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cod_actividad", global::System.Data.Odbc.OdbcType.BigInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_actividad", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_CIUDAD", global::System.Data.Odbc.OdbcType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, false, null));
@@ -2257,8 +2039,6 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_POS", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_POS", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_DIRECCION", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_DIRECCION", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_email", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_email", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "email", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ENCARGADO", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ENCARGADO", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ENCARGADO", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_FAX", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FAX", global::System.Data.DataRowVersion.Original, true, null));
@@ -2295,7 +2075,7 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT `ACTIVAR_SEGURIDAD`, `cod_actividad`, `COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, `COD_POS`, `DIRECCION`, `email`, `ENCARGADO`, `FAX`, `GIRO`, `N_FANTASIA`, `R_SOCIAL`, `RETENEDOR_CARNE`, `RETENEDOR_HARINA`, `RETENEDOR_ILA`, `RUT`, `TELEFONO1`, `TELEFONO2` FROM `empresas`";
+            this._commandCollection[0].CommandText = @"SELECT `ACTIVAR_SEGURIDAD`, `COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, `COD_POS`, `DIRECCION`, `ENCARGADO`, `FAX`, `GIRO`, `N_FANTASIA`, `R_SOCIAL`, `RETENEDOR_CARNE`, `RETENEDOR_HARINA`, `RETENEDOR_ILA`, `RUT`, `TELEFONO1`, `TELEFONO2` FROM `empresas`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2358,14 +2138,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
         public virtual int Delete(
                     string Original_ACTIVAR_SEGURIDAD, 
-                    long Original_cod_actividad, 
                     short Original_COD_CIUDAD, 
                     int Original_COD_COMUNA, 
                     byte Original_COD_EMPRESA, 
                     short Original_COD_PAIS, 
                     string Original_COD_POS, 
                     string Original_DIRECCION, 
-                    string Original_email, 
                     string Original_ENCARGADO, 
                     string Original_FAX, 
                     string Original_GIRO, 
@@ -2384,109 +2162,101 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ACTIVAR_SEGURIDAD));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((long)(Original_cod_actividad));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((short)(Original_COD_CIUDAD));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_COD_COMUNA));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(Original_COD_EMPRESA));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((short)(Original_COD_PAIS));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((short)(Original_COD_CIUDAD));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_COD_COMUNA));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((byte)(Original_COD_EMPRESA));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((short)(Original_COD_PAIS));
             if ((Original_COD_POS == null)) {
                 throw new global::System.ArgumentNullException("Original_COD_POS");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_COD_POS));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_COD_POS));
             }
             if ((Original_DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("Original_DIRECCION");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_DIRECCION));
-            }
-            if ((Original_email == null)) {
-                throw new global::System.ArgumentNullException("Original_email");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_email));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_DIRECCION));
             }
             if ((Original_ENCARGADO == null)) {
                 throw new global::System.ArgumentNullException("Original_ENCARGADO");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_ENCARGADO));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_ENCARGADO));
             }
             if ((Original_FAX == null)) {
                 throw new global::System.ArgumentNullException("Original_FAX");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_FAX));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_FAX));
             }
             if ((Original_GIRO == null)) {
                 throw new global::System.ArgumentNullException("Original_GIRO");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((string)(Original_GIRO));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_GIRO));
             }
             if ((Original_N_FANTASIA == null)) {
                 throw new global::System.ArgumentNullException("Original_N_FANTASIA");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((string)(Original_N_FANTASIA));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_N_FANTASIA));
             }
             if ((Original_R_SOCIAL == null)) {
                 throw new global::System.ArgumentNullException("Original_R_SOCIAL");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[24].Value = ((string)(Original_R_SOCIAL));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((string)(Original_R_SOCIAL));
             }
             if ((Original_RETENEDOR_CARNE == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_CARNE");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((string)(Original_RETENEDOR_CARNE));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((string)(Original_RETENEDOR_CARNE));
             }
             if ((Original_RETENEDOR_HARINA == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_HARINA");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[28].Value = ((string)(Original_RETENEDOR_HARINA));
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[25].Value = ((string)(Original_RETENEDOR_HARINA));
             }
             if ((Original_RETENEDOR_ILA == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_ILA");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[30].Value = ((string)(Original_RETENEDOR_ILA));
+                this.Adapter.DeleteCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[27].Value = ((string)(Original_RETENEDOR_ILA));
             }
             if ((Original_RUT == null)) {
                 throw new global::System.ArgumentNullException("Original_RUT");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((string)(Original_RUT));
+                this.Adapter.DeleteCommand.Parameters[28].Value = ((string)(Original_RUT));
             }
             if ((Original_TELEFONO1 == null)) {
                 throw new global::System.ArgumentNullException("Original_TELEFONO1");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((string)(Original_TELEFONO1));
+                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[30].Value = ((string)(Original_TELEFONO1));
             }
             if ((Original_TELEFONO2 == null)) {
                 throw new global::System.ArgumentNullException("Original_TELEFONO2");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[35].Value = ((string)(Original_TELEFONO2));
+                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[32].Value = ((string)(Original_TELEFONO2));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2510,14 +2280,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
                     string ACTIVAR_SEGURIDAD, 
-                    long cod_actividad, 
                     short COD_CIUDAD, 
                     int COD_COMUNA, 
                     byte COD_EMPRESA, 
                     short COD_PAIS, 
                     string COD_POS, 
                     string DIRECCION, 
-                    string email, 
                     string ENCARGADO, 
                     string FAX, 
                     string GIRO, 
@@ -2535,94 +2303,87 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ACTIVAR_SEGURIDAD));
             }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((long)(cod_actividad));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((short)(COD_CIUDAD));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(COD_COMUNA));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(COD_EMPRESA));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((short)(COD_PAIS));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((short)(COD_CIUDAD));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(COD_COMUNA));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(COD_EMPRESA));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((short)(COD_PAIS));
             if ((COD_POS == null)) {
                 throw new global::System.ArgumentNullException("COD_POS");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(COD_POS));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(COD_POS));
             }
             if ((DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("DIRECCION");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(DIRECCION));
-            }
-            if ((email == null)) {
-                throw new global::System.ArgumentNullException("email");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(email));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(DIRECCION));
             }
             if ((ENCARGADO == null)) {
                 throw new global::System.ArgumentNullException("ENCARGADO");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(ENCARGADO));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ENCARGADO));
             }
             if ((FAX == null)) {
                 throw new global::System.ArgumentNullException("FAX");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(FAX));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(FAX));
             }
             if ((GIRO == null)) {
                 throw new global::System.ArgumentNullException("GIRO");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(GIRO));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(GIRO));
             }
             if ((N_FANTASIA == null)) {
                 throw new global::System.ArgumentNullException("N_FANTASIA");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(N_FANTASIA));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(N_FANTASIA));
             }
             if ((R_SOCIAL == null)) {
                 throw new global::System.ArgumentNullException("R_SOCIAL");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(R_SOCIAL));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(R_SOCIAL));
             }
             if ((RETENEDOR_CARNE == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_CARNE");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(RETENEDOR_CARNE));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(RETENEDOR_CARNE));
             }
             if ((RETENEDOR_HARINA == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_HARINA");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(RETENEDOR_HARINA));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(RETENEDOR_HARINA));
             }
             if ((RETENEDOR_ILA == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_ILA");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(RETENEDOR_ILA));
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(RETENEDOR_ILA));
             }
             if ((RUT == null)) {
                 throw new global::System.ArgumentNullException("RUT");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(RUT));
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(RUT));
             }
             if ((TELEFONO1 == null)) {
                 throw new global::System.ArgumentNullException("TELEFONO1");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(TELEFONO1));
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(TELEFONO1));
             }
             if ((TELEFONO2 == null)) {
                 throw new global::System.ArgumentNullException("TELEFONO2");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(TELEFONO2));
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(TELEFONO2));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2646,14 +2407,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string ACTIVAR_SEGURIDAD, 
-                    long cod_actividad, 
                     short COD_CIUDAD, 
                     int COD_COMUNA, 
                     byte COD_EMPRESA, 
                     short COD_PAIS, 
                     string COD_POS, 
                     string DIRECCION, 
-                    string email, 
                     string ENCARGADO, 
                     string FAX, 
                     string GIRO, 
@@ -2666,14 +2425,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
                     string TELEFONO1, 
                     string TELEFONO2, 
                     string Original_ACTIVAR_SEGURIDAD, 
-                    long Original_cod_actividad, 
                     short Original_COD_CIUDAD, 
                     int Original_COD_COMUNA, 
                     byte Original_COD_EMPRESA, 
                     short Original_COD_PAIS, 
                     string Original_COD_POS, 
                     string Original_DIRECCION, 
-                    string Original_email, 
                     string Original_ENCARGADO, 
                     string Original_FAX, 
                     string Original_GIRO, 
@@ -2691,205 +2448,190 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ACTIVAR_SEGURIDAD));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((long)(cod_actividad));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(COD_CIUDAD));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(COD_COMUNA));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(COD_EMPRESA));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((short)(COD_PAIS));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((short)(COD_CIUDAD));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(COD_COMUNA));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((byte)(COD_EMPRESA));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((short)(COD_PAIS));
             if ((COD_POS == null)) {
                 throw new global::System.ArgumentNullException("COD_POS");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(COD_POS));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(COD_POS));
             }
             if ((DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("DIRECCION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(DIRECCION));
-            }
-            if ((email == null)) {
-                throw new global::System.ArgumentNullException("email");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(email));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(DIRECCION));
             }
             if ((ENCARGADO == null)) {
                 throw new global::System.ArgumentNullException("ENCARGADO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ENCARGADO));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ENCARGADO));
             }
             if ((FAX == null)) {
                 throw new global::System.ArgumentNullException("FAX");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(FAX));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(FAX));
             }
             if ((GIRO == null)) {
                 throw new global::System.ArgumentNullException("GIRO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(GIRO));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(GIRO));
             }
             if ((N_FANTASIA == null)) {
                 throw new global::System.ArgumentNullException("N_FANTASIA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(N_FANTASIA));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(N_FANTASIA));
             }
             if ((R_SOCIAL == null)) {
                 throw new global::System.ArgumentNullException("R_SOCIAL");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(R_SOCIAL));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(R_SOCIAL));
             }
             if ((RETENEDOR_CARNE == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_CARNE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(RETENEDOR_CARNE));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(RETENEDOR_CARNE));
             }
             if ((RETENEDOR_HARINA == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_HARINA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(RETENEDOR_HARINA));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(RETENEDOR_HARINA));
             }
             if ((RETENEDOR_ILA == null)) {
                 throw new global::System.ArgumentNullException("RETENEDOR_ILA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(RETENEDOR_ILA));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(RETENEDOR_ILA));
             }
             if ((RUT == null)) {
                 throw new global::System.ArgumentNullException("RUT");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(RUT));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(RUT));
             }
             if ((TELEFONO1 == null)) {
                 throw new global::System.ArgumentNullException("TELEFONO1");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(TELEFONO1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(TELEFONO1));
             }
             if ((TELEFONO2 == null)) {
                 throw new global::System.ArgumentNullException("TELEFONO2");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(TELEFONO2));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(TELEFONO2));
             }
             if ((Original_ACTIVAR_SEGURIDAD == null)) {
                 throw new global::System.ArgumentNullException("Original_ACTIVAR_SEGURIDAD");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_ACTIVAR_SEGURIDAD));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_ACTIVAR_SEGURIDAD));
             }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((long)(Original_cod_actividad));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((short)(Original_COD_CIUDAD));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_COD_COMUNA));
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((byte)(Original_COD_EMPRESA));
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((short)(Original_COD_PAIS));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((short)(Original_COD_CIUDAD));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_COD_COMUNA));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((byte)(Original_COD_EMPRESA));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((short)(Original_COD_PAIS));
             if ((Original_COD_POS == null)) {
                 throw new global::System.ArgumentNullException("Original_COD_POS");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_COD_POS));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_COD_POS));
             }
             if ((Original_DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("Original_DIRECCION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(Original_DIRECCION));
-            }
-            if ((Original_email == null)) {
-                throw new global::System.ArgumentNullException("Original_email");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((string)(Original_email));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_DIRECCION));
             }
             if ((Original_ENCARGADO == null)) {
                 throw new global::System.ArgumentNullException("Original_ENCARGADO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(Original_ENCARGADO));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_ENCARGADO));
             }
             if ((Original_FAX == null)) {
                 throw new global::System.ArgumentNullException("Original_FAX");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_FAX));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((string)(Original_FAX));
             }
             if ((Original_GIRO == null)) {
                 throw new global::System.ArgumentNullException("Original_GIRO");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((string)(Original_GIRO));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_GIRO));
             }
             if ((Original_N_FANTASIA == null)) {
                 throw new global::System.ArgumentNullException("Original_N_FANTASIA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(Original_N_FANTASIA));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(Original_N_FANTASIA));
             }
             if ((Original_R_SOCIAL == null)) {
                 throw new global::System.ArgumentNullException("Original_R_SOCIAL");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((string)(Original_R_SOCIAL));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(Original_R_SOCIAL));
             }
             if ((Original_RETENEDOR_CARNE == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_CARNE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(Original_RETENEDOR_CARNE));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(Original_RETENEDOR_CARNE));
             }
             if ((Original_RETENEDOR_HARINA == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_HARINA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Original_RETENEDOR_HARINA));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((string)(Original_RETENEDOR_HARINA));
             }
             if ((Original_RETENEDOR_ILA == null)) {
                 throw new global::System.ArgumentNullException("Original_RETENEDOR_ILA");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_RETENEDOR_ILA));
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(Original_RETENEDOR_ILA));
             }
             if ((Original_RUT == null)) {
                 throw new global::System.ArgumentNullException("Original_RUT");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((string)(Original_RUT));
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(Original_RUT));
             }
             if ((Original_TELEFONO1 == null)) {
                 throw new global::System.ArgumentNullException("Original_TELEFONO1");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((string)(Original_TELEFONO1));
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Original_TELEFONO1));
             }
             if ((Original_TELEFONO2 == null)) {
                 throw new global::System.ArgumentNullException("Original_TELEFONO2");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((string)(Original_TELEFONO2));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_TELEFONO2));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2913,13 +2655,11 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string ACTIVAR_SEGURIDAD, 
-                    long cod_actividad, 
                     short COD_CIUDAD, 
                     int COD_COMUNA, 
                     short COD_PAIS, 
                     string COD_POS, 
                     string DIRECCION, 
-                    string email, 
                     string ENCARGADO, 
                     string FAX, 
                     string GIRO, 
@@ -2932,14 +2672,12 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
                     string TELEFONO1, 
                     string TELEFONO2, 
                     string Original_ACTIVAR_SEGURIDAD, 
-                    long Original_cod_actividad, 
                     short Original_COD_CIUDAD, 
                     int Original_COD_COMUNA, 
                     byte Original_COD_EMPRESA, 
                     short Original_COD_PAIS, 
                     string Original_COD_POS, 
                     string Original_DIRECCION, 
-                    string Original_email, 
                     string Original_ENCARGADO, 
                     string Original_FAX, 
                     string Original_GIRO, 
@@ -2951,7 +2689,7 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
                     string Original_RUT, 
                     string Original_TELEFONO1, 
                     string Original_TELEFONO2) {
-            return this.Update(ACTIVAR_SEGURIDAD, cod_actividad, COD_CIUDAD, COD_COMUNA, Original_COD_EMPRESA, COD_PAIS, COD_POS, DIRECCION, email, ENCARGADO, FAX, GIRO, N_FANTASIA, R_SOCIAL, RETENEDOR_CARNE, RETENEDOR_HARINA, RETENEDOR_ILA, RUT, TELEFONO1, TELEFONO2, Original_ACTIVAR_SEGURIDAD, Original_cod_actividad, Original_COD_CIUDAD, Original_COD_COMUNA, Original_COD_EMPRESA, Original_COD_PAIS, Original_COD_POS, Original_DIRECCION, Original_email, Original_ENCARGADO, Original_FAX, Original_GIRO, Original_N_FANTASIA, Original_R_SOCIAL, Original_RETENEDOR_CARNE, Original_RETENEDOR_HARINA, Original_RETENEDOR_ILA, Original_RUT, Original_TELEFONO1, Original_TELEFONO2);
+            return this.Update(ACTIVAR_SEGURIDAD, COD_CIUDAD, COD_COMUNA, Original_COD_EMPRESA, COD_PAIS, COD_POS, DIRECCION, ENCARGADO, FAX, GIRO, N_FANTASIA, R_SOCIAL, RETENEDOR_CARNE, RETENEDOR_HARINA, RETENEDOR_ILA, RUT, TELEFONO1, TELEFONO2, Original_ACTIVAR_SEGURIDAD, Original_COD_CIUDAD, Original_COD_COMUNA, Original_COD_EMPRESA, Original_COD_PAIS, Original_COD_POS, Original_DIRECCION, Original_ENCARGADO, Original_FAX, Original_GIRO, Original_N_FANTASIA, Original_R_SOCIAL, Original_RETENEDOR_CARNE, Original_RETENEDOR_HARINA, Original_RETENEDOR_ILA, Original_RUT, Original_TELEFONO1, Original_TELEFONO2);
         }
     }
     
@@ -3076,65 +2814,42 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "sucursales";
-            tableMapping.ColumnMappings.Add("COD_CIUDAD", "COD_CIUDAD");
-            tableMapping.ColumnMappings.Add("COD_COMUNA", "COD_COMUNA");
             tableMapping.ColumnMappings.Add("COD_EMPRESA", "COD_EMPRESA");
-            tableMapping.ColumnMappings.Add("COD_PAIS", "COD_PAIS");
             tableMapping.ColumnMappings.Add("COD_SUCURSAL", "COD_SUCURSAL");
-            tableMapping.ColumnMappings.Add("COD_SUCURSAL_SII", "COD_SUCURSAL_SII");
             tableMapping.ColumnMappings.Add("DIRECCION", "DIRECCION");
             tableMapping.ColumnMappings.Add("NOMBRE", "NOMBRE");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `sucursales` WHERE ((`COD_CIUDAD` = ?) AND ((? = 1 AND `COD_COMUNA` IS NULL) OR (`COD_COMUNA` = ?)) AND (`COD_EMPRESA` = ?) AND (`COD_PAIS` = ?) AND (`COD_SUCURSAL` = ?) AND ((? = 1 AND `COD_SUCURSAL_SII` IS NULL) OR (`COD_SUCURSAL_SII` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `NOMBRE` IS NULL) OR (`NOMBRE` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `sucursales` WHERE ((`COD_EMPRESA` = ?) AND (`COD_SUCURSAL` = ?) AND " +
+                "((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `NOMBRE` " +
+                "IS NULL) OR (`NOMBRE` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_PAIS", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_SUCURSAL", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_DIRECCION", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_DIRECCION", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_NOMBRE", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NOMBRE", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_NOMBRE", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NOMBRE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `sucursales` (`COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, " +
-                "`COD_SUCURSAL`, `COD_SUCURSAL_SII`, `DIRECCION`, `NOMBRE`) VALUES (?, ?, ?, ?, ?" +
-                ", ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `sucursales` (`COD_EMPRESA`, `COD_SUCURSAL`, `DIRECCION`, `NOMBRE`) V" +
+                "ALUES (?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_PAIS", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_SUCURSAL", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("DIRECCION", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("NOMBRE", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NOMBRE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `sucursales` SET `COD_CIUDAD` = ?, `COD_COMUNA` = ?, `COD_EMPRESA` = ?, `COD_PAIS` = ?, `COD_SUCURSAL` = ?, `COD_SUCURSAL_SII` = ?, `DIRECCION` = ?, `NOMBRE` = ? WHERE ((`COD_CIUDAD` = ?) AND ((? = 1 AND `COD_COMUNA` IS NULL) OR (`COD_COMUNA` = ?)) AND (`COD_EMPRESA` = ?) AND (`COD_PAIS` = ?) AND (`COD_SUCURSAL` = ?) AND ((? = 1 AND `COD_SUCURSAL_SII` IS NULL) OR (`COD_SUCURSAL_SII` = ?)) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `NOMBRE` IS NULL) OR (`NOMBRE` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `sucursales` SET `COD_EMPRESA` = ?, `COD_SUCURSAL` = ?, `DIRECCION` = ?, `NOMBRE` = ? WHERE ((`COD_EMPRESA` = ?) AND (`COD_SUCURSAL` = ?) AND ((? = 1 AND `DIRECCION` IS NULL) OR (`DIRECCION` = ?)) AND ((? = 1 AND `NOMBRE` IS NULL) OR (`NOMBRE` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_PAIS", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_SUCURSAL", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("DIRECCION", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("NOMBRE", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NOMBRE", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_CIUDAD", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_CIUDAD", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_COMUNA", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_COMUNA", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_EMPRESA", global::System.Data.Odbc.OdbcType.TinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_EMPRESA", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_PAIS", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_PAIS", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_SUCURSAL", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_COD_SUCURSAL_SII", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "COD_SUCURSAL_SII", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_DIRECCION", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_DIRECCION", global::System.Data.Odbc.OdbcType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DIRECCION", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_NOMBRE", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NOMBRE", global::System.Data.DataRowVersion.Original, true, null));
@@ -3154,8 +2869,7 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `COD_CIUDAD`, `COD_COMUNA`, `COD_EMPRESA`, `COD_PAIS`, `COD_SUCURSAL`, `CO" +
-                "D_SUCURSAL_SII`, `DIRECCION`, `NOMBRE` FROM `sucursales`";
+            this._commandCollection[0].CommandText = "SELECT `COD_EMPRESA`, `COD_SUCURSAL`, `DIRECCION`, `NOMBRE` FROM `sucursales`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3216,33 +2930,22 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_COD_CIUDAD, int Original_COD_COMUNA, byte Original_COD_EMPRESA, int Original_COD_PAIS, int Original_COD_SUCURSAL, string Original_COD_SUCURSAL_SII, string Original_DIRECCION, string Original_NOMBRE) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_COD_CIUDAD));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_COD_COMUNA));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((byte)(Original_COD_EMPRESA));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_COD_PAIS));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_COD_SUCURSAL));
-            if ((Original_COD_SUCURSAL_SII == null)) {
-                throw new global::System.ArgumentNullException("Original_COD_SUCURSAL_SII");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_COD_SUCURSAL_SII));
-            }
+        public virtual int Delete(byte Original_COD_EMPRESA, int Original_COD_SUCURSAL, string Original_DIRECCION, string Original_NOMBRE) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((byte)(Original_COD_EMPRESA));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_COD_SUCURSAL));
             if ((Original_DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("Original_DIRECCION");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_DIRECCION));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_DIRECCION));
             }
             if ((Original_NOMBRE == null)) {
                 throw new global::System.ArgumentNullException("Original_NOMBRE");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_NOMBRE));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_NOMBRE));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3264,29 +2967,20 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int COD_CIUDAD, int COD_COMUNA, byte COD_EMPRESA, int COD_PAIS, int COD_SUCURSAL, string COD_SUCURSAL_SII, string DIRECCION, string NOMBRE) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(COD_CIUDAD));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(COD_COMUNA));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(COD_EMPRESA));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(COD_PAIS));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(COD_SUCURSAL));
-            if ((COD_SUCURSAL_SII == null)) {
-                throw new global::System.ArgumentNullException("COD_SUCURSAL_SII");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(COD_SUCURSAL_SII));
-            }
+        public virtual int Insert(byte COD_EMPRESA, int COD_SUCURSAL, string DIRECCION, string NOMBRE) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((byte)(COD_EMPRESA));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(COD_SUCURSAL));
             if ((DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("DIRECCION");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(DIRECCION));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(DIRECCION));
             }
             if ((NOMBRE == null)) {
                 throw new global::System.ArgumentNullException("NOMBRE");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(NOMBRE));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(NOMBRE));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3308,72 +3002,36 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int COD_CIUDAD, 
-                    int COD_COMUNA, 
-                    byte COD_EMPRESA, 
-                    int COD_PAIS, 
-                    int COD_SUCURSAL, 
-                    string COD_SUCURSAL_SII, 
-                    string DIRECCION, 
-                    string NOMBRE, 
-                    int Original_COD_CIUDAD, 
-                    int Original_COD_COMUNA, 
-                    byte Original_COD_EMPRESA, 
-                    int Original_COD_PAIS, 
-                    int Original_COD_SUCURSAL, 
-                    string Original_COD_SUCURSAL_SII, 
-                    string Original_DIRECCION, 
-                    string Original_NOMBRE) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(COD_CIUDAD));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(COD_COMUNA));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(COD_EMPRESA));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(COD_PAIS));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(COD_SUCURSAL));
-            if ((COD_SUCURSAL_SII == null)) {
-                throw new global::System.ArgumentNullException("COD_SUCURSAL_SII");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(COD_SUCURSAL_SII));
-            }
+        public virtual int Update(byte COD_EMPRESA, int COD_SUCURSAL, string DIRECCION, string NOMBRE, byte Original_COD_EMPRESA, int Original_COD_SUCURSAL, string Original_DIRECCION, string Original_NOMBRE) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((byte)(COD_EMPRESA));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(COD_SUCURSAL));
             if ((DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("DIRECCION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(DIRECCION));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(DIRECCION));
             }
             if ((NOMBRE == null)) {
                 throw new global::System.ArgumentNullException("NOMBRE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(NOMBRE));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(NOMBRE));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_COD_CIUDAD));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_COD_COMUNA));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(Original_COD_EMPRESA));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_COD_PAIS));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_COD_SUCURSAL));
-            if ((Original_COD_SUCURSAL_SII == null)) {
-                throw new global::System.ArgumentNullException("Original_COD_SUCURSAL_SII");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_COD_SUCURSAL_SII));
-            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(Original_COD_EMPRESA));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_COD_SUCURSAL));
             if ((Original_DIRECCION == null)) {
                 throw new global::System.ArgumentNullException("Original_DIRECCION");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_DIRECCION));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_DIRECCION));
             }
             if ((Original_NOMBRE == null)) {
                 throw new global::System.ArgumentNullException("Original_NOMBRE");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_NOMBRE));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_NOMBRE));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3395,8 +3053,8 @@ namespace AdmToSap.cotillonDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int COD_CIUDAD, int COD_COMUNA, int COD_PAIS, string COD_SUCURSAL_SII, string DIRECCION, string NOMBRE, int Original_COD_CIUDAD, int Original_COD_COMUNA, byte Original_COD_EMPRESA, int Original_COD_PAIS, int Original_COD_SUCURSAL, string Original_COD_SUCURSAL_SII, string Original_DIRECCION, string Original_NOMBRE) {
-            return this.Update(COD_CIUDAD, COD_COMUNA, Original_COD_EMPRESA, COD_PAIS, Original_COD_SUCURSAL, COD_SUCURSAL_SII, DIRECCION, NOMBRE, Original_COD_CIUDAD, Original_COD_COMUNA, Original_COD_EMPRESA, Original_COD_PAIS, Original_COD_SUCURSAL, Original_COD_SUCURSAL_SII, Original_DIRECCION, Original_NOMBRE);
+        public virtual int Update(string DIRECCION, string NOMBRE, byte Original_COD_EMPRESA, int Original_COD_SUCURSAL, string Original_DIRECCION, string Original_NOMBRE) {
+            return this.Update(Original_COD_EMPRESA, Original_COD_SUCURSAL, DIRECCION, NOMBRE, Original_COD_EMPRESA, Original_COD_SUCURSAL, Original_DIRECCION, Original_NOMBRE);
         }
     }
     

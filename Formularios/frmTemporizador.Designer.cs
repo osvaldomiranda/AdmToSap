@@ -35,7 +35,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.UpDownHoraEnvio = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.UpDownHoraRecibo = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHoraEnvio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHoraRecibo)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -98,12 +107,78 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.UpDownHoraRecibo);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.UpDownHoraEnvio);
             this.groupBox2.Location = new System.Drawing.Point(286, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(336, 317);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Procesa Automatico";
+            // 
+            // UpDownHoraEnvio
+            // 
+            this.UpDownHoraEnvio.Location = new System.Drawing.Point(142, 63);
+            this.UpDownHoraEnvio.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.UpDownHoraEnvio.Name = "UpDownHoraEnvio";
+            this.UpDownHoraEnvio.Size = new System.Drawing.Size(60, 20);
+            this.UpDownHoraEnvio.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(81, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(166, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Hora Envio de datos a SAP ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(85, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Hora  ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(81, 141);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(169, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Hora Recibos de datos SAP ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(85, 187);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Hora  ";
+            // 
+            // UpDownHoraRecibo
+            // 
+            this.UpDownHoraRecibo.Location = new System.Drawing.Point(142, 185);
+            this.UpDownHoraRecibo.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.UpDownHoraRecibo.Name = "UpDownHoraRecibo";
+            this.UpDownHoraRecibo.Size = new System.Drawing.Size(60, 20);
+            this.UpDownHoraRecibo.TabIndex = 6;
             // 
             // frmTemporizador
             // 
@@ -117,6 +192,10 @@
             this.Name = "frmTemporizador";
             this.Text = "frmTemporizador";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHoraEnvio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpDownHoraRecibo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -130,5 +209,11 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown UpDownHoraEnvio;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown UpDownHoraRecibo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
     }
 }
