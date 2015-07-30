@@ -35,8 +35,8 @@
             System.Windows.Forms.Label mensajeLabel;
             System.Windows.Forms.Label tiporespLabel;
             System.Windows.Forms.Label xmlLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRespuestas));
             System.Windows.Forms.Label jsonLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRespuestas));
             this._C__admtosap_DataB_sqliteDataSet = new AdmToSap._C__admtosap_DataB_sqliteDataSet();
             this.respuestasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.respuestasTableAdapter = new AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.respuestasTableAdapter();
@@ -125,6 +125,15 @@
             xmlLabel.Size = new System.Drawing.Size(25, 13);
             xmlLabel.TabIndex = 11;
             xmlLabel.Text = "xml:";
+            // 
+            // jsonLabel
+            // 
+            jsonLabel.AutoSize = true;
+            jsonLabel.Location = new System.Drawing.Point(22, 260);
+            jsonLabel.Name = "jsonLabel";
+            jsonLabel.Size = new System.Drawing.Size(29, 13);
+            jsonLabel.TabIndex = 13;
+            jsonLabel.Text = "json:";
             // 
             // _C__admtosap_DataB_sqliteDataSet
             // 
@@ -297,21 +306,12 @@
             this.xmlLabel1.TabIndex = 12;
             this.xmlLabel1.Text = "label1";
             // 
-            // jsonLabel
-            // 
-            jsonLabel.AutoSize = true;
-            jsonLabel.Location = new System.Drawing.Point(22, 231);
-            jsonLabel.Name = "jsonLabel";
-            jsonLabel.Size = new System.Drawing.Size(29, 13);
-            jsonLabel.TabIndex = 13;
-            jsonLabel.Text = "json:";
-            // 
             // jsonRichTextBox
             // 
             this.jsonRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.respuestasBindingSource, "json", true));
-            this.jsonRichTextBox.Location = new System.Drawing.Point(77, 231);
+            this.jsonRichTextBox.Location = new System.Drawing.Point(77, 260);
             this.jsonRichTextBox.Name = "jsonRichTextBox";
-            this.jsonRichTextBox.Size = new System.Drawing.Size(560, 96);
+            this.jsonRichTextBox.Size = new System.Drawing.Size(678, 96);
             this.jsonRichTextBox.TabIndex = 14;
             this.jsonRichTextBox.Text = "";
             // 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Data.SQLite;
 
 namespace AdmToSap
 {
@@ -34,8 +35,8 @@ namespace AdmToSap
                 // Obtener la hora en que debe realizar el proceso
                 // Envío
 
-                var horaEnvio = new DateTime(1, 1, 1, 22, 0, 0);
-                var horaRecibo = new DateTime(1, 1, 1, 22, 0, 0);
+                var horaEnvio = new Temporizadores().getHoraEnvio(); //new DateTime(1, 1, 1, 22, 0, 0);
+                var horaRecibo = new Temporizadores().getHoraRecibo();
                 // comparar la hora de envío con la hora actual
                 var date = DateTime.Now;
                 int h = date.Hour;
@@ -66,6 +67,46 @@ namespace AdmToSap
         public void RequestStop()
         {
             _shouldStop = true;
+        }
+
+        public DateTime getHoraEnvio()
+        {
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            DateTime horaenvio = DateTime.Now;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            string sql = "SELECT * FROM temporizadores;";
+            SQLiteCommand command = new SQLiteCommand(sql, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                horaenvio = reader.GetDateTime(reader.GetOrdinal("horaenvio"));
+            }
+
+            myConn.Close();
+            return horaenvio;
+
+            
+        }
+
+        public DateTime getHoraRecibo()
+        {
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            DateTime horarecibo = DateTime.Now;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            string sql = "SELECT * FROM temporizadores;";
+            SQLiteCommand command = new SQLiteCommand(sql, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                horarecibo = reader.GetDateTime(reader.GetOrdinal("horarecibo"));
+            }
+
+            myConn.Close();
+            return horarecibo;
+
+
         }
     }
 }

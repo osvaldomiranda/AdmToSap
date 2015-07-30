@@ -75,6 +75,7 @@ namespace AdmToSap
         public String WarehouseCode { get; set; }
         public String TaxCode { get; set; }
         public String DiscountPercent { get; set; }
+        public String ItemDescription { get; set; }
     
 }
 

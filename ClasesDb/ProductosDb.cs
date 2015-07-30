@@ -101,7 +101,6 @@ namespace AdmToSap
 
                         OdbcDataReader inserts = insert.ExecuteReader();
                        insertUnidArticulo(pro.CodInt);
-                       insertStock(pro.CodInt);
                        insertPrecios(pro.CodInt);
                        insertCodBarra(pro.CodInt,pro.CodBarra);
                        //insertCatalogo(pro.CodInt, pro.CodCatalog); TODO falta codigo catalogo sap
@@ -109,8 +108,9 @@ namespace AdmToSap
                         frMain.listBoxLog.Items.Insert(0, "GRUPO: " + pro.Grupo + " - PLU: " + pro.CodInt + " - NOMBRE: " + pro.Nombre + "ESTADO: Producto Nuevo Agregado");
                         pro.estadoResponce = "Producto Nuevo Agregado";
                         conexion.Close();
-                        frMain.listBoxLog.Items.Insert(0, "GRUPO: " + pro.Grupo + " - PLU: " + pro.CodInt + " - NOMBRE: " + pro.Nombre + "ESTADO: Actualizado en ADM");
-                        pro.estadoResponce = "Actualizado en adm";
+                        //TODO para el update
+                        // frMain.listBoxLog.Items.Insert(0, "GRUPO: " + pro.Grupo + " - PLU: " + pro.CodInt + " - NOMBRE: " + pro.Nombre + "ESTADO: Actualizado en ADM");
+                        // pro.estadoResponce = "Actualizado en adm";
                     }
                   
 
@@ -191,26 +191,67 @@ namespace AdmToSap
            // conexion.Close();
         }
 
-        public void insertStock(String codArt)
+        public void insertStock(String json, frmMain frMain)
         {
-            OdbcConnection conexion = con.getConnect();
-            OdbcCommand insert = new OdbcCommand();
-            insert.Connection = conexion;
-            insert.CommandText = "insert into bodegastock ("
-                                + "cod_empresa,"                
-                                + "cod_sucursal,"               
-                                + "cod_bodega,"                 
-                                + "cod_art,"                    
-                                + "stock,"                      
-                                + "critico "
-                                + " ) values ("
-                                + "1,"                          // Codigo de la empresa configurada o de trabajo
-                                + "1,"                          // Códgio de la sucursal configurada o de trabajo
-                                + "1,"                          // Código de la bodega de trabajo configurada
-                                + codArt + ","                  // Código del producto entregado en el campo CODINT por SAP
-                                + "0,"                          // Valor cero para el producto nuevo
-                                + "0)";                         // Valor cero para el producto nuevo
-            OdbcDataReader inserts = insert.ExecuteReader();
+            Producto producto = new Producto();
+            List<Producto> listaproducto = new List<Producto>();
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Producto));
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+
+                        try
+            {
+                producto = (Producto)js.ReadObject(ms);
+                foreach (var pro in producto.Items)
+                {
+                    if (getPluAdm(pro.CodInt) != pro.CodInt)
+                    {
+                        OdbcConnection conexion = con.getConnect();
+                        OdbcCommand insert = new OdbcCommand();
+                        insert.Connection = conexion;
+
+                        insert.CommandText = "insert into bodegastock ("
+                                            + "cod_empresa,"
+                                            + "cod_sucursal,"
+                                            + "cod_bodega,"
+                                            + "cod_art,"
+                                            + "stock,"
+                                            + "critico "
+                                            + " ) values ("
+                                            + "1,"                          // Codigo de la empresa configurada o de trabajo
+                                            + "1,"                          // Códgio de la sucursal configurada o de trabajo
+                                            + "1,"                          // Código de la bodega de trabajo configurada
+                                            + pro.CodInt + ","                  // Código del producto entregado en el campo CODINT por SAP
+                                            + "0,"                          // Valor cero para el producto nuevo
+                                            + "0)";                         // Valor cero para el producto nuevo
+                        OdbcDataReader inserts = insert.ExecuteReader();
+                        conexion.Close();
+
+                        frMain.listBoxLog.Items.Insert(0, "PLU: " + pro.CodInt + " - STOCK: " + pro.OnHand);
+                    }
+                    else
+                    {
+                        OdbcConnection conexion = con.getConnect();
+                        OdbcCommand insert = new OdbcCommand();
+                        insert.Connection = conexion;
+                        insert.CommandText = "update bodegastock set stock = " + pro.OnHand + " "
+                                           + "where cod_art = " + pro.CodInt + ";";
+
+                        OdbcDataReader inserts = insert.ExecuteReader();
+                        conexion.Close();
+                        frMain.listBoxLog.Items.Insert(0, "PLU: " + pro.CodInt + " - STOCK: " + pro.OnHand);
+                        pro.estadoResponce = "Actualizado en adm";
+
+                    }
+
+                }
+                // agrego los datos a sqlite
+                this.insertSqlite(producto);
+            }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                            MessageBox.Show("Error de lectura JSON\\" + e.Message);
+                        }
            // conexion.Close();
         }
 
@@ -231,30 +272,6 @@ namespace AdmToSap
             insert.Connection = conexion;
             insert.CommandText = "(Cod_Empresa, Cod_Art, Cod_Catalogo) Values (1, "+codArt+","+codCatalogo+")";
             OdbcDataReader inserts = insert.ExecuteReader();
-        }
-
-        public void upInvAdm(String json, frmMain frMain)
-        {
-            Producto producto = new Producto();
-            List<Producto> listaproducto = new List<Producto>();
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Producto));
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-       
-            try
-            {
-                producto = (Producto)js.ReadObject(ms);
-                foreach (var pro in producto.Items)
-                {
-                     frMain.listBoxLog.Items.Insert(0,"PLU: "+pro.CodInt+" - STOCK: "+pro.OnHand);
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                MessageBox.Show("Error de lectura JSON\\" + e.Message);
-            }
-
         }
 
         public int getRubro(String nomRubro)

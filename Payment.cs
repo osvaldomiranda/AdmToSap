@@ -101,7 +101,7 @@ namespace AdmToSap
     class CreditCards
     {
         [DataMember]
-        public Decimal CreditCard { get; set; } // codigo SAP tipo de tarjeta
+        public String CreditCard { get; set; } // codigo SAP tipo de tarjeta
         [DataMember]
         public String CreditCardNumber { get; set; } // numero de tarjeta
         [DataMember]
@@ -110,6 +110,9 @@ namespace AdmToSap
         public String CreditSum { get; set; } // Monto total de pago
         [DataMember]
         public Decimal VoucherNum { get; set; } // datos del voucher POS
+        [DataMember]
+        public String CreditAcct { get; set; } // cuenta de tarjeta
+
 
 
     }

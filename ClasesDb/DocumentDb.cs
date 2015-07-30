@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Odbc;
+using System.Data.SQLite;
 
 
 namespace AdmToSap
@@ -77,6 +78,7 @@ namespace AdmToSap
             doc.Nro_Cargo = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
             doc.Nro_Fiscal = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL"));
             doc.Caja = reader.GetByte(reader.GetOrdinal("CAJA"));
+            doc.SalesPersonCode = 3 ;//""reader.GetOrdinal("");
             if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
             {
                 doc.COGSCostingCode = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO"));
@@ -152,9 +154,17 @@ namespace AdmToSap
             {
                 Item item = new Item();
                 ConvertAdmSap conadmsap = new ConvertAdmSap();
-
+                // TODO si el cod_art es igual a cero agregar la descripción ItemDescription
                 item.ItemCode = reader.GetInt32(reader.GetOrdinal("COD_ART")).ToString(); // TODO codigo SAP 
-                item.Quantity = reader.GetDouble(reader.GetOrdinal("CANTIDAD")).ToString();
+                if (reader.GetInt32(reader.GetOrdinal("COD_ART")) == 0)
+                {
+                    item.ItemDescription = reader.GetString(reader.GetOrdinal("DESCRIPCION"));
+                    item.Quantity = "0";
+                }
+                else
+                {
+                    item.Quantity = reader.GetDouble(reader.GetOrdinal("CANTIDAD")).ToString();
+                }
                 item.UnitPrice = reader.GetDouble(reader.GetOrdinal("PRECIO_UNITARIO")).ToString();
                 item.WarehouseCode = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA")).ToString());
                 item.TaxCode = "IVA"; // TODO recuperar desde la base
@@ -240,6 +250,30 @@ namespace AdmToSap
             OdbcDataReader up = update.ExecuteReader();
 
         }
+
+        public String getCardCode(String cod_suc)
+        {
+
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            String carcode = String.Empty;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + cod_suc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                carcode = reader.GetString(reader.GetOrdinal("cardcode"));
+            }
+
+            myConn.Close();
+
+
+            return carcode;
+        }
+
+
+
 
     
         

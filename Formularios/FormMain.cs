@@ -40,11 +40,11 @@ namespace AdmToSap
         {
             ConnectDb condb = new ConnectDb();
             LocalDataBase ldb = new LocalDataBase();
-            //Temporizadores temp = new Temporizadores();
+            Temporizadores temp = new Temporizadores();
 
             ldb.creaDB();
             condb.getConnect();
-            //temp.startProcessClientes(this);
+            temp.startProcess(this);
 
         }
 
@@ -104,7 +104,10 @@ namespace AdmToSap
 
         private void temporizadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Temporizadores temp = new Temporizadores();
             frmTemporizador frmtemp = new frmTemporizador();
+            frmtemp.UpDownHoraEnvio.Value =  Convert.ToDecimal(temp.getHoraEnvio().Hour);
+            frmtemp.UpDownHoraRecibo.Value = Convert.ToDecimal(temp.getHoraRecibo().Hour);
             frmtemp.Show();
         }
 
@@ -206,5 +209,7 @@ namespace AdmToSap
             Procesos pro = new Procesos();
             pro.addClientes(this);
         }
+
+
     }
 }

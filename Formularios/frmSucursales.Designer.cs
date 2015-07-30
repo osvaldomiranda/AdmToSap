@@ -52,6 +52,9 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salesperson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cashaccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cardcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingNavigator)).BeginInit();
@@ -82,9 +85,11 @@
             this.tableAdapterManager.documentoTableAdapter = null;
             this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
+            this.tableAdapterManager.resp_productosTableAdapter = null;
             this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
             this.tableAdapterManager.sucursalesTableAdapter = this.sucursalesTableAdapter;
+            this.tableAdapterManager.temporizadoresTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // sucursalesBindingNavigator
@@ -220,7 +225,10 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.salesperson,
+            this.cashaccount,
+            this.cardcode});
             this.sucursalesDataGridView.DataSource = this.sucursalesBindingSource;
             this.sucursalesDataGridView.Location = new System.Drawing.Point(12, 38);
             this.sucursalesDataGridView.Name = "sucursalesDataGridView";
@@ -240,7 +248,7 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "nom_adm";
             this.dataGridViewTextBoxColumn3.HeaderText = "nom_adm";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 300;
+            this.dataGridViewTextBoxColumn3.Width = 200;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -254,7 +262,25 @@
             this.dataGridViewTextBoxColumn5.DataPropertyName = "nom_sap";
             this.dataGridViewTextBoxColumn5.HeaderText = "nom_sap";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 300;
+            this.dataGridViewTextBoxColumn5.Width = 200;
+            // 
+            // salesperson
+            // 
+            this.salesperson.DataPropertyName = "salesperson";
+            this.salesperson.HeaderText = "salesperson";
+            this.salesperson.Name = "salesperson";
+            // 
+            // cashaccount
+            // 
+            this.cashaccount.DataPropertyName = "cashaccount";
+            this.cashaccount.HeaderText = "cashaccount";
+            this.cashaccount.Name = "cashaccount";
+            // 
+            // cardcode
+            // 
+            this.cardcode.DataPropertyName = "cardcode";
+            this.cardcode.HeaderText = "cardcode";
+            this.cardcode.Name = "cardcode";
             // 
             // frmSucursales
             // 
@@ -301,5 +327,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salesperson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cashaccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cardcode;
     }
 }

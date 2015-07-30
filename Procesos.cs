@@ -37,7 +37,6 @@ namespace AdmToSap
          "wsaction=" +
          "AddBPartner";
 
-
                 // agrega separador
                 String rut = p.LicTradNum;
                 string json = "{"
@@ -104,24 +103,34 @@ namespace AdmToSap
                     "wsaction=" +
                     "AddDocument";
 
+                String carCodeCFIB = "CF-" +(p.CardCode).Substring(0, 8);
+
+
+                if (p.CardCode == "000000000")
+                {
+                    carCodeCFIB = docdb.getCardCode(p.Cod_Sucursal.ToString());// TODO Extraer de sqlite
+
+                }
+
                 string detalles = string.Empty;
                 string json = string.Empty;
                 string cabecerajson = "{"
                         + "        \"BoObjectType\":\""+p.BoObjectType+"\",  "
                         + "        \"Document\": { "
                         + "        \"DocumentSubType\":\"" + p.DocumentSubType + "\", "  // si es factura = --
-                        + "        \"CardCode\": \"CF-" + (p.CardCode).Substring(0, 8) + "\", "
+                        + "        \"CardCode\": \"" + carCodeCFIB + "\", " 
                         + "        \"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\", "
                         + "        \"DocDueDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDueDate) + "\", "
                         + "        \"TaxDate\": \"" + String.Format("{0:yyyyMMdd}", p.TaxDate) + "\", "
                         + "        \"FolioNumber\": \"" + p.Nro_Fiscal + "\", "
                         + "        \"FolioPrefixString\": \"" + p.FolioPrefixString + "\", "
                         + "        \"DiscountPercent\": \"" + p.DiscountPercent + "\", "
+                        + "        \"SalesPersonCode\": \"" + p.SalesPersonCode + "\","
                         + "        \"Indicator\": \"" + p.Indicator + "\", "
                         + "        \"udf\": {"
                         + "        \"U_SEI_FEBOSID\": \""+p.udf.U_SEI_FEBOSID+"\","
-                        + "        \"U_SEI_CAJA\": \"1\","
-                        + "        \"U_SEI_CAJERO\": \"CAJ001\""
+                        + "        \"U_SEI_CAJA\": \""+p.Caja+"\","
+                        + "        \"U_SEI_CAJERO\": \"CAJA"+p.Caja+"\""
                         + "         }, "
                         + "        \"Items\": "
                         + "         [ ";
@@ -138,8 +147,9 @@ namespace AdmToSap
                            + "                \"Quantity\": \"" + det.Quantity + "\", "
                            + "                \"UnitPrice\": \"" + det.UnitPrice + "\", "
                            + "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  "
-                       //    + "                \"GroupCode\": \" 102\"," // TODO pedir datos a adm
-                        // + "                 \"COGSCostingCode\": \""+ convadmsap.codSucursal(p.Cod_Sucursal).ToString()+"\", " // add transform
+                           + "                \"ItemDescription\": \"" + det.ItemDescription + "\",  "
+                           //+ "               \"GroupCode\": \"102\"," // TODO pedir datos a adm
+                           + "                 \"COGSCostingCode\": \""+ convadmsap.codSucursal(p.Cod_Sucursal).ToString()+"\", " // add transform
                            + "                \"TaxCode\": \"IVA\", "
                            + "                \"DiscountPercent\": \"" + det.DiscountPercent + "\" ";
                        if(p.items.Count > count)
@@ -171,14 +181,21 @@ namespace AdmToSap
                 cvadm.NRO_CARGO = p.Nro_Cargo.ToString();
                 cvadm.CAJA = p.Caja.ToString();
                 cvadm.ID_SAP = respdb.extraeMensaje(responce.Replace("'",""));
-                // Actualizo Adm
-                docdb.updateInAdm(cvadm);
+                // Actualizo Adm si el json viene sin error
+                respdb.getMensajeError(responce);
 
+                if (respdb.getMensajeError(responce) == -1)
+                {
+                    docdb.updateInAdm(cvadm);
+                }
                 // si el ducumento es una nota de credito
                 if (p.tipoAbono.ToString() == "61" || p.tipoAbono.ToString() == "60" || p.tipoAbono.ToString() == "22")
                 {
-                    docdb.updateCabezNCAdm(p.Cod_Empresa.ToString(), p.codSucursalAbono.ToString(), p.tipoAbono.ToString(), p.numAbono.ToString());
-                }
+                    if (respdb.getMensajeError(responce) == -1)
+                    {
+                        docdb.updateCabezNCAdm(p.Cod_Empresa.ToString(), p.codSucursalAbono.ToString(), p.tipoAbono.ToString(), p.numAbono.ToString());
+                    }
+               }
                 // cargo la respuesta
                 respuesta.tipodete = p.Indicator.ToString();
                 respuesta.folio = p.Nro_Cargo.ToString();
@@ -196,9 +213,19 @@ namespace AdmToSap
                 {
                     numcargoabono = p.Nro_Cargo.ToString(); ;
                 }
-                String evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: " + numcargoabono + " - ESTADO: Actualizado en ADM";
 
-                log.addLog(" Respuesta Sap: " + responce.Replace("'", "") + " Tipo: " + p.Indicator.ToString() + " Folio: " + p.Nro_Cargo.ToString(), "OK", evento);
+                String evento = String.Empty;
+
+                if (respdb.getMensajeError(responce) == -1)
+                {
+                     evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: " + numcargoabono + " - ESTADO: Actualizado en ADM";
+                }
+                else
+                {
+                     evento = "ENVIO: Documento - TIPO: " + p.Indicator.ToString() + " - FOLIO: " + numcargoabono + " - ESTADO: Error de respuesta SAP " + responce;
+                }
+                
+                log.addLog(" Respuesta Sap: " + responce.Replace("'", "") + " Tipo: " + p.Indicator.ToString() + " Folio: " + p.Nro_Cargo.ToString(), responce, evento);
 
                 frmain.listBoxLog.Items.Insert(0, evento);
 
@@ -231,13 +258,14 @@ namespace AdmToSap
                               + "\"CardCode\": \"CF-" + (p.CardCode).Substring(0, 8) + "\","
                               + "\"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\","
                               + "\"CashSum\": \"" + p.CashSum +"\","
+                              + "\"CashAccount\": \"" + p.CashAccount + "\","
                               + "\"TransferAccount\": \""+p.TransferAccount+"\"," // TODO
                               + "\"TransferSum\": \""+p.TransferSum+"\"," // TODO
                               + "\"TransferDate\": \""+p.TransferDate+"\"," // TODO
                               + "\"TransferReference\": \""+p.TransferReference+"\"," // TODO
                               + "\"udf\": {"
-                              + "\"U_SEI_CAJA\": \"1\","
-                              + "\"U_SEI_CAJERO\": \"CAJ001\""
+                              + "\"U_SEI_CAJA\": \""+p.caja+"\","
+                              + "\"U_SEI_CAJERO\": \" CAJA"+p.cajero+"\""
                               + "},"
 
                               + "\"Documents\": [";
@@ -282,6 +310,7 @@ namespace AdmToSap
                                   + "\"DueDate\": \""+ String.Format("{0:yyyyMMdd}", cheque.DueDate) +"\","
                                   + "\"CheckNumber\": \""+ cheque.CheckNumber+"\","
                                   + "\"BankCode\": \""+ cheque.BankCode+"\","
+                                  + "\"CheckAccount\": \"" + cheque.CheckAccount + "\","
                                   + "\"CheckSum\": \""+ cheque.CheckSum +"\"";
                 if(p.checks.Count > count2) 
                        {
@@ -310,6 +339,7 @@ namespace AdmToSap
                     + "\"CreditCardNumber\": \""+ tarjeta.CreditCardNumber+"\","  //numero de tarjeta DEL CLIENTE 
                     + "\"CardValidUntil\": \"" + String.Format("{0:yyyyMMdd}", tarjeta.CardValidUntil) + "\"," // fecha vencimiento
                     + "\"CreditSum\": \""+ tarjeta.CreditSum + "\"," // Monto total de pàgo
+                    + "\"CreditAcct\": \"" + tarjeta.CreditAcct + "\"," 
                     + "\"VoucherNum\": \""+ tarjeta.VoucherNum +"\""; // numero de voucher
                     if (p.creditcard.Count > count3)
                     {
@@ -332,9 +362,11 @@ namespace AdmToSap
                 String responce = conn.HttpPOST(url, json);
 
                 // Actualizo Recibo Adm
-                paymentdb.updateReciboAdm(p.codEmpresa, p.codSucursalAbono, p.caja, p.tipoAbono, p.nroAbono);
-                paymentdb.updateFormaPago(p);
-
+                if (respdb.getMensajeError(responce) == -1)
+                {
+                    paymentdb.updateReciboAdm(p.codEmpresa, p.codSucursalAbono, p.caja, p.tipoAbono, p.nroAbono);
+                    paymentdb.updateFormaPago(p);
+                }
 
                 // cargo la respuesta
                 respuesta.tipodete = p.tipoAbono.ToString();
@@ -346,14 +378,24 @@ namespace AdmToSap
                 respdb.addRespuesta(respuesta);
 
                 // Agrego log
-                String evento = "ENVIO: Pagos - TIPO DOC: " + respuesta.tipodete + " - FOLIO PAGO: " + respuesta.folio + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + "";
-                log.addLog("Respuesta Sap: " + responce.Replace("'", ""), "OK", evento);
+                if (respdb.getMensajeError(responce) == -1)
+                {
+                    String evento = "ENVIO: Pagos - TIPO DOC: " + respuesta.tipodete + " - FOLIO PAGO: " + respuesta.folio + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + " ";
+                    log.addLog("Respuesta Sap: " + responce.Replace("'", ""), "OK", evento);
 
-                //Agrego list box
-                frmain.listBoxLog.Items.Insert(0, evento);
+                    //Agrego list box
+                    frmain.listBoxLog.Items.Insert(0, evento);
+                }
+                else
+                {
+                    String evento = "ENVIO: Pagos - TIPO DOC: " + respuesta.tipodete + " - FOLIO PAGO: " + respuesta.folio + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + " ERROR";
+                    log.addLog("Respuesta Sap: " + responce.Replace("'", ""), "ERROR", evento);
 
+                    //Agrego list box
+                    frmain.listBoxLog.Items.Insert(0, evento);
+                }
 
-                System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+                //System.Console.WriteLine("LA RESPUESTA ES :" + responce);
             }
 
         
@@ -429,7 +471,7 @@ namespace AdmToSap
                 {
                     frmain.listBoxLog.Items.Insert(0, "No se encuentran productos");
                 }
-                productosdb.upInvAdm(resposeJson, frmain);
+                productosdb.insertStock(resposeJson, frmain);
 
                 first = last;
             }

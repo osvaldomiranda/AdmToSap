@@ -34,10 +34,13 @@ namespace AdmToSap
                             + respuesta.tiporesp + "','"
                             + respuesta.xml + "','"
                             + respuesta.json + "')";
-               
-                SQLiteCommand command = new SQLiteCommand(sql, myConn);
-                command.ExecuteNonQuery();
 
+                // si la respuesta es error la agrego a la tabla errores SAP
+                if (respdb.getMensajeError(mensaje) == -1)
+                {
+                    SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                    command.ExecuteNonQuery();
+                }
                 myConn.Close();
             }
             catch (Exception e)
@@ -55,9 +58,13 @@ namespace AdmToSap
             int start = xml.IndexOf("msg")+6;
             int end = xml.IndexOf("\"}}</JSONResponse>");
             int largo = end - start;
-
-            mensaje = xml.Substring(start, largo);            
-            
+            try
+            {
+                mensaje = xml.Substring(start, largo);
+            }catch(Exception e)
+            {
+                Console.WriteLine("Eror de conección" + e);
+            }
             return mensaje;
         }
 
@@ -121,11 +128,23 @@ namespace AdmToSap
                 int start = xml.IndexOf("msg") + 6;
                 int end = xml.IndexOf("\"}}</JSONResponse>");
                 int largo = end - start;
-
-                mensaje = xml.Substring(start, largo);
-
+                try
+                {
+                    mensaje = xml.Substring(start, largo);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error de conección" + e);
+                }
                 return mensaje;
   
+        }
+
+        public int getMensajeError(string responce)
+        {
+            int value = 0;
+            value =  responce.LastIndexOf("Error");
+            return value;
         }
 
 

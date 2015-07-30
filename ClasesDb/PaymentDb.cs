@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Odbc;
 using System.Data;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace AdmToSap
 {
@@ -67,7 +68,7 @@ namespace AdmToSap
                 payment.folioDte = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
 
 
-                payment.CashAccount = ""; // cuenta corriente cotilloncentral
+                payment.CashAccount =  getcashAccount(reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO")).ToString());  // cuenta corriente cotilloncentral
                 payment.TransferAccount = ""; // cuenta corriente cotilloncentral
                 payment.TransferSum = "";
                 payment.TransferDate = "";
@@ -128,8 +129,8 @@ namespace AdmToSap
                 item.DocEntry = respdb.getMensaje(convadmsap.typeDocument(tipodte), reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"))); // mensaje de retorno documento
                 if (item.DocEntry == "")
                 {
-                    MessageBox.Show("El documento asociado todavía no fue enviado a SAP, favor verificar que todos los documentos fueron enviados");
-                    Environment.Exit(0);
+                    MessageBox.Show("El documento Folio: " + reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")) + " Tipo: "+tipodte+" todavía no fue enviado a SAP, favor verificar los errores de envío");
+                    //Environment.Exit(0);
                 }
                 else
                 {
@@ -167,7 +168,7 @@ namespace AdmToSap
                 cheque.CheckNumber = reader.GetDecimal(reader.GetOrdinal("NRO_DOCUMENTO"));
                 cheque.BankCode = conv.codBanco( reader.GetInt32(reader.GetOrdinal("COD_BANCO")));
                 cheque.CheckSum = reader.GetDouble(reader.GetOrdinal("MONTO")).ToString();
-                cheque.CheckAccount = conv.cuentaBanco(reader.GetInt32(reader.GetOrdinal("COD_BANCO")));
+                cheque.CheckAccount = getCheckAccount(reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO")).ToString());
 
 
 
@@ -208,12 +209,13 @@ namespace AdmToSap
                 CreditCards tarjeta = new CreditCards();
                 ConvertAdmSap conv = new ConvertAdmSap();
 
-                tarjeta.CreditCard = reader.GetDecimal(reader.GetOrdinal("NRO_DOCTO"));
-                // tarjeta.CreditCardNumber= conv.codBanco(reader.GetInt32(reader.GetOrdinal(""))); //  numero de la tarjeta
+                tarjeta.CreditCard = getTipoTarjeta(reader.GetInt32(reader.GetOrdinal("COD_BANCO")).ToString());
+                tarjeta.CreditCardNumber = reader.GetDecimal(reader.GetOrdinal("NRO_DOCTO")).ToString(); //  numero de la tarjeta
                 // Solucion campos nulos o null IsDBNull
-                tarjeta.CardValidUntil = reader.GetDateTime(reader.GetOrdinal("FECHA_VEN")); // vencimiento de la tarjeta
+                tarjeta.CardValidUntil = reader.IsDBNull(reader.GetOrdinal("FECHA_VEN")) ? DateTime.Now : reader.GetDateTime(reader.GetOrdinal("FECHA_VEN")); // vencimiento de la tarjeta
                 tarjeta.CreditSum = reader.GetDouble(reader.GetOrdinal("MONTO")).ToString();
                 tarjeta.VoucherNum = reader.GetDecimal(reader.GetOrdinal("NRO_DOCUMENTO"));
+                tarjeta.CreditAcct = getCreditAcct(reader.GetByte(reader.GetOrdinal("COD_SUCURSAL")).ToString());
 
 
 
@@ -271,6 +273,88 @@ namespace AdmToSap
 
             OdbcDataReader up = update.ExecuteReader();
 
+
+        }
+
+        public String getcashAccount(String cod_suc)
+        {
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            String cashAccount = String.Empty;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + cod_suc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                cashAccount = reader.GetString(reader.GetOrdinal("cashaccount"));
+            }
+
+            myConn.Close();
+
+            return cashAccount;
+        }
+
+        public String getCreditAcct(String cod_suc)
+        {
+
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            String creditacct = String.Empty;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + cod_suc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                creditacct = reader.GetString(reader.GetOrdinal("creditacct"));
+            }
+
+            myConn.Close();
+
+
+            return creditacct;
+        }
+
+        public String getCheckAccount(String cod_suc)
+        {
+
+            String strConn = @"Data Source=C:/admtosap/DataB.sqlite;Pooling=true;FailIfMissing=false;Version=3";
+            String checkaccount = String.Empty;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + cod_suc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                checkaccount = reader.GetString(reader.GetOrdinal("checkaccount"));
+            }
+
+            myConn.Close();
+
+
+            return checkaccount;
+        }
+
+        public String getTipoTarjeta(String codTarjeta)
+        {
+            String tipoTarjeta = String.Empty;
+            OdbcConnection conexion = con.getConnect();
+            OdbcCommand select = new OdbcCommand();
+            select.Connection = conexion;
+            select.CommandText = "select * from tarjetas "
+                + "where cod_tarjeta = " + codTarjeta + ";";
+
+            OdbcDataReader reader = select.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+                tipoTarjeta =  reader.GetByte(reader.GetOrdinal("TIPO")).ToString();
+            }
+            conexion.Close();
+            return tipoTarjeta;
 
         }
     
