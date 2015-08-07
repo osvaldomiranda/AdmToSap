@@ -177,7 +177,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteEnvios.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Respuesta.cs" />
     <Compile Include="ClasesDb\RespuestasDb.cs" />
