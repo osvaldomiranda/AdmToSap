@@ -55,7 +55,7 @@ namespace AdmToSap
                                 + " and cod_sucursal_abono = " + empresa.cod_sucursal
                                 + " and tipo_abono = 21 and tipo_cargo>0 and nro_cargo>0 and fecha_cierre IS NULL "
                                 + "and tipodefactura > 0 and anulada='N' "
-                                + "order by cod_sucursal_abono, tipo_abono, nro_abono LIMIT 1;";
+                                + "order by cod_sucursal_abono, tipo_abono, nro_abono, tipo_cargo, nro_cargo;";
             OdbcDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
@@ -85,11 +85,14 @@ namespace AdmToSap
 
 
                 payment.documentsap = getDocSap(payment.codEmpresa, payment.codSucursalAbono, payment.caja, payment.tipoAbono, payment.nroAbono, reader.GetByte(reader.GetOrdinal("TIPO_CARGO")), payment.folioDte);
+                
+  
 
                 payment.checks = getCheques(empresa.cod_empresa, empresa.cod_sucursal, payment.caja, payment.tipoAbono, payment.nroAbono);
 
                 payment.creditcard = getTarjetas(empresa.cod_empresa, empresa.cod_sucursal, payment.caja, payment.tipoAbono, payment.nroAbono);
-
+                if (payment.creditcard.Count != 0)
+                    payment.CashSum = "";
                 payments.Add(payment);
 
                 Console.WriteLine("{0} {1}", reader.GetString(reader.GetOrdinal("nro_comprobante")) + " - ",
@@ -115,7 +118,7 @@ namespace AdmToSap
                 + " and COD_SUCURSAL = " + sucAbono
                 + " and CAJA = " + caja 
                 + " and fecha_cierre IS NULL "
-                + " and  NRO_ABONO = " + numero +";";  // codigo de abono
+                + " and  NRO_ABONO = " + numero +" order by NRO_ABONO asc;";  // codigo de abono
 
             OdbcDataReader reader = select.ExecuteReader();
             while (reader.Read())
@@ -123,14 +126,30 @@ namespace AdmToSap
                 Documentsap item = new Documentsap();
                 RespuestasDb respdb = new RespuestasDb();
                 ConvertAdmSap convadmsap = new ConvertAdmSap();
+                Respuesta respuesta = new Respuesta();
 
 
                 item.InvoiceType = convadmsap.tipoInvoiceSap(tipodte); // tipo de clase sap para documento
-                item.DocEntry = respdb.getMensaje(convadmsap.typeDocument(tipodte), reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"))); // mensaje de retorno documento
+                if (reader.GetByte(reader.GetOrdinal("TIPO_CARGO")) == 7)
+                {
+                    item.DocEntry = respdb.getMensaje(convadmsap.typeDocument(tipodte), reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL"))); // mensaje de retorno documento
+                }
+                else
+                {
+                    item.DocEntry = respdb.getMensaje(convadmsap.typeDocument(tipodte), reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")));
+                }
                 if (item.DocEntry == "")
                 {
-                    MessageBox.Show("El documento Folio: " + reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")) + " Tipo: "+tipodte+" todavía no fue enviado a SAP, favor verificar los errores de envío");
+                     //MessageBox.Show("El documento Folio: " + reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")) + " Tipo: "+tipodte+" todavía no fue enviado a SAP, favor verificar los errores de envío");
                     //Environment.Exit(0);
+                    item.error = "El documento Folio: " + reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")) + " Tipo: " + tipodte + " todavía no fue enviado a SAP, favor verificar los errores de envío";
+                    respuesta.fecha = DateTime.Now.ToString();
+                    respuesta.folio = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")).ToString();
+                    respuesta.tipodete = tipodte.ToString();
+                    respuesta.tiporesp = "Envío de Pago con Error";
+                    respuesta.json= "El documento Folio: " + reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")) + " Tipo: "+tipodte+" todavía no fue enviado a SAP, favor verificar los errores de envío";
+                    respuesta.xml = "";
+                    respdb.addRespuesta(respuesta);
                 }
                 else
                 {

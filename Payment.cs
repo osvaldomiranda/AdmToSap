@@ -78,6 +78,7 @@ namespace AdmToSap
         public String DocEntry { get; set; }  // codigo que retorna del servicio AddDocument
         [DataMember]
         public String SumApplied { get; set; } // Monto total o parcial del documento, si es nota de credito el valor es negativo
+        public String error { get; set; }
 
     }
     

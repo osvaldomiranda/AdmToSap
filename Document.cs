@@ -35,6 +35,15 @@ namespace AdmToSap
         public Decimal CostingCode { get; set; } // centro de costos opcional
         [DataMember]
         public Decimal SalesPersonCode { get; set; } // Vendedor
+        [DataMember]
+        public String FromWarehouse { get; set; } // (Almacén Origen)
+        [DataMember]
+        public String ToWarehouse { get; set; } // (Almacén Destino)
+        [DataMember]
+        public Double DocTotal { get; set; } // Total Doc
+        
+
+
 
 
 
@@ -76,19 +85,22 @@ namespace AdmToSap
         public String TaxCode { get; set; }
         public String DiscountPercent { get; set; }
         public String ItemDescription { get; set; }
+        public String FromWarehouse { get; set; } // (Almacén Origen)
+        public String ToWarehouse { get; set; } // (Almacén Destino)
     
 }
 
     class UdfDocument
     {
-        public String U_SEI_FEBOSID { get; set; }
-        public String U_SEI_INREF { get; set; }
-        public String U_SEI_FOREF { get; set; }
-        public String U_SEI_FEREF { get; set; }
-        public String U_SEI_CREF { get; set; }
+        public String U_SEI_FEBOSID { get; set; }   //
+        public String U_SEI_INREF { get; set; } // Indicador de Referencia
+        public String U_SEI_FOREF { get; set; } // Folio Referencia
+        public String U_SEI_FEREF { get; set; } // Fecha Referencia
+        public String U_SEI_CREF { get; set; } // Condición de Referencia [1,2,3]
         public String U_SEI_CAJA { get; set; } // numero caja
         public String U_SEI_CAJERO { get; set; } // numero cajero
 
 
     }
+    
 }

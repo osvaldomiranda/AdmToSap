@@ -10,7 +10,6 @@ namespace AdmToSap
         public string fecha {get; set;}
         public string tipodete {get; set;}
         public string folio { get; set; }
-        public string mensaje { get; set; }
         public string tiporesp { get; set; }
         public string xml { get; set; }
         public string json { get; set; }

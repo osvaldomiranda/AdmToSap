@@ -18,8 +18,10 @@ namespace AdmToSap
 
         private void button1_Click(object sender, EventArgs e)
         {
+            listBoxLog.Items.Insert(0, "Recuperando Información en ADM Software......");
             Procesos pro = new Procesos();
             pro.addDocuments(this);
+           
 
 
         }
@@ -208,6 +210,11 @@ namespace AdmToSap
         {
             Procesos pro = new Procesos();
             pro.addClientes(this);
+        }
+
+        private void informeDeEnvíosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
         }
 
 

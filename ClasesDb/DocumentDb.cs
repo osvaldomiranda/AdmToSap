@@ -53,6 +53,7 @@ namespace AdmToSap
         {
             ConvertAdmSap convertAdmSap = new ConvertAdmSap();
             Document doc = new Document();
+            
             if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
             {
                 doc.BoObjectType = convertAdmSap.tipoInvoiceSap(reader.GetInt32(reader.GetOrdinal("TIPO_ABONO"))).ToString(); ;
@@ -75,10 +76,17 @@ namespace AdmToSap
             doc.Cod_Empresa = reader.GetByte(reader.GetOrdinal("COD_EMPRESA"));
             doc.Cod_Sucursal = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL"));
             doc.Tipo_Cargo = reader.GetByte(reader.GetOrdinal("TIPO_CARGO"));
-            doc.Nro_Cargo = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
-            doc.Nro_Fiscal = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL"));
+            if (reader.GetByte(reader.GetOrdinal("TIPO_CARGO")) == 7)
+            {
+                doc.Nro_Cargo = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL"));
+            }
+            else
+            {
+                doc.Nro_Cargo = reader.GetDecimal(reader.GetOrdinal("NRO_CARGO"));
+            }
+
             doc.Caja = reader.GetByte(reader.GetOrdinal("CAJA"));
-            doc.SalesPersonCode = 3 ;//""reader.GetOrdinal("");
+            doc.SalesPersonCode  = convertAdmSap.getSalesPersonCode(reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL")));
             if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
             {
                 doc.COGSCostingCode = reader.GetInt32(reader.GetOrdinal("COD_SUCURSAL_ABONO"));
@@ -100,8 +108,9 @@ namespace AdmToSap
                 doc.FolioNumber = reader.GetDecimal(reader.GetOrdinal("NRO_FISCAL")).ToString();
             }
             doc.DocDate = reader.GetDateTime(reader.GetOrdinal("FECHAINGRESO"));
-            doc.DocDueDate = reader.GetDateTime(reader.GetOrdinal("FECHA_VEN"));
+            doc.DocDueDate = reader.GetDateTime(reader.GetOrdinal("FECHA_VEN"));            
             doc.TaxDate = reader.GetDateTime(reader.GetOrdinal("FECHA_EM"));
+            doc.DocTotal = reader.GetDouble(reader.GetOrdinal("MONTO"));
 
             if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61 || reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 22)
             {
@@ -114,10 +123,18 @@ namespace AdmToSap
             doc.DiscountPercent = reader.GetString(reader.GetOrdinal("DESCUENTOS"));
             doc.Indicator = doc.FolioPrefixString;
             doc.udf.U_SEI_FEBOSID = reader.IsDBNull(reader.GetOrdinal("id_febos")) ? String.Empty : reader.GetString(reader.GetOrdinal("id_febos")); // TODO codigo que retorna febos
-            doc.udf.U_SEI_INREF = ""; // TODO referencias pendientes por adm
-            doc.udf.U_SEI_FOREF = ""; // 
-            doc.udf.U_SEI_FEREF = "";
-            doc.udf.U_SEI_CREF = "";
+            if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
+            {
+                Referencia referencia = new Referencia();
+                referencia = this.getReferencia(doc.numAbono);
+
+                doc.udf.U_SEI_INREF = referencia.tipoDoc; // TODO referencias pendientes por adm
+                doc.udf.U_SEI_FOREF = referencia.folioDoc; // 
+                doc.udf.U_SEI_FEREF = referencia.fechaDoc;
+                doc.udf.U_SEI_CREF = referencia.condicionDoc;
+            }
+
+
 
             if (reader.GetInt32(reader.GetOrdinal("TIPO_ABONO")) == 61)
             {
@@ -125,19 +142,28 @@ namespace AdmToSap
             }
             else
             {
-                doc.items = getItems(doc.Cod_Empresa, doc.Cod_Sucursal, doc.Caja, doc.Tipo_Cargo, doc.Nro_Cargo);
+               
+
+                doc.items = getItems(doc.Cod_Empresa, doc.Cod_Sucursal, doc.Caja, doc.Tipo_Cargo, reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")));
+                if (doc.Tipo_Cargo == 52)
+                {
+                     doc.ToWarehouse = doc.items[0].ToWarehouse;
+                     doc.FromWarehouse = doc.items[0].FromWarehouse;
+                }
             }
+        
 
-
-
-            Console.WriteLine("RUT:  {0} NUMERO CARGO: {1}  NUMERO ABONO: {2}", reader.GetString(reader.GetOrdinal("RUT_CLTE")) + " | ",
-                            reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")).ToString() + " | ",
-                            reader.GetInt32(reader.GetOrdinal("NRO_ABONO")).ToString() + " | ");
+            Console.WriteLine("RUT:  {0} NUMERO CARGO: {1}  NUMERO ABONO: {2} TIPO CARGO {3} ", reader.GetString(reader.GetOrdinal("RUT_CLTE")) + " | ",
+                                         
+                                            reader.GetDecimal(reader.GetOrdinal("NRO_CARGO")).ToString() + " | ",
+                                            reader.GetInt32(reader.GetOrdinal("NRO_ABONO")).ToString() + " | " , 
+                                            doc.Tipo_Cargo + " | ");
             return doc;
-        }
+            }
 
         public List<Item> getItems(Byte codEmpresa, int codSucursal, int caja, int tipo, decimal numero )
         {
+
             OdbcConnection conexion = con.getConnect();
             List<Item> items = new List<Item>();
             OdbcCommand select = new OdbcCommand();
@@ -152,29 +178,67 @@ namespace AdmToSap
             OdbcDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-                Item item = new Item();
-                ConvertAdmSap conadmsap = new ConvertAdmSap();
-                // TODO si el cod_art es igual a cero agregar la descripción ItemDescription
-                item.ItemCode = reader.GetInt32(reader.GetOrdinal("COD_ART")).ToString(); // TODO codigo SAP 
-                if (reader.GetInt32(reader.GetOrdinal("COD_ART")) == 0)
-                {
-                    item.ItemDescription = reader.GetString(reader.GetOrdinal("DESCRIPCION"));
-                    item.Quantity = "0";
-                }
-                else
-                {
-                    item.Quantity = reader.GetDouble(reader.GetOrdinal("CANTIDAD")).ToString();
-                }
-                item.UnitPrice = reader.GetDouble(reader.GetOrdinal("PRECIO_UNITARIO")).ToString();
-                item.WarehouseCode = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA")).ToString());
-                item.TaxCode = "IVA"; // TODO recuperar desde la base
-                item.DiscountPercent = reader.GetDouble(reader.GetOrdinal("DESCUENTO")).ToString();
 
-                items.Add(item);
+                    Item item = new Item();
+                    ConvertAdmSap conadmsap = new ConvertAdmSap();
+                    // si el cod_art es igual a cero agregar la descripción ItemDescription
+                    if (reader.GetInt32(reader.GetOrdinal("COD_ART")) == 0)
+                    {
+                        item.ItemDescription = reader.GetString(reader.GetOrdinal("DESCRIPCION"));
+                        item.Quantity = "0";
+                    }
+                    else
+                    {
+                        item.Quantity = reader.GetDouble(reader.GetOrdinal("CANTIDAD")).ToString();
+                    }
+                    item.ItemCode = reader.GetInt32(reader.GetOrdinal("COD_ART")).ToString();                    
+                    item.UnitPrice = reader.GetDouble(reader.GetOrdinal("PRECIO_UNITARIO")).ToString();
+                    item.WarehouseCode = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA")).ToString());
+                    if (reader.GetByte(reader.GetOrdinal("TIPO")) == 52)
+                    {
+                        item.FromWarehouse = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA")).ToString());
+                        item.ToWarehouse = conadmsap.codBodega(reader.GetInt32(reader.GetOrdinal("COD_BODEGA_DESTINO")).ToString());
+                    }
+
+                    item.TaxCode = "IVA"; 
+                    item.DiscountPercent = reader.GetDouble(reader.GetOrdinal("DESCUENTO")).ToString();
+
+                    items.Add(item);
+                
             }
 
             return items;
 
+        }
+
+        public Referencia getReferencia(int nroAbono)
+        {
+            OdbcConnection conexion = con.getConnect();
+            Empresa empresa = new Empresa();
+            empresa = new EmpresaDb().getEmpresaSqlite();
+            Referencia referencia = new Referencia();
+            OdbcCommand select = new OdbcCommand();
+            select.Connection = conexion;
+            select.CommandText = "select * from cabezalventas "
+            + "where cod_empresa= " + empresa.cod_empresa + " and cod_sucursal= " + empresa.cod_sucursal + " and tipo_abono = 61 "
+            + "and tipo_abono < 0 "
+            + "and anulada='N' "
+            + "and nro_cargo ="  + nroAbono + " "
+            + "and fecha_cierre IS NULL ";
+
+            OdbcDataReader reader = select.ExecuteReader();
+            // cargo Referencias
+            while (reader.Read())
+            {
+                referencia.tipoDoc = reader.GetString(reader.GetOrdinal("TIPO_CARGO"));
+                referencia.folioDoc = reader.GetString(reader.GetOrdinal("NRO_CARGO")); 
+                referencia.fechaDoc = reader.GetString(reader.GetOrdinal("FECHA_EM")); 
+               // referencia.condicionDoc = reader.GetString(reader.GetOrdinal("TIPO_CARGO")); TODO Marciano tiene que agregar columna
+                
+              
+
+            }
+            return referencia;
         }
 
         public void updateInAdm(CabezalVentaAdm cvadm)
@@ -184,13 +248,15 @@ namespace AdmToSap
             OdbcCommand update2 = new OdbcCommand();
             update.Connection = conexion;
             update2.Connection = conexion;
-
+            String folio = " and nro_cargo=" + cvadm.NRO_CARGO;
+            if(cvadm.TIPO_CARGO == "7")
+                folio = " and nro_fiscal=" + cvadm.NRO_CARGO;
             update.CommandText = "update cabezalventas "
                                 +"set fecha_cierre = now(), ID_SAP = '" + cvadm.ID_SAP+"'"
                                 +" where cod_empresa="+ cvadm.COD_EMPRESA
                                 +" and cod_sucursal="+ cvadm.COD_SUCURSAL
-                                +" and tipo_cargo="+ cvadm.TIPO_CARGO
-                                +" and nro_cargo="+ cvadm.NRO_CARGO
+                                + " and tipo_cargo="+ cvadm.TIPO_CARGO
+                                +  folio
                                 +" and nro_abono=0;";
 
 
@@ -271,12 +337,7 @@ namespace AdmToSap
 
             return carcode;
         }
-
-
-
-
-    
-        
+            
     }
 
     // clase para cargar los campos de la tabla cabezalventas ADM
@@ -288,6 +349,15 @@ namespace AdmToSap
         public string NRO_CARGO { get; set; }
         public string CAJA { get; set; }
         public string ID_SAP { get; set; } 
+
+    }
+
+    class Referencia
+    {
+        public string tipoDoc { get; set; }
+        public string folioDoc { get; set; }
+        public string fechaDoc { get; set; }
+        public string condicionDoc { get; set; }
 
     }
 }

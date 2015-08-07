@@ -69,7 +69,7 @@ namespace AdmToSap
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                tipoObjeto = reader.GetString(reader.GetOrdinal("subtipoobjeto"));
+                tipoObjeto = reader.IsDBNull(reader.GetOrdinal("subtipoobjeto")) ? String.Empty : reader.GetString(reader.GetOrdinal("subtipoobjeto"));
             }
             myConn.Close();
             return tipoObjeto;
@@ -125,6 +125,23 @@ namespace AdmToSap
             }
             myConn.Close();
             return dbcod;
+        }
+
+
+        public int getSalesPersonCode(int codsuc)
+        {
+            int salesPCode = 0;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            String sql1 = "SELECT * FROM sucursales where cod_adm = " + codsuc;
+            SQLiteCommand command = new SQLiteCommand(sql1, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                salesPCode = Convert.ToInt32(reader.GetString(reader.GetOrdinal("salesperson")));
+            }
+            myConn.Close();
+            return salesPCode;
         }
 
     

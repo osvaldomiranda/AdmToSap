@@ -55,6 +55,8 @@ namespace AdmToSap
             this.listBoxLog = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
+            this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeDeEnvíosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +74,8 @@ namespace AdmToSap
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configuraciónToolStripMenuItem,
-            this.tablasDeVinculoToolStripMenuItem});
+            this.tablasDeVinculoToolStripMenuItem,
+            this.informesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(912, 24);
@@ -94,35 +97,35 @@ namespace AdmToSap
             // baseDatosToolStripMenuItem
             // 
             this.baseDatosToolStripMenuItem.Name = "baseDatosToolStripMenuItem";
-            this.baseDatosToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.baseDatosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.baseDatosToolStripMenuItem.Text = "Base Datos";
             this.baseDatosToolStripMenuItem.Click += new System.EventHandler(this.baseDatosToolStripMenuItem_Click);
             // 
             // empresaToolStripMenuItem
             // 
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.empresaToolStripMenuItem.Text = "Empresa";
             this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // verLogToolStripMenuItem
             // 
             this.verLogToolStripMenuItem.Name = "verLogToolStripMenuItem";
-            this.verLogToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.verLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verLogToolStripMenuItem.Text = "Ver Log";
             this.verLogToolStripMenuItem.Click += new System.EventHandler(this.verLogToolStripMenuItem_Click);
             // 
             // respuestasToolStripMenuItem
             // 
             this.respuestasToolStripMenuItem.Name = "respuestasToolStripMenuItem";
-            this.respuestasToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.respuestasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.respuestasToolStripMenuItem.Text = "Respuestas";
             this.respuestasToolStripMenuItem.Click += new System.EventHandler(this.respuestasToolStripMenuItem_Click);
             // 
             // temporizadorToolStripMenuItem
             // 
             this.temporizadorToolStripMenuItem.Name = "temporizadorToolStripMenuItem";
-            this.temporizadorToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.temporizadorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.temporizadorToolStripMenuItem.Text = "Temporizador";
             this.temporizadorToolStripMenuItem.Click += new System.EventHandler(this.temporizadorToolStripMenuItem_Click);
             // 
@@ -272,6 +275,21 @@ namespace AdmToSap
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // informesToolStripMenuItem
+            // 
+            this.informesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.informeDeEnvíosToolStripMenuItem});
+            this.informesToolStripMenuItem.Name = "informesToolStripMenuItem";
+            this.informesToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.informesToolStripMenuItem.Text = "Informes";
+            // 
+            // informeDeEnvíosToolStripMenuItem
+            // 
+            this.informeDeEnvíosToolStripMenuItem.Name = "informeDeEnvíosToolStripMenuItem";
+            this.informeDeEnvíosToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.informeDeEnvíosToolStripMenuItem.Text = "Informe de Envíos";
+            this.informeDeEnvíosToolStripMenuItem.Click += new System.EventHandler(this.informeDeEnvíosToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,6 +345,8 @@ namespace AdmToSap
         public System.Windows.Forms.ListBox listBoxLog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.ToolStripMenuItem informesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeDeEnvíosToolStripMenuItem;
     }
 }
 

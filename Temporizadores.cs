@@ -48,14 +48,17 @@ namespace AdmToSap
 
                 if (horaRecibo.Hour == h)
                 {
-                    pro.reciboDiario(frm);
+                   // pro.getProductos(DateTime.Now.ToString(), "100", frm);
+                   // pro.getInventarios("100", frm);
+                   // pro.getPrecios(DateTime.Now.ToString(), "100", frm);
+
                 }
             }
         }
 
         private int intervalo()
         {
-            return 3600000; //sacar este valor de la base de datos
+            return 600000; //sacar este valor de la base de datos, esta reflejado en milisegundo
         }
 
         public void stopProcessIat()

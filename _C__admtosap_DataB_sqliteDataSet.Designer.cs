@@ -973,6 +973,8 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columncodigosap;
             
+            private global::System.Data.DataColumn columncod_suc_adm;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bodegasDataTable() {
@@ -1040,6 +1042,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn cod_suc_admColumn {
+                get {
+                    return this.columncod_suc_adm;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1075,13 +1085,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bodegasRow AddbodegasRow(string nom_bodega, string codigoadm, string codigosap) {
+            public bodegasRow AddbodegasRow(string nom_bodega, string codigoadm, string codigosap, int cod_suc_adm) {
                 bodegasRow rowbodegasRow = ((bodegasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         nom_bodega,
                         codigoadm,
-                        codigosap};
+                        codigosap,
+                        cod_suc_adm};
                 rowbodegasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbodegasRow);
                 return rowbodegasRow;
@@ -1115,6 +1126,7 @@ namespace AdmToSap {
                 this.columnnom_bodega = base.Columns["nom_bodega"];
                 this.columncodigoadm = base.Columns["codigoadm"];
                 this.columncodigosap = base.Columns["codigosap"];
+                this.columncod_suc_adm = base.Columns["cod_suc_adm"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1128,6 +1140,8 @@ namespace AdmToSap {
                 base.Columns.Add(this.columncodigoadm);
                 this.columncodigosap = new global::System.Data.DataColumn("codigosap", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigosap);
+                this.columncod_suc_adm = new global::System.Data.DataColumn("cod_suc_adm", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncod_suc_adm);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_bodega}, true));
                 this.columnid_bodega.AutoIncrement = true;
@@ -2256,6 +2270,8 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columnevento;
             
+            private global::System.Data.DataColumn columnjson;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public logDataTable() {
@@ -2323,6 +2339,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn jsonColumn {
+                get {
+                    return this.columnjson;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2358,13 +2382,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public logRow AddlogRow(string fch, string suceso, string estado, string evento) {
+            public logRow AddlogRow(string fch, string suceso, string estado, string evento, string json) {
                 logRow rowlogRow = ((logRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fch,
                         suceso,
                         estado,
-                        evento};
+                        evento,
+                        json};
                 rowlogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowlogRow);
                 return rowlogRow;
@@ -2391,6 +2416,7 @@ namespace AdmToSap {
                 this.columnsuceso = base.Columns["suceso"];
                 this.columnestado = base.Columns["estado"];
                 this.columnevento = base.Columns["evento"];
+                this.columnjson = base.Columns["json"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2404,10 +2430,13 @@ namespace AdmToSap {
                 base.Columns.Add(this.columnestado);
                 this.columnevento = new global::System.Data.DataColumn("evento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnevento);
+                this.columnjson = new global::System.Data.DataColumn("json", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjson);
                 this.columnfch.MaxLength = 20;
                 this.columnsuceso.MaxLength = 65536;
                 this.columnestado.MaxLength = 20;
                 this.columnevento.MaxLength = 65536;
+                this.columnjson.MaxLength = 65536;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3123,6 +3152,8 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columnjson;
             
+            private global::System.Data.DataColumn columnmensajerror;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public respuestasDataTable() {
@@ -3214,6 +3245,14 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mensajerrorColumn {
+                get {
+                    return this.columnmensajerror;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3249,7 +3288,7 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public respuestasRow AddrespuestasRow(string fecha, string tipodte, string folio, string mensaje, string tiporesp, string xml, string json) {
+            public respuestasRow AddrespuestasRow(string fecha, string tipodte, string folio, string mensaje, string tiporesp, string xml, string json, string mensajerror) {
                 respuestasRow rowrespuestasRow = ((respuestasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fecha,
@@ -3258,7 +3297,8 @@ namespace AdmToSap {
                         mensaje,
                         tiporesp,
                         xml,
-                        json};
+                        json,
+                        mensajerror};
                 rowrespuestasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowrespuestasRow);
                 return rowrespuestasRow;
@@ -3288,6 +3328,7 @@ namespace AdmToSap {
                 this.columntiporesp = base.Columns["tiporesp"];
                 this.columnxml = base.Columns["xml"];
                 this.columnjson = base.Columns["json"];
+                this.columnmensajerror = base.Columns["mensajerror"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3307,6 +3348,8 @@ namespace AdmToSap {
                 base.Columns.Add(this.columnxml);
                 this.columnjson = new global::System.Data.DataColumn("json", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnjson);
+                this.columnmensajerror = new global::System.Data.DataColumn("mensajerror", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmensajerror);
                 this.columnfecha.MaxLength = 65536;
                 this.columntipodte.MaxLength = 65536;
                 this.columnfolio.MaxLength = 65536;
@@ -3314,6 +3357,7 @@ namespace AdmToSap {
                 this.columntiporesp.MaxLength = 65536;
                 this.columnxml.MaxLength = 65536;
                 this.columnjson.MaxLength = 65536;
+                this.columnmensajerror.MaxLength = 65536;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3726,6 +3770,10 @@ namespace AdmToSap {
             
             private global::System.Data.DataColumn columncardcode;
             
+            private global::System.Data.DataColumn columncreditacct;
+            
+            private global::System.Data.DataColumn columncheckaccount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public sucursalesDataTable() {
@@ -3825,6 +3873,22 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn creditacctColumn {
+                get {
+                    return this.columncreditacct;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn checkaccountColumn {
+                get {
+                    return this.columncheckaccount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3860,7 +3924,7 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public sucursalesRow AddsucursalesRow(int cod_adm, string nom_adm, string cod_sap, string nom_sap, string salesperson, string cashaccount, string cardcode) {
+            public sucursalesRow AddsucursalesRow(int cod_adm, string nom_adm, string cod_sap, string nom_sap, string salesperson, string cashaccount, string cardcode, string creditacct, string checkaccount) {
                 sucursalesRow rowsucursalesRow = ((sucursalesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3870,7 +3934,9 @@ namespace AdmToSap {
                         nom_sap,
                         salesperson,
                         cashaccount,
-                        cardcode};
+                        cardcode,
+                        creditacct,
+                        checkaccount};
                 rowsucursalesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsucursalesRow);
                 return rowsucursalesRow;
@@ -3908,6 +3974,8 @@ namespace AdmToSap {
                 this.columnsalesperson = base.Columns["salesperson"];
                 this.columncashaccount = base.Columns["cashaccount"];
                 this.columncardcode = base.Columns["cardcode"];
+                this.columncreditacct = base.Columns["creditacct"];
+                this.columncheckaccount = base.Columns["checkaccount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3929,6 +3997,10 @@ namespace AdmToSap {
                 base.Columns.Add(this.columncashaccount);
                 this.columncardcode = new global::System.Data.DataColumn("cardcode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncardcode);
+                this.columncreditacct = new global::System.Data.DataColumn("creditacct", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncreditacct);
+                this.columncheckaccount = new global::System.Data.DataColumn("checkaccount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncheckaccount);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_sucursal}, true));
                 this.columnid_sucursal.AutoIncrement = true;
@@ -3942,6 +4014,8 @@ namespace AdmToSap {
                 this.columnsalesperson.MaxLength = 65536;
                 this.columncashaccount.MaxLength = 65536;
                 this.columncardcode.MaxLength = 65536;
+                this.columncreditacct.MaxLength = 65536;
+                this.columncheckaccount.MaxLength = 65536;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4596,6 +4670,22 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int cod_suc_adm {
+                get {
+                    try {
+                        return ((int)(this[this.tablebodegas.cod_suc_admColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'cod_suc_adm\' de la tabla \'bodegas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebodegas.cod_suc_admColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isnom_bodegaNull() {
                 return this.IsNull(this.tablebodegas.nom_bodegaColumn);
             }
@@ -4628,6 +4718,18 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcodigosapNull() {
                 this[this.tablebodegas.codigosapColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Iscod_suc_admNull() {
+                return this.IsNull(this.tablebodegas.cod_suc_admColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setcod_suc_admNull() {
+                this[this.tablebodegas.cod_suc_admColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5153,6 +5255,22 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string json {
+                get {
+                    try {
+                        return ((string)(this[this.tablelog.jsonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'json\' de la tabla \'log\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelog.jsonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsfchNull() {
                 return this.IsNull(this.tablelog.fchColumn);
             }
@@ -5197,6 +5315,18 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SeteventoNull() {
                 this[this.tablelog.eventoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsjsonNull() {
+                return this.IsNull(this.tablelog.jsonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetjsonNull() {
+                this[this.tablelog.jsonColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5931,6 +6061,22 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string mensajerror {
+                get {
+                    try {
+                        return ((string)(this[this.tablerespuestas.mensajerrorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'mensajerror\' de la tabla \'respuestas\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerespuestas.mensajerrorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsfechaNull() {
                 return this.IsNull(this.tablerespuestas.fechaColumn);
             }
@@ -6011,6 +6157,18 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetjsonNull() {
                 this[this.tablerespuestas.jsonColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsmensajerrorNull() {
+                return this.IsNull(this.tablerespuestas.mensajerrorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetmensajerrorNull() {
+                this[this.tablerespuestas.mensajerrorColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6224,6 +6382,38 @@ namespace AdmToSap {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string creditacct {
+                get {
+                    try {
+                        return ((string)(this[this.tablesucursales.creditacctColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'creditacct\' de la tabla \'sucursales\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesucursales.creditacctColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string checkaccount {
+                get {
+                    try {
+                        return ((string)(this[this.tablesucursales.checkaccountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'checkaccount\' de la tabla \'sucursales\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesucursales.checkaccountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Iscod_admNull() {
                 return this.IsNull(this.tablesucursales.cod_admColumn);
             }
@@ -6304,6 +6494,30 @@ namespace AdmToSap {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcardcodeNull() {
                 this[this.tablesucursales.cardcodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscreditacctNull() {
+                return this.IsNull(this.tablesucursales.creditacctColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcreditacctNull() {
+                this[this.tablesucursales.creditacctColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscheckaccountNull() {
+                return this.IsNull(this.tablesucursales.checkaccountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcheckaccountNull() {
+                this[this.tablesucursales.checkaccountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7354,12 +7568,11 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("nom_bodega", "nom_bodega");
             tableMapping.ColumnMappings.Add("codigoadm", "codigoadm");
             tableMapping.ColumnMappings.Add("codigosap", "codigosap");
+            tableMapping.ColumnMappings.Add("cod_suc_adm", "cod_suc_adm");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM \"bodegas\" WHERE ((\"id_bodega\" = ?) AND ((? = 1 AND \"nom_bodega\" IS NU" +
-                "LL) OR (\"nom_bodega\" = ?)) AND ((? = 1 AND \"codigoadm\" IS NULL) OR (\"codigoadm\" " +
-                "= ?)) AND ((? = 1 AND \"codigosap\" IS NULL) OR (\"codigosap\" = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""bodegas"" WHERE ((""id_bodega"" = ?) AND ((? = 1 AND ""nom_bodega"" IS NULL) OR (""nom_bodega"" = ?)) AND ((? = 1 AND ""codigoadm"" IS NULL) OR (""codigoadm"" = ?)) AND ((? = 1 AND ""codigosap"" IS NULL) OR (""codigosap"" = ?)) AND ((? = 1 AND ""cod_suc_adm"" IS NULL) OR (""cod_suc_adm"" = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_bodega", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_bodega", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_nom_bodega", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_bodega", global::System.Data.DataRowVersion.Original, true, null));
@@ -7368,20 +7581,25 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_codigoadm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigoadm", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_codigosap", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_codigosap", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"bodegas\" (\"nom_bodega\", \"codigoadm\", \"codigosap\") VALUES (?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"bodegas\" (\"nom_bodega\", \"codigoadm\", \"codigosap\", \"cod_suc_adm\") VAL" +
+                "UES (?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nom_bodega", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_bodega", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("codigoadm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigoadm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("codigosap", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""bodegas"" SET ""nom_bodega"" = ?, ""codigoadm"" = ?, ""codigosap"" = ? WHERE ((""id_bodega"" = ?) AND ((? = 1 AND ""nom_bodega"" IS NULL) OR (""nom_bodega"" = ?)) AND ((? = 1 AND ""codigoadm"" IS NULL) OR (""codigoadm"" = ?)) AND ((? = 1 AND ""codigosap"" IS NULL) OR (""codigosap"" = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""bodegas"" SET ""nom_bodega"" = ?, ""codigoadm"" = ?, ""codigosap"" = ?, ""cod_suc_adm"" = ? WHERE ((""id_bodega"" = ?) AND ((? = 1 AND ""nom_bodega"" IS NULL) OR (""nom_bodega"" = ?)) AND ((? = 1 AND ""codigoadm"" IS NULL) OR (""codigoadm"" = ?)) AND ((? = 1 AND ""codigosap"" IS NULL) OR (""codigosap"" = ?)) AND ((? = 1 AND ""cod_suc_adm"" IS NULL) OR (""cod_suc_adm"" = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nom_bodega", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_bodega", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("codigoadm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigoadm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("codigosap", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_bodega", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_bodega", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_nom_bodega", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_bodega", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_nom_bodega", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_bodega", global::System.Data.DataRowVersion.Original, false, null));
@@ -7389,6 +7607,8 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_codigoadm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigoadm", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_codigosap", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_codigosap", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "codigosap", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cod_suc_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_suc_adm", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7404,7 +7624,8 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"id_bodega\", \"nom_bodega\", \"codigoadm\", \"codigosap\" FROM \"bodegas\"";
+            this._commandCollection[0].CommandText = "SELECT \"id_bodega\", \"nom_bodega\", \"codigoadm\", \"codigosap\", \"cod_suc_adm\" FROM \"b" +
+                "odegas\"";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7465,13 +7686,8 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(global::System.Nullable<int> Original_id_bodega, string Original_nom_bodega, string Original_codigoadm, string Original_codigosap) {
-            if ((Original_id_bodega.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id_bodega.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
+        public virtual int Delete(int Original_id_bodega, string Original_nom_bodega, string Original_codigoadm, string Original_codigosap, global::System.Nullable<int> Original_cod_suc_adm) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id_bodega));
             if ((Original_nom_bodega == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -7496,6 +7712,14 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_codigosap));
             }
+            if ((Original_cod_suc_adm.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_cod_suc_adm.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7516,7 +7740,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string nom_bodega, string codigoadm, string codigosap) {
+        public virtual int Insert(string nom_bodega, string codigoadm, string codigosap, global::System.Nullable<int> cod_suc_adm) {
             if ((nom_bodega == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7534,6 +7758,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(codigosap));
+            }
+            if ((cod_suc_adm.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(cod_suc_adm.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7555,7 +7785,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string nom_bodega, string codigoadm, string codigosap, global::System.Nullable<int> Original_id_bodega, string Original_nom_bodega, string Original_codigoadm, string Original_codigosap) {
+        public virtual int Update(string nom_bodega, string codigoadm, string codigosap, global::System.Nullable<int> cod_suc_adm, int Original_id_bodega, string Original_nom_bodega, string Original_codigoadm, string Original_codigosap, global::System.Nullable<int> Original_cod_suc_adm) {
             if ((nom_bodega == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7574,35 +7804,44 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(codigosap));
             }
-            if ((Original_id_bodega.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_id_bodega.Value));
+            if ((cod_suc_adm.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(cod_suc_adm.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id_bodega));
             if ((Original_nom_bodega == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_nom_bodega));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_nom_bodega));
             }
             if ((Original_codigoadm == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_codigoadm));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_codigoadm));
             }
             if ((Original_codigosap == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_codigosap));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_codigosap));
+            }
+            if ((Original_cod_suc_adm.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_cod_suc_adm.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9054,15 +9293,18 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("suceso", "suceso");
             tableMapping.ColumnMappings.Add("estado", "estado");
             tableMapping.ColumnMappings.Add("evento", "evento");
+            tableMapping.ColumnMappings.Add("json", "json");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO \"log\" (\"fch\", \"suceso\", \"estado\", \"evento\") VALUES (?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO \"log\" (\"fch\", \"suceso\", \"estado\", \"evento\", \"json\") VALUES (?, ?, ?, " +
+                "?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fch", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fch", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("suceso", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "suceso", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("estado", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "estado", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("evento", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "evento", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("json", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "json", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9078,7 +9320,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"fch\", \"suceso\", \"estado\", \"evento\" FROM \"log\"";
+            this._commandCollection[0].CommandText = "SELECT \"fch\", \"suceso\", \"estado\", \"evento\", \"json\" FROM \"log\"";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9139,7 +9381,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string fch, string suceso, string estado, string evento) {
+        public virtual int Insert(string fch, string suceso, string estado, string evento, string json) {
             if ((fch == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -9163,6 +9405,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(evento));
+            }
+            if ((json == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(json));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -9718,11 +9966,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("tiporesp", "tiporesp");
             tableMapping.ColumnMappings.Add("xml", "xml");
             tableMapping.ColumnMappings.Add("json", "json");
+            tableMapping.ColumnMappings.Add("mensajerror", "mensajerror");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"respuestas\" (\"fecha\", \"tipodte\", \"folio\", \"mensaje\", \"tiporesp\", \"xm" +
-                "l\", \"json\") VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "l\", \"json\", \"mensajerror\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("fecha", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "fecha", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("tipodte", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tipodte", global::System.Data.DataRowVersion.Current, false, null));
@@ -9731,6 +9980,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("tiporesp", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "tiporesp", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("xml", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "xml", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("json", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "json", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("mensajerror", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "mensajerror", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9746,8 +9996,8 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \"fecha\", \"tipodte\", \"folio\", \"mensaje\", \"tiporesp\", \"xml\", \"json\" FROM \"re" +
-                "spuestas\"";
+            this._commandCollection[0].CommandText = "SELECT \"fecha\", \"tipodte\", \"folio\", \"mensaje\", \"tiporesp\", \"xml\", \"json\", \"mensaj" +
+                "error\" FROM \"respuestas\"";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9808,7 +10058,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string fecha, string tipodte, string folio, string mensaje, string tiporesp, string xml, string json) {
+        public virtual int Insert(string fecha, string tipodte, string folio, string mensaje, string tiporesp, string xml, string json, string mensajerror) {
             if ((fecha == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -9850,6 +10100,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(json));
+            }
+            if ((mensajerror == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(mensajerror));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -10233,10 +10489,12 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("salesperson", "salesperson");
             tableMapping.ColumnMappings.Add("cashaccount", "cashaccount");
             tableMapping.ColumnMappings.Add("cardcode", "cardcode");
+            tableMapping.ColumnMappings.Add("creditacct", "creditacct");
+            tableMapping.ColumnMappings.Add("checkaccount", "checkaccount");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""sucursales"" WHERE ((""id_sucursal"" = ?) AND ((? = 1 AND ""cod_adm"" IS NULL) OR (""cod_adm"" = ?)) AND ((? = 1 AND ""nom_adm"" IS NULL) OR (""nom_adm"" = ?)) AND ((? = 1 AND ""cod_sap"" IS NULL) OR (""cod_sap"" = ?)) AND ((? = 1 AND ""nom_sap"" IS NULL) OR (""nom_sap"" = ?)) AND ((? = 1 AND ""salesperson"" IS NULL) OR (""salesperson"" = ?)) AND ((? = 1 AND ""cashaccount"" IS NULL) OR (""cashaccount"" = ?)) AND ((? = 1 AND ""cardcode"" IS NULL) OR (""cardcode"" = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""sucursales"" WHERE ((""id_sucursal"" = ?) AND ((? = 1 AND ""cod_adm"" IS NULL) OR (""cod_adm"" = ?)) AND ((? = 1 AND ""nom_adm"" IS NULL) OR (""nom_adm"" = ?)) AND ((? = 1 AND ""cod_sap"" IS NULL) OR (""cod_sap"" = ?)) AND ((? = 1 AND ""nom_sap"" IS NULL) OR (""nom_sap"" = ?)) AND ((? = 1 AND ""salesperson"" IS NULL) OR (""salesperson"" = ?)) AND ((? = 1 AND ""cashaccount"" IS NULL) OR (""cashaccount"" = ?)) AND ((? = 1 AND ""cardcode"" IS NULL) OR (""cardcode"" = ?)) AND ((? = 1 AND ""creditacct"" IS NULL) OR (""creditacct"" = ?)) AND ((? = 1 AND ""checkaccount"" IS NULL) OR (""checkaccount"" = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_sucursal", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_sucursal", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cod_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_adm", global::System.Data.DataRowVersion.Original, true, null));
@@ -10253,10 +10511,15 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cashaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cashaccount", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cardcode", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cardcode", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_creditacct", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_creditacct", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_checkaccount", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_checkaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"sucursales\" (\"cod_adm\", \"nom_adm\", \"cod_sap\", \"nom_sap\", \"salesperso" +
-                "n\", \"cashaccount\", \"cardcode\") VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "n\", \"cashaccount\", \"cardcode\", \"creditacct\", \"checkaccount\") VALUES (?, ?, ?, ?," +
+                " ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_adm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nom_adm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_adm", global::System.Data.DataRowVersion.Current, false, null));
@@ -10265,9 +10528,11 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("salesperson", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "salesperson", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cashaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cashaccount", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cardcode", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("creditacct", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("checkaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE ""sucursales"" SET ""cod_adm"" = ?, ""nom_adm"" = ?, ""cod_sap"" = ?, ""nom_sap"" = ?, ""salesperson"" = ?, ""cashaccount"" = ?, ""cardcode"" = ? WHERE ((""id_sucursal"" = ?) AND ((? = 1 AND ""cod_adm"" IS NULL) OR (""cod_adm"" = ?)) AND ((? = 1 AND ""nom_adm"" IS NULL) OR (""nom_adm"" = ?)) AND ((? = 1 AND ""cod_sap"" IS NULL) OR (""cod_sap"" = ?)) AND ((? = 1 AND ""nom_sap"" IS NULL) OR (""nom_sap"" = ?)) AND ((? = 1 AND ""salesperson"" IS NULL) OR (""salesperson"" = ?)) AND ((? = 1 AND ""cashaccount"" IS NULL) OR (""cashaccount"" = ?)) AND ((? = 1 AND ""cardcode"" IS NULL) OR (""cardcode"" = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""sucursales"" SET ""cod_adm"" = ?, ""nom_adm"" = ?, ""cod_sap"" = ?, ""nom_sap"" = ?, ""salesperson"" = ?, ""cashaccount"" = ?, ""cardcode"" = ?, ""creditacct"" = ?, ""checkaccount"" = ? WHERE ((""id_sucursal"" = ?) AND ((? = 1 AND ""cod_adm"" IS NULL) OR (""cod_adm"" = ?)) AND ((? = 1 AND ""nom_adm"" IS NULL) OR (""nom_adm"" = ?)) AND ((? = 1 AND ""cod_sap"" IS NULL) OR (""cod_sap"" = ?)) AND ((? = 1 AND ""nom_sap"" IS NULL) OR (""nom_sap"" = ?)) AND ((? = 1 AND ""salesperson"" IS NULL) OR (""salesperson"" = ?)) AND ((? = 1 AND ""cashaccount"" IS NULL) OR (""cashaccount"" = ?)) AND ((? = 1 AND ""cardcode"" IS NULL) OR (""cardcode"" = ?)) AND ((? = 1 AND ""creditacct"" IS NULL) OR (""creditacct"" = ?)) AND ((? = 1 AND ""checkaccount"" IS NULL) OR (""checkaccount"" = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cod_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_adm", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nom_adm", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nom_adm", global::System.Data.DataRowVersion.Current, false, null));
@@ -10276,6 +10541,8 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("salesperson", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "salesperson", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cashaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cashaccount", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cardcode", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("creditacct", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("checkaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_sucursal", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_sucursal", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cod_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_adm", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cod_adm", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cod_adm", global::System.Data.DataRowVersion.Original, false, null));
@@ -10291,6 +10558,10 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cashaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cashaccount", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_cardcode", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_cardcode", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "cardcode", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_creditacct", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_creditacct", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "creditacct", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_checkaccount", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_checkaccount", global::System.Data.Odbc.OdbcType.NChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "checkaccount", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10307,7 +10578,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT \"id_sucursal\", \"cod_adm\", \"nom_adm\", \"cod_sap\", \"nom_sap\", \"salesperson\", " +
-                "\"cashaccount\", \"cardcode\" FROM \"sucursales\"";
+                "\"cashaccount\", \"cardcode\", \"creditacct\", \"checkaccount\" FROM \"sucursales\"";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10368,7 +10639,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id_sucursal, global::System.Nullable<int> Original_cod_adm, string Original_nom_adm, string Original_cod_sap, string Original_nom_sap, string Original_salesperson, string Original_cashaccount, string Original_cardcode) {
+        public virtual int Delete(int Original_id_sucursal, global::System.Nullable<int> Original_cod_adm, string Original_nom_adm, string Original_cod_sap, string Original_nom_sap, string Original_salesperson, string Original_cashaccount, string Original_cardcode, string Original_creditacct, string Original_checkaccount) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id_sucursal));
             if ((Original_cod_adm.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -10426,6 +10697,22 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_cardcode));
             }
+            if ((Original_creditacct == null)) {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_creditacct));
+            }
+            if ((Original_checkaccount == null)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_checkaccount));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10446,7 +10733,7 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> cod_adm, string nom_adm, string cod_sap, string nom_sap, string salesperson, string cashaccount, string cardcode) {
+        public virtual int Insert(global::System.Nullable<int> cod_adm, string nom_adm, string cod_sap, string nom_sap, string salesperson, string cashaccount, string cardcode, string creditacct, string checkaccount) {
             if ((cod_adm.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(cod_adm.Value));
             }
@@ -10489,6 +10776,18 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(cardcode));
             }
+            if ((creditacct == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(creditacct));
+            }
+            if ((checkaccount == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(checkaccount));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10509,7 +10808,26 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> cod_adm, string nom_adm, string cod_sap, string nom_sap, string salesperson, string cashaccount, string cardcode, int Original_id_sucursal, global::System.Nullable<int> Original_cod_adm, string Original_nom_adm, string Original_cod_sap, string Original_nom_sap, string Original_salesperson, string Original_cashaccount, string Original_cardcode) {
+        public virtual int Update(
+                    global::System.Nullable<int> cod_adm, 
+                    string nom_adm, 
+                    string cod_sap, 
+                    string nom_sap, 
+                    string salesperson, 
+                    string cashaccount, 
+                    string cardcode, 
+                    string creditacct, 
+                    string checkaccount, 
+                    int Original_id_sucursal, 
+                    global::System.Nullable<int> Original_cod_adm, 
+                    string Original_nom_adm, 
+                    string Original_cod_sap, 
+                    string Original_nom_sap, 
+                    string Original_salesperson, 
+                    string Original_cashaccount, 
+                    string Original_cardcode, 
+                    string Original_creditacct, 
+                    string Original_checkaccount) {
             if ((cod_adm.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(cod_adm.Value));
             }
@@ -10552,62 +10870,90 @@ namespace AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(cardcode));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id_sucursal));
-            if ((Original_cod_adm.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_cod_adm.Value));
+            if ((creditacct == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(creditacct));
             }
-            if ((Original_nom_adm == null)) {
+            if ((checkaccount == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(checkaccount));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_id_sucursal));
+            if ((Original_cod_adm.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_cod_adm.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_nom_adm));
-            }
-            if ((Original_cod_sap == null)) {
+            if ((Original_nom_adm == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_cod_sap));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_nom_adm));
             }
-            if ((Original_nom_sap == null)) {
+            if ((Original_cod_sap == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_nom_sap));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_cod_sap));
             }
-            if ((Original_salesperson == null)) {
+            if ((Original_nom_sap == null)) {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_salesperson));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_nom_sap));
             }
-            if ((Original_cashaccount == null)) {
+            if ((Original_salesperson == null)) {
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_cashaccount));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_salesperson));
             }
-            if ((Original_cardcode == null)) {
+            if ((Original_cashaccount == null)) {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_cardcode));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_cashaccount));
+            }
+            if ((Original_cardcode == null)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_cardcode));
+            }
+            if ((Original_creditacct == null)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_creditacct));
+            }
+            if ((Original_checkaccount == null)) {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_checkaccount));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

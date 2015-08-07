@@ -6,6 +6,11 @@ using System.Data.SQLite;
 
 namespace AdmToSap
 {
+    class MensajeRespuesta
+    {
+        public String idSap { get; set; }
+        public String errorMsg { get; set; }
+    }
     class RespuestasDb
     {
 
@@ -17,30 +22,22 @@ namespace AdmToSap
             {
                 DateTime thisDay = DateTime.Now;
                 String fecha = String.Format("{0:yyyyMMddTHHmmss}", thisDay);
-
                 SQLiteConnection myConn = new SQLiteConnection(strConn);
                 myConn.Open();
-    
-
                 RespuestasDb respdb = new RespuestasDb();
-                string mensaje =  respdb.extraeMensaje(respuesta.xml.Replace("'", ""));
-
-                string sql = "insert into respuestas (fecha, tipodte, folio, mensaje, tiporesp, xml, json) " 
+                MensajeRespuesta mensaje =  respdb.extraeMensaje(respuesta.xml.Replace("'", ""));
+                string sql = "insert into respuestas (fecha, tipodte, folio, mensaje, tiporesp, xml, json,mensajerror) " 
                             +"values ('" 
                             + fecha + "' , "
                             + respuesta.tipodete + "," 
                             + respuesta.folio + ",'" 
-                            + mensaje +"','"
+                            + mensaje.idSap +"','"
                             + respuesta.tiporesp + "','"
                             + respuesta.xml + "','"
-                            + respuesta.json + "')";
-
-                // si la respuesta es error la agrego a la tabla errores SAP
-                if (respdb.getMensajeError(mensaje) == -1)
-                {
-                    SQLiteCommand command = new SQLiteCommand(sql, myConn);
-                    command.ExecuteNonQuery();
-                }
+                            + respuesta.json + "','"
+                            + mensaje.errorMsg + "')";
+                SQLiteCommand command = new SQLiteCommand(sql, myConn);
+                command.ExecuteNonQuery();
                 myConn.Close();
             }
             catch (Exception e)
@@ -49,21 +46,28 @@ namespace AdmToSap
             }
         }
 
-        public String extraeMensaje(string xml)
+        public MensajeRespuesta extraeMensaje(string xml)
         {
-            string mensaje = string.Empty;
-
-            Console.WriteLine(xml);
-
-            int start = xml.IndexOf("msg")+6;
-            int end = xml.IndexOf("\"}}</JSONResponse>");
-            int largo = end - start;
+            MensajeRespuesta mensaje = new MensajeRespuesta();
             try
             {
-                mensaje = xml.Substring(start, largo);
+                int start = xml.IndexOf("msg") + 6;
+                int end = xml.IndexOf("\"}}</JSONResponse>");
+                int largo = end - start;
+                if (xml.IndexOf("ErrorMsg") == -1)
+                {
+                    mensaje.idSap = xml.Substring(start, largo);
+                    mensaje.errorMsg = "";
+                }
+                else
+                {
+                    mensaje.idSap = "";
+                    mensaje.errorMsg = xml.Substring(start, largo);
+                }
             }catch(Exception e)
             {
-                Console.WriteLine("Eror de conección" + e);
+                Console.WriteLine("Error de conección" + e);
+                mensaje.errorMsg = "Error de conección";
             }
             return mensaje;
         }
@@ -76,7 +80,7 @@ namespace AdmToSap
             string sql = "SELECT * FROM respuestas " 
                        +" WHERE tipodte = "
                        + tipoDte + " and folio = " 
-                       + folioDoc + ";";
+                       + folioDoc + " and mensajerror = '';";
             SQLiteCommand command = new SQLiteCommand(sql, myConn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -118,25 +122,33 @@ namespace AdmToSap
             return mensaje;
         }
 
-        public String extraeMensajeCliente(String xml)
+        public MensajeRespuesta extraeMensajeCliente(String xml)
         {
-            
-                string mensaje = string.Empty;
 
-                Console.WriteLine(xml);
-
+            MensajeRespuesta mensaje = new MensajeRespuesta();
+            try
+            {
                 int start = xml.IndexOf("msg") + 6;
                 int end = xml.IndexOf("\"}}</JSONResponse>");
                 int largo = end - start;
-                try
+                if (xml.IndexOf("ErrorMsg") != -1)
                 {
-                    mensaje = xml.Substring(start, largo);
+                    mensaje.idSap = "";
+                    mensaje.errorMsg = xml.Substring(start, largo);
                 }
-                catch (Exception e)
+                else
                 {
-                    Console.WriteLine("Error de conección" + e);
+                    mensaje.idSap = xml.Substring(start, largo);
+                    mensaje.errorMsg = "";
+
                 }
-                return mensaje;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Eror de conección" + e);
+                mensaje.errorMsg = "Error de conección";
+            }
+            return mensaje;
   
         }
 

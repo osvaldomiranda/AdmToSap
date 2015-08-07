@@ -197,7 +197,9 @@ namespace AdmToSap
             List<Producto> listaproducto = new List<Producto>();
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(Producto));
             MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-
+            Empresa empresa = new Empresa();
+            empresa = new EmpresaDb().getEmpresaSqlite();
+            EmpresaDb empresaDb = new EmpresaDb();
                         try
             {
                 producto = (Producto)js.ReadObject(ms);
@@ -217,9 +219,9 @@ namespace AdmToSap
                                             + "stock,"
                                             + "critico "
                                             + " ) values ("
-                                            + "1,"                          // Codigo de la empresa configurada o de trabajo
-                                            + "1,"                          // Códgio de la sucursal configurada o de trabajo
-                                            + "1,"                          // Código de la bodega de trabajo configurada
+                                            + ""+empresa.cod_empresa+","                          // Codigo de la empresa configurada o de trabajo
+                                            + ""+empresa.cod_sucursal+","                          // Códgio de la sucursal configurada o de trabajo
+                                            + "" + empresaDb.getBodega(empresa.cod_sucursal) + ","                          // Código de la bodega de trabajo configurada
                                             + pro.CodInt + ","                  // Código del producto entregado en el campo CODINT por SAP
                                             + "0,"                          // Valor cero para el producto nuevo
                                             + "0)";                         // Valor cero para el producto nuevo
@@ -234,7 +236,8 @@ namespace AdmToSap
                         OdbcCommand insert = new OdbcCommand();
                         insert.Connection = conexion;
                         insert.CommandText = "update bodegastock set stock = " + pro.OnHand + " "
-                                           + "where cod_art = " + pro.CodInt + ";";
+                                           + "where cod_art = " + pro.CodInt + " " 
+                                           + "and COD_BODEGA = "+ empresaDb.getBodega(empresa.cod_sucursal) + ";";
 
                         OdbcDataReader inserts = insert.ExecuteReader();
                         conexion.Close();

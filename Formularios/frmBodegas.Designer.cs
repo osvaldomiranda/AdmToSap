@@ -51,6 +51,7 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cod_suc_adm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bodegasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bodegasBindingNavigator)).BeginInit();
@@ -81,9 +82,11 @@
             this.tableAdapterManager.documentoTableAdapter = null;
             this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
+            this.tableAdapterManager.resp_productosTableAdapter = null;
             this.tableAdapterManager.respuestasTableAdapter = null;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
             this.tableAdapterManager.sucursalesTableAdapter = null;
+            this.tableAdapterManager.temporizadoresTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // bodegasBindingNavigator
@@ -218,7 +221,8 @@
             this.bodegasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.dataGridViewTextBoxColumn6,
+            this.cod_suc_adm});
             this.bodegasDataGridView.DataSource = this.bodegasBindingSource;
             this.bodegasDataGridView.Location = new System.Drawing.Point(12, 40);
             this.bodegasDataGridView.Name = "bodegasDataGridView";
@@ -243,6 +247,12 @@
             this.dataGridViewTextBoxColumn6.DataPropertyName = "codigosap";
             this.dataGridViewTextBoxColumn6.HeaderText = "codigosap";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // cod_suc_adm
+            // 
+            this.cod_suc_adm.DataPropertyName = "cod_suc_adm";
+            this.cod_suc_adm.HeaderText = "cod_suc_adm";
+            this.cod_suc_adm.Name = "cod_suc_adm";
             // 
             // frmBodegas
             // 
@@ -291,5 +301,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cod_suc_adm;
     }
 }

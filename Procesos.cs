@@ -32,10 +32,7 @@ namespace AdmToSap
             foreach (Partner p in partners)
             {
 
-                string url = "http://" + consqlite.ip_sap + "" +
-         "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
-         "wsaction=" +
-         "AddBPartner";
+                string url = consqlite.ip_sap + "AddBPartner";
 
                 // agrega separador
                 String rut = p.LicTradNum;
@@ -58,26 +55,114 @@ namespace AdmToSap
                        + "}";
                
 
+                     Connect conn = new Connect();
+                    String responce = conn.HttpPOST(url, json);
+                    MensajeRespuesta msgResp = new MensajeRespuesta();
+
+
+                    Console.WriteLine(url + json);
+                    // recupero el mensaje
+                    msgResp = respdb.extraeMensajeCliente(responce);
+                    if (msgResp.errorMsg == "")
+                    {
+                        partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
+                        String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + p.CardName + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + "";
+                        log.addLog("Respuesta Sap: " + responce.Replace("'", "") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK", evento);
+                        frmain.listBoxLog.Items.Insert(0, evento);
+
+                    }
+                    else
+                    {
+                        if (msgResp.errorMsg != "Error de conección")
+                            partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
+                        String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + p.CardName + " - ESTADO: Error de conección " + respdb.extraeMensajeCliente(responce) + "";
+                        log.addLog("Respuesta Sap: " + responce.Replace("'", "") + "Rut Actualizado: " + rut.Insert(8, "-"), "Error", evento);
+                        frmain.listBoxLog.Items.Insert(0, evento);
+                    }
+                    respuesta.tipodete = "0";
+                    respuesta.folio = "0";
+                    respuesta.tiporesp = "Nuevo Cliente: " + rut.Insert(8, "-") + "Nombre: " + p.CardName;
+                    respuesta.xml = responce.Replace("'", "");
+                    respuesta.json = json;
+                    // agrego la respuesta
+                    respdb.addRespuesta(respuesta);
+
+
+
+
+                    // instanciar clase de envio adm que recibe una lista de respuestas
+                    // un metodo de esta clase recorrera la lista de respuestas y las enviara a adm
+                    System.Console.WriteLine("LA RESPUESTA ES :" + responce);
+                }
+                
+
+        }
+
+        public void addClientesBoleta( frmMain frmain,String rutClienteBoleta)
+        {
+
+            PartnerDb partnerdb = new PartnerDb();
+            Partner clienteB = new Partner();
+            Log log = new Log();
+            consqlite = condbsqlite.getConectSqlite();
+            clienteB =  partnerdb.getPartner(rutClienteBoleta);
+                string url = consqlite.ip_sap + "AddBPartner";
+
+                // agrega separador
+                String rut = clienteB.LicTradNum;
+                string json = "{"
+                       + " \"BusinessPartner\": { "
+                       + " \"CardCode\": \"CB-" + (rut).Substring(0, 8) + "\", " // falta el campo de adm
+                       + " \"CardName\": \"" + clienteB.CardName + "\", "
+                       + " \"LicTradNum\": \"" + rut.Insert(8, "-") + "\","
+                       + " \"Notes\": \"" + clienteB.Notes + "\","
+                       + " \"GroupNum\": \"" + clienteB.GroupNum + "\","
+                       + " \"SlpCode\": \"" + clienteB.SlpCode + "\","
+                       + " \"Street\": \"" + clienteB.Street + "\","
+                       + " \"Block\": \"" + clienteB.Block + "\","
+                       + " \"City\": \"" + clienteB.City + "\","
+                       + " \"County\": \"" + clienteB.County + "\","
+                       + " \"SalesPersonCode\": \"" + clienteB.SalesPersonCode + "\","
+                       + " \"GroupCode\": \"102\"," // TODO pedir datos a adm
+                    //   + " \"udf\": { \"U_SEI_*\": \"0\" }" campo opcional
+                       + "}"
+                       + "}";
+
+
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
+                MensajeRespuesta msgResp = new MensajeRespuesta();
+
 
                 Console.WriteLine(url + json);
+                // recupero el mensaje
+                msgResp = respdb.extraeMensajeCliente(responce);
+                if (msgResp.errorMsg == "")
+                {
+                    partnerdb.updateInAdm(clienteB.codEmpresa, clienteB.LicTradNum);
+                    String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + clienteB.CardName + " - ESTADO: " + respdb.extraeMensajeCliente(responce) + "";
+                    log.addLog("Respuesta Sap: " + responce.Replace("'", "") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK", evento);
+                    frmain.listBoxLog.Items.Insert(0, evento);
 
-                partnerdb.updateInAdm(p.codEmpresa, p.LicTradNum);
-
-                respdb.extraeMensajeCliente(responce);
-
-                String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + p.CardName + " - ESTADO: " + respdb.extraeMensajeCliente(responce) +"";
-                
-                log.addLog("Respuesta Sap: " + responce.Replace("'","") + "Rut Actualizado: " + rut.Insert(8, "-"), "OK",evento);
-
-                frmain.listBoxLog.Items.Insert(0, evento);
-
-
-                // instanciar clase de envio adm que recibe una lista de respuestas
-                // un metodo de esta clase recorrera la lista de respuestas y las enviara a adm
+                }
+                else
+                {
+                    if (msgResp.errorMsg != "Error de conección")
+                        partnerdb.updateInAdm(clienteB.codEmpresa, clienteB.LicTradNum);
+                    String evento = "ENVIO: Cliente - RUT: " + rut.Insert(8, "-") + " - NOMBRE: " + clienteB.CardName + " - ESTADO: Error de conección " + respdb.extraeMensajeCliente(responce) + "";
+                    log.addLog("Respuesta Sap: " + responce.Replace("'", "") + "Rut Actualizado: " + rut.Insert(8, "-"), "Error", evento);
+                    frmain.listBoxLog.Items.Insert(0, evento);
+                }
+                respuesta.tipodete = "0";
+                respuesta.folio = "0";
+                respuesta.tiporesp = "Nuevo Cliente: " + rut.Insert(8, "-") + "Nombre: " + clienteB.CardName;
+                respuesta.xml = responce.Replace("'", "");
+                respuesta.json = json;
+                // agrego la respuesta
+                respdb.addRespuesta(respuesta);
+                //
                 System.Console.WriteLine("LA RESPUESTA ES :" + responce);
-            }
+            
 
         }
 
@@ -98,39 +183,75 @@ namespace AdmToSap
 
             foreach (Document p in documents)
             {
-                string url = "http://"+consqlite.ip_sap+"" +
-                    "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
-                    "wsaction=" +
-                    "AddDocument";
+                string url = consqlite.ip_sap+"AddDocument";
 
                 String carCodeCFIB = "CF-" +(p.CardCode).Substring(0, 8);
 
 
                 if (p.CardCode == "000000000")
+                    carCodeCFIB = docdb.getCardCode(p.Cod_Sucursal.ToString());
+                if (p.CardCode != "000000000" && p.Tipo_Cargo == 7)
                 {
-                    carCodeCFIB = docdb.getCardCode(p.Cod_Sucursal.ToString());// TODO Extraer de sqlite
+                    addClientesBoleta(frmain, p.CardCode);
+                    carCodeCFIB = "CB-" + (p.CardCode).Substring(0, 8);
+                }
+                String docDueDate = String.Empty;
+                String discountPercent = String.Empty;
+                String documentSubType = String.Empty;
+                String docTotal = String.Empty;
+                String indicator = String.Empty;
 
+
+                if(p.Tipo_Cargo!=52){
+                    docDueDate = "        \"DocDueDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDueDate) + "\", ";
+                    discountPercent = "   \"DiscountPercent\": \"" + p.DiscountPercent + "\", ";
+                    documentSubType = "   \"DocumentSubType\":\"" + p.DocumentSubType + "\", " ; // si es factura = --
+                    docTotal= "        \"DocTotal\": \"" + p.DocTotal + "\", "  ;
+                    indicator = "        \"Indicator\": \"" + p.Indicator + "\", ";
+                    
                 }
 
+                String folioNumber = "        \"FolioNumber\": \"" + p.Nro_Cargo + "\", ";
+                String U_SEI_INREF = String.Empty;
+                String U_SEI_FOREF = String.Empty;
+                String U_SEI_FEREF = String.Empty;
+                String U_SEI_CREF = String.Empty;
+
+                if(p.tipoAbono == 61)
+                {
+                    folioNumber = "        \"FolioNumber\": \"" + p.numAbono + "\", ";
+                    U_SEI_INREF = "        ,\"U_SEI_INREF\": \"" + p.udf.U_SEI_INREF + "\", ";
+                    U_SEI_FOREF = "        \"U_SEI_FOREF\": \"" + p.udf.U_SEI_FOREF + "\", ";
+                    U_SEI_FEREF = "        \"U_SEI_FEREF\": \"" + p.udf.U_SEI_FEREF + "\", ";
+                    U_SEI_CREF = "        \"U_SEI_CREF\": \"" + p.udf.U_SEI_CREF + "\" ";
+                }
+                
                 string detalles = string.Empty;
                 string json = string.Empty;
                 string cabecerajson = "{"
                         + "        \"BoObjectType\":\""+p.BoObjectType+"\",  "
                         + "        \"Document\": { "
-                        + "        \"DocumentSubType\":\"" + p.DocumentSubType + "\", "  // si es factura = --
+                        +          documentSubType
                         + "        \"CardCode\": \"" + carCodeCFIB + "\", " 
                         + "        \"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\", "
-                        + "        \"DocDueDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDueDate) + "\", "
+                        +           docDueDate 
                         + "        \"TaxDate\": \"" + String.Format("{0:yyyyMMdd}", p.TaxDate) + "\", "
-                        + "        \"FolioNumber\": \"" + p.Nro_Fiscal + "\", "
+                        + "        \"FromWarehouse\": \"" + p.FromWarehouse + "\", "
+                        +           docTotal
+                        + "        \"ToWarehouse\": \"" + p.ToWarehouse + "\", "
+                        +          folioNumber
                         + "        \"FolioPrefixString\": \"" + p.FolioPrefixString + "\", "
-                        + "        \"DiscountPercent\": \"" + p.DiscountPercent + "\", "
+                        +          discountPercent
                         + "        \"SalesPersonCode\": \"" + p.SalesPersonCode + "\","
-                        + "        \"Indicator\": \"" + p.Indicator + "\", "
+                        +          indicator 
                         + "        \"udf\": {"
                         + "        \"U_SEI_FEBOSID\": \""+p.udf.U_SEI_FEBOSID+"\","
                         + "        \"U_SEI_CAJA\": \""+p.Caja+"\","
-                        + "        \"U_SEI_CAJERO\": \"CAJA"+p.Caja+"\""
+                        + "        \"U_SEI_CAJERO\": \"CAJA"+p.Caja+"\" "
+                        +           U_SEI_INREF
+                        +           U_SEI_FOREF
+                        +           U_SEI_FEREF
+                        +           U_SEI_CREF
                         + "         }, "
                         + "        \"Items\": "
                         + "         [ ";
@@ -138,20 +259,47 @@ namespace AdmToSap
                 string llave = string.Empty;
                 foreach(var det in p.items)
                 {
+                    String cOGSCostingCode = String.Empty;
+                    String itemDescription = String.Empty;
+                    String DiscountPercent = String.Empty;
+                    String taxCode = String.Empty;
+                    String warehouseCode = "                \"WarehouseCode\": \"" + det.ToWarehouse + "\",  ";
+
+                    if (p.Tipo_Cargo != 52)
+                    {
+                        cOGSCostingCode = "                 \"COGSCostingCode\": \"" + convadmsap.codSucursal(p.Cod_Sucursal).ToString() + "\", ";// add transform
+                        itemDescription = "                \"ItemDescription\": \"" + det.ItemDescription + "\",  ";
+                        DiscountPercent = "                \"DiscountPercent\": \"" + det.DiscountPercent + "\"   ";
+                        taxCode = "                       \"TaxCode\": \"IVA\", ";
+                        warehouseCode = "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  ";
+                    }
+
+                    if (p.tipoAbono == 61)
+                    {
+                        cOGSCostingCode = "";
+                        itemDescription = "                \"ItemDescription\": \"" + det.ItemDescription + "\",  ";
+                        DiscountPercent = "                \"DiscountPercent\": \"" + det.DiscountPercent + "\" ";
+                        warehouseCode = "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  ";
+                    }
+
+
+                   
                     count += 1;
+
                        string detallejson = "{"
-                       //  + "                \"BaseEntry\" : \"0\"," // TODO 
-                       //  + "                \"BaseType\" : \"0\"," // TODO 
-	                   //  + "                \"BaseLine\": \"0\","  // TODO
+                            //  + "                \"BaseEntry\" : \"0\"," // TODO 
+                            //  + "                \"BaseType\" : \"0\"," // TODO 
+                            //  + "                \"BaseLine\": \"0\","  // TODO
                            + "                \"ItemCode\": \"" + det.ItemCode + "\", "
                            + "                \"Quantity\": \"" + det.Quantity + "\", "
                            + "                \"UnitPrice\": \"" + det.UnitPrice + "\", "
-                           + "                \"WarehouseCode\": \"" + det.WarehouseCode + "\",  "
-                           + "                \"ItemDescription\": \"" + det.ItemDescription + "\",  "
-                           //+ "               \"GroupCode\": \"102\"," // TODO pedir datos a adm
-                           + "                 \"COGSCostingCode\": \""+ convadmsap.codSucursal(p.Cod_Sucursal).ToString()+"\", " // add transform
-                           + "                \"TaxCode\": \"IVA\", "
-                           + "                \"DiscountPercent\": \"" + det.DiscountPercent + "\" ";
+                           +                  warehouseCode
+                           +                  itemDescription
+                            //+ "               \"GroupCode\": \"102\"," // TODO pedir datos a adm
+                           + cOGSCostingCode
+                           + taxCode
+                           + DiscountPercent;
+            
                        if(p.items.Count > count)
                        {
                                llave =  "            },";
@@ -168,10 +316,15 @@ namespace AdmToSap
                         + "}";
 
                json = cabecerajson + detalles+ piejson;
-
+               Console.WriteLine("TIPO: {0} FOLIO: {1} RUT: {2} ", p.Tipo_Cargo + " | ", p.Nro_Cargo +" | ", p.CardCode +" | ");
+             
                 Connect conn = new Connect();
                 String responce = conn.HttpPOST(url, json);
-                
+                //para hacer pruebas
+                //String responce = "<?xml version=\"1.0\" encoding=\"utf-8\"?><?bpc.pltype.out xml?><?bpc.httpstatus.out 200?><JSONResponse>{\"Status\":{\"code\":\"success\",\"msg\":\"321\"}}</JSONResponse>";// ;
+
+                MensajeRespuesta msg = new MensajeRespuesta();
+                msg = respdb.extraeMensaje(responce.Replace("'", ""));
                 
                 // cargo los datos para el updateadm
                 CabezalVentaAdm cvadm = new CabezalVentaAdm();
@@ -180,11 +333,9 @@ namespace AdmToSap
                 cvadm.TIPO_CARGO = p.Tipo_Cargo.ToString();
                 cvadm.NRO_CARGO = p.Nro_Cargo.ToString();
                 cvadm.CAJA = p.Caja.ToString();
-                cvadm.ID_SAP = respdb.extraeMensaje(responce.Replace("'",""));
+                cvadm.ID_SAP = msg.idSap;
                 // Actualizo Adm si el json viene sin error
-                respdb.getMensajeError(responce);
-
-                if (respdb.getMensajeError(responce) == -1)
+                if (msg.errorMsg == "")
                 {
                     docdb.updateInAdm(cvadm);
                 }
@@ -238,6 +389,7 @@ namespace AdmToSap
         {
             PaymentDb paymentdb = new PaymentDb();
             List<Payment> payments = new List<Payment>();
+            DocumentDb docdb = new DocumentDb();
             Log log = new Log();
             consqlite = condbsqlite.getConectSqlite();
             payments = paymentdb.getComprobantePago();
@@ -248,21 +400,32 @@ namespace AdmToSap
             foreach (Payment p in payments)
             {
                  
-                string url = "http://"+consqlite.ip_sap+"" +
-                    "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" +
-                    "wsaction=" +
-                    "AddInPayment";
+                string url = consqlite.ip_sap+"AddInPayment";
+                String carCodeCFIB = "CF-" + (p.CardCode).Substring(0, 8);
+
+
+                if (p.CardCode == "000000000")
+                {
+                    carCodeCFIB = docdb.getCardCode(p.codSucursalAbono.ToString());
+                }
+                if (p.CardCode != "000000000" && p.tipoCargoAdm == 35)
+                {
+                    addClientesBoleta(frmain, p.CardCode);
+                    carCodeCFIB = "CB-" + (p.CardCode).Substring(0, 8);
+                }
+
+                
                 string json = string.Empty;
                 string cabecera = "{"
                               + "\"Payment\": {"
-                              + "\"CardCode\": \"CF-" + (p.CardCode).Substring(0, 8) + "\","
+                              + "\"CardCode\": \"" + carCodeCFIB + "\","
                               + "\"DocDate\": \"" + String.Format("{0:yyyyMMdd}", p.DocDate) + "\","
                               + "\"CashSum\": \"" + p.CashSum +"\","
                               + "\"CashAccount\": \"" + p.CashAccount + "\","
-                              + "\"TransferAccount\": \""+p.TransferAccount+"\"," // TODO
-                              + "\"TransferSum\": \""+p.TransferSum+"\"," // TODO
-                              + "\"TransferDate\": \""+p.TransferDate+"\"," // TODO
-                              + "\"TransferReference\": \""+p.TransferReference+"\"," // TODO
+                              + "\"TransferAccount\": \""+p.TransferAccount+"\"," 
+                              + "\"TransferSum\": \""+p.TransferSum+"\","
+                              + "\"TransferDate\": \""+p.TransferDate+"\"," 
+                              + "\"TransferReference\": \""+p.TransferReference+"\","
                               + "\"udf\": {"
                               + "\"U_SEI_CAJA\": \""+p.caja+"\","
                               + "\"U_SEI_CAJERO\": \" CAJA"+p.cajero+"\""
@@ -275,12 +438,13 @@ namespace AdmToSap
                 string llave = string.Empty;
                 foreach(var docsap in p.documentsap)
                 {
+                   
                     count += 1;
 
-                      docssap  ="{" 
-                               // +"\"BoObjectType\" : \""+ docsap.InvoiceType+"\","
+                      docssap  ="{"
+                               + "\"InvoiceType\" : \"" + docsap.InvoiceType + "\","
                                 +"\"DocEntry\": \""+ docsap.DocEntry +"\","
-                             //   +"\"DocumentSubType\": \"--\","
+                             // +"\"DocumentSubType\": \"--\","
                                 +"\"SumApplied\": \""+ docsap.SumApplied+"\"";
                if(p.documentsap.Count > count)
                        {
@@ -357,9 +521,11 @@ namespace AdmToSap
                              +"}";
 
                     json += finjson;
+
+                    Console.WriteLine("CARDCODE: {0} DOCDATE: {1} ",p.CardCode +" | ",p.DocDate + " | ");
                 
-                Connect conn = new Connect();
-                String responce = conn.HttpPOST(url, json);
+                    Connect conn = new Connect();
+                    String responce = conn.HttpPOST(url, json);
 
                 // Actualizo Recibo Adm
                 if (respdb.getMensajeError(responce) == -1)
@@ -370,7 +536,7 @@ namespace AdmToSap
 
                 // cargo la respuesta
                 respuesta.tipodete = p.tipoAbono.ToString();
-                respuesta.folio = p.nroAbono.ToString();
+                respuesta.folio = p.folioDte.ToString();
                 respuesta.tiporesp = "Pago";
                 respuesta.json = json;
                 respuesta.xml = responce.Replace("'", "");
@@ -409,10 +575,7 @@ namespace AdmToSap
             int first = 0;
             int last = 0;
             consqlite = condbsqlite.getConectSqlite();
-            string url = "http://"+consqlite.ip_sap+"" 
-                        +"/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?" 
-                        +"wsaction=" 
-                        +"GetItemList";
+            string url = consqlite.ip_sap+"GetItemList";
             String jsonResponce = String.Empty;
             String j = "{\"rowCount\":\"\",\"Items\":[]}";
 
@@ -446,10 +609,7 @@ namespace AdmToSap
             int last = 0;
 
             consqlite = condbsqlite.getConectSqlite();
-            string url = "http://"+consqlite.ip_sap+""
-                        + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
-                        + "wsaction="
-                        + "GetWhsInventory";
+            string url = consqlite.ip_sap+"GetWhsInventory";
 
             String resposeJson = String.Empty;
             String j = "{\"rowCount\":\"0\",\"Items\":[]}";
@@ -483,10 +643,7 @@ namespace AdmToSap
             int first = 1;
             int last = 0;
             consqlite = condbsqlite.getConectSqlite();
-            string url = "http://"+consqlite.ip_sap+""
-                        + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
-                        + "wsaction="
-                        + "GetPriceList";
+            string url = consqlite.ip_sap+"GetPriceList";
             string json = "{ \"UpdateDate\": \""+fecha+"\","
             + "\"first\": \""+first+"\","
             + "\"last\": \"4\""
@@ -512,10 +669,7 @@ namespace AdmToSap
 
             foreach (JournalEntry jentry in jentries)
             {
-                string url = "http://" + consqlite.ip_sap + ""
-                            + "/B1iXcellerator/exec/ipo/vP.0010000103.in_HCSX/com.sap.b1i.vplatform.runtime/INB_HT_CALL_SYNC_XPT/INB_HT_CALL_SYNC_XPT.ipo/proc?"
-                            + "wsaction="
-                            + "AddJournalEntry";
+                string url = consqlite.ip_sap +"AddJournalEntry";
 
                 string json = "{\"JournalEntry\": { "
                             + "\"TaxDate\": \"" + String.Format("{0:yyyyMMdd}", jentry.TaxDate) + "\", " 
@@ -555,11 +709,7 @@ namespace AdmToSap
 
         }
 
-        public void reciboDiario(frmMain frmain)
-        {
-
-        }
-
+  
 
 
     }// FIN CLASE

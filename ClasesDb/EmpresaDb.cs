@@ -51,6 +51,26 @@ namespace AdmToSap
 
         }
 
+        public int getBodega(int sucursal)
+        {
+            int codBodega = 0;
+            SQLiteConnection myConn = new SQLiteConnection(strConn);
+            myConn.Open();
+            string sql = "SELECT * FROM bodegas where cod_suc_adm = " + sucursal;
+            SQLiteCommand command = new SQLiteCommand(sql, myConn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                codBodega = Convert.ToInt32(reader.GetString(reader.GetOrdinal("codigoadm")));
+
+            }
+
+            myConn.Close();
+
+            return codBodega;
+
+        }
+
     
     }
 }

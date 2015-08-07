@@ -158,9 +158,11 @@
             this.tableAdapterManager.documentoTableAdapter = null;
             this.tableAdapterManager.empresasTableAdapter = null;
             this.tableAdapterManager.logTableAdapter = null;
+            this.tableAdapterManager.resp_productosTableAdapter = null;
             this.tableAdapterManager.respuestasTableAdapter = this.respuestasTableAdapter;
             this.tableAdapterManager.sqlite_sequenceTableAdapter = null;
             this.tableAdapterManager.sucursalesTableAdapter = null;
+            this.tableAdapterManager.temporizadoresTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = AdmToSap._C__admtosap_DataB_sqliteDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // respuestasBindingNavigator
@@ -294,7 +296,7 @@
             this.tiporespTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.respuestasBindingSource, "tiporesp", true));
             this.tiporespTextBox.Location = new System.Drawing.Point(77, 157);
             this.tiporespTextBox.Name = "tiporespTextBox";
-            this.tiporespTextBox.Size = new System.Drawing.Size(239, 20);
+            this.tiporespTextBox.Size = new System.Drawing.Size(428, 20);
             this.tiporespTextBox.TabIndex = 10;
             // 
             // xmlLabel1

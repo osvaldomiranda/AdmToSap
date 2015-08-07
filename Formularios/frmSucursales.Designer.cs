@@ -55,6 +55,8 @@
             this.salesperson = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cashaccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cardcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.creditacct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkaccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this._C__admtosap_DataB_sqliteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sucursalesBindingNavigator)).BeginInit();
@@ -228,7 +230,9 @@
             this.dataGridViewTextBoxColumn5,
             this.salesperson,
             this.cashaccount,
-            this.cardcode});
+            this.cardcode,
+            this.creditacct,
+            this.checkaccount});
             this.sucursalesDataGridView.DataSource = this.sucursalesBindingSource;
             this.sucursalesDataGridView.Location = new System.Drawing.Point(12, 38);
             this.sucursalesDataGridView.Name = "sucursalesDataGridView";
@@ -282,6 +286,18 @@
             this.cardcode.HeaderText = "cardcode";
             this.cardcode.Name = "cardcode";
             // 
+            // creditacct
+            // 
+            this.creditacct.DataPropertyName = "creditacct";
+            this.creditacct.HeaderText = "creditacct";
+            this.creditacct.Name = "creditacct";
+            // 
+            // checkaccount
+            // 
+            this.checkaccount.DataPropertyName = "checkaccount";
+            this.checkaccount.HeaderText = "checkaccount";
+            this.checkaccount.Name = "checkaccount";
+            // 
             // frmSucursales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,5 +346,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn salesperson;
         private System.Windows.Forms.DataGridViewTextBoxColumn cashaccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn cardcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn creditacct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn checkaccount;
     }
 }
